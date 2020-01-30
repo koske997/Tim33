@@ -17,6 +17,7 @@ class Homepage extends Component {
                 <li><NavLink exact to="/zaposleni">Zaposleni</NavLink></li>
                 <li><NavLink exact to="/klinike">Klinike</NavLink></li>
                 <li><NavLink exact to="/kontakt">Kontakt</NavLink></li>
+                
 
             </ul>
             <div className="content">

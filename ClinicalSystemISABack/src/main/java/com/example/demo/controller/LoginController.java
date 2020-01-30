@@ -58,6 +58,7 @@ public class LoginController {
         return ResponseEntity.ok(new UserTokenState(jwt, expiresIn));
     }
 
+    //@CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/register")
     public ResponseEntity<?> register(@RequestBody UserViewRegister user, UriComponentsBuilder ucBuilder) {
 

@@ -1,13 +1,11 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Clinic;
-import com.example.demo.model.MedicalRecord;
-import com.example.demo.model.User;
-import com.example.demo.model.UserRole;
+import com.example.demo.model.*;
 import com.example.demo.security.TokenUtils;
 import com.example.demo.service.ClinicService;
 import com.example.demo.service.CustomUserDetailsService;
 
+import com.example.demo.service.RoomService;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,6 +39,9 @@ public class PacijentiController {
     @Autowired
     private ClinicService clinicService;
 
+    @Autowired
+    private RoomService roomService;
+
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/pacijenti")
     public ResponseEntity<?> pacijenti() {
@@ -65,11 +66,40 @@ public class PacijentiController {
     public ResponseEntity<?> medicinskiKartonUlogovanogKorisnika() {
 
         User loggedUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        System.out.println("AAAAAAAAAAAAAAAAA" + loggedUser.getMedicalRecord() + "BBBBBBBBBBBBBBBBBBBBBBB");
+        System.out.println("AAAAAAAAAAAAAAAAA" + loggedUser.getEmail() + "BBBBBBBBBBBBBBBBBBBBBBB");
         MedicalRecord karton = loggedUser.getMedicalRecord();
 
         return new ResponseEntity<>(karton, HttpStatus.OK);
     }
 
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/sveSale")
+    public ResponseEntity<?>Sale() {
+
+
+        List<Room> sale = this.roomService.findAll();
+
+        return new ResponseEntity<>(sale, HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/sviDoktori")
+    public ResponseEntity<?> doktori() {
+
+        List<User> doktori = this.userService.findAllByRole(UserRole.valueOf("DOCTOR"));
+
+        return new ResponseEntity<>(doktori, HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/prijavljenKorisnik")
+    public ResponseEntity<?>prijavljenKorisnik() {
+
+        User loggedUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        System.out.println("AAAAAAAAAAAAAAAAA" + loggedUser.getEmail() + "BBBBBBBBBBBBBBBBBBBBBBB");
+
+        return new ResponseEntity<User>(loggedUser, HttpStatus.OK);
+    }
 }

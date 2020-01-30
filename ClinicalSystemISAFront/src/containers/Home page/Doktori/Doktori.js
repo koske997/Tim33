@@ -20,7 +20,7 @@ class Doktori extends React.Component {
     }
 
       
-    setRedirect = () => {
+   setRedirect = () => {
         this.setState({
           redirect: true
         })
@@ -35,6 +35,7 @@ class Doktori extends React.Component {
 
   render() {
     console.log(this.props.pacijenti);
+    console.log(this.props.token);
     return (
       <div className="ui segment">
         <h2>Lista svih pacijenata </h2>

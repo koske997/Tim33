@@ -8,7 +8,12 @@ const initialState = {
     userId: null,
     pacijenti: null,
     klinike: null,
-    karton: null
+    karton: null,
+    pregled: null,
+    sale: null,
+    doktori: null,
+    tipoviPregleda: null,
+    prijavljenKorisnik: null,
 }
 
 const reducer = (state = initialState, action) => {
@@ -45,6 +50,31 @@ switch (action.type) {
         return {
             ...state,
             karton: action.karton
+        }
+    case actionTypes.SACUVAJ_PREGLED:
+        return {
+            ...state,
+            pregled: action.pregled
+        }
+    case actionTypes.SACUVAJ_SALE:
+        return {
+            ...state,
+            sale: action.sale
+        }
+    case actionTypes.SACUVAJ_DOKTORE:
+        return {
+            ...state,
+            doktori: action.doktori
+        }
+    case actionTypes.SACUVAJ_TIPOVE_PREGLEDA:
+        return {
+            ...state,
+            tipoviPregleda: action.tipoviPregleda
+        }
+    case actionTypes.SACUVAJ_PRIJAVLJENOG_KORISNIKA:
+        return {
+            ...state,
+            prijavljenKorisnik: action.prijavljenKorisnik
         }
     case actionTypes.SIGN_UP:
         return userRegister(state, action);

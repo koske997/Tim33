@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
+import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
 import classes from './Layout.css';
 import axios from '../../axios-objects';
-import Auxiliary from '../../hoc/Auxiliary/Auxiliary';
 import {updateObject} from '../../shared/utility';
 import * as actions from '../../store/actions/index';
 
@@ -53,6 +53,10 @@ class Layout extends Component {
         this.props.history.push("/doktor");
     }
 
+    adminKlinike = () => {
+        this.props.history.push("/adminKlinike");
+    }
+
     render() {
         let redirect = null;
         if (this.props.added) {
@@ -82,6 +86,9 @@ class Layout extends Component {
                     {!this.props.logged ? (<button className={classes.Button} onClick={this.pacijenti}>Pacijenti</button>) : null}
 
                     {!this.props.logged ? (<button className={classes.Button} onClick={this.doktori}>Doktori</button>) : null}
+
+                    {!this.props.logged ? (<button className={classes.Button} onClick={this.adminKlinike}>Admin klinike</button>) : null}
+
 
                 </div>
 

@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -35,6 +36,8 @@ public class Operation {
     @OneToOne(mappedBy = "operationPatient")
     private User patient;
 
-    @OneToOne(mappedBy = "operationRoom")
+    @OneToOne(mappedBy = "operationRoom", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Room room;
+
+
 }

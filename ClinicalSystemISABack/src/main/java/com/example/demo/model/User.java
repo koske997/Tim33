@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -53,6 +54,15 @@ public class User implements UserDetails {
     //doktori
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Operation operation;
+
+
+    //Pri unosu pregleda, desi se rekurzivna besk. ako je ovo otkomentarisano, a jsa 2JsonIgnore, ne radi
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Checkup> checkupListDoctor = new ArrayList<>();
+
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Checkup> checkupListPatient = new ArrayList<>();
+
 
     //pacijent sa zdravstvenim kartonom, nova tabela
     @OneToOne(fetch = FetchType.EAGER)

@@ -1,5 +1,9 @@
 import React from 'react';
-import { Button, Card, Image } from 'semantic-ui-react'
+import * as actions from '../../../store/actions/index';
+import {connect} from 'react-redux';
+
+
+
 
 const ListaKlinika = props => {
 
@@ -9,10 +13,25 @@ const ListaKlinika = props => {
     {
         return ListaKlinika;
     }
+
+    function handleClick(id){
+        console.log(id);
+
+        const klinike = props.klinike.map((klinika) => {
+            if(klinika.id == id)
+            {
+             console.log(klinika.name);
+            }
+
+        });
+        console.log(klinike);
+     }
+   
     
     const klinike = props.klinike.map((klinika) => {
         return (
-            <div class="ui link cards">
+            
+            <div key={klinika.id} id={klinika.id} onClick={() => handleClick(klinika.id)} class="ui link cards" >
                 <div class="card">
                     <div class="image">
                         <img src={klinika.picture} alt="Nece slika"/>
@@ -43,5 +62,6 @@ const ListaKlinika = props => {
 
     return <div> {klinike} </div>
 }
+
 
 export default ListaKlinika;

@@ -96,7 +96,7 @@ export const pacijenti = () => {
 
         axios.get(url, {
             headers: {
-                'Authorization': 'Bearer' + token
+                'Authorization': 'Bearer ' + token
             }
         })
             .then(response => {
@@ -130,7 +130,7 @@ export const klinike = () => {
 
         axios.get(url, {
             headers: {
-                'Authorization': 'Bearer' + token
+                'Authorization': 'Bearer ' + token
             }
         })
             .then(response => {
@@ -140,10 +140,7 @@ export const klinike = () => {
             }).catch(error => {
                 console.log(error);
             })
-    
-
     };
-
 };
 
 
@@ -178,5 +175,305 @@ export const karton = () => {
     
 
     };
-
 };
+
+
+export const sacuvajPregled = (pregled) => {
+    console.log(karton)
+    return {
+        type: actionTypes.SACUVAJ_PREGLED,
+        pregled: pregled
+    }
+}
+
+export const unosPregleda = (naziv, opis, tip, sala, lekar, cena, datumVreme, trajanje) => {
+    return dispatch => {
+        const authData = {
+            naziv: naziv,
+            opis: opis,
+            tip: tip,
+            sala: sala,
+            lekar: lekar,
+            cena: cena,
+            datumVreme: datumVreme,
+            trajanje: trajanje,
+            returnSecureToken: true
+        };
+
+        const url = '/unosPregleda';        
+        
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+
+            dispatch(sacuvajPregled(response.data));
+        })
+        .catch(err => {
+             console.log(err);
+        });
+    };
+};
+
+
+export const sveSale = (sale) => {
+    return {
+        type: actionTypes.SACUVAJ_SALE,
+        sale: sale
+    }
+}
+
+export const sale = () => {
+
+    return dispatch => {
+        console.log('UdjesLi?????');
+        const url = "/sveSale";
+        const token = sessionStorage.getItem('token');
+
+        axios.get(url, {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
+            .then(response => {
+                console.log(response);
+                dispatch(sveSale(response.data));
+
+            }).catch(error => {
+                console.log(error);
+            })
+    };
+};
+
+export const sviDoktori = (doktori) => {
+    return {
+        type: actionTypes.SACUVAJ_DOKTORE,
+        doktori: doktori
+    }
+}
+
+export const doktori= () => {
+
+    return dispatch => {
+    
+        const url = "/sviDoktori";
+        const token = sessionStorage.getItem('token');
+
+        axios.get(url, {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
+            .then(response => {
+                console.log(response);
+                dispatch(sviDoktori(response.data));
+
+            }).catch(error => {
+                console.log(error);
+            })
+    };
+};
+
+
+export const sviTipoviPregleda = (tipoviPregleda) => {
+    return {
+        type: actionTypes.SACUVAJ_TIPOVE_PREGLEDA,
+        tipoviPregleda: tipoviPregleda
+    }
+}
+
+export const tipoviPregleda = () => {
+
+    return dispatch => {
+    
+        const url = "/sviTipoviPregleda";
+        const token = sessionStorage.getItem('token');
+
+        axios.get(url, {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
+            .then(response => {
+                console.log(response);
+                dispatch(sviTipoviPregleda(response.data));
+
+            }).catch(error => {
+                console.log(error);
+            })
+    };
+};
+
+
+
+/*export const sacuvajSalu= (sala) => {
+    return {
+        type: actionTypes.SACUVAJ_SALU,
+        sala: sala
+    }
+}*/
+
+export const unosSale = (broj, slobodna) => {
+    return dispatch => {
+        const authData = {
+            broj: broj,
+            slobodna: slobodna,
+           
+            returnSecureToken: true
+        };
+
+        const url = '/unosSale';        
+        
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+
+            //dispatch(sacuvajSalu(response.data));
+        })
+        .catch(err => {
+             console.log(err);
+        });
+    };
+};
+
+
+export const izmeniSalu = (izmena) => {
+    return dispatch => {
+        console.log(izmena);
+        const authData = {
+            id: izmena.id,
+            broj: izmena.broj,
+            slobodna: izmena.slobodna,
+
+            returnSecureToken: true,
+        };
+        
+        const url = '/modifikujSalu';
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+
+            //dispatch(sacuvajSalu(response.data));
+        })
+        .catch(err => {
+             console.log(err);
+        });
+        
+    };
+};
+
+export const pregledi = () => {
+
+    return dispatch => {
+        const url = "/sviPregledi";
+        const token = sessionStorage.getItem('token');
+
+        axios.get(url, {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
+            .then(response => {
+                console.log(response);
+                dispatch(sveSale(response.data));
+
+            }).catch(error => {
+                console.log(error);
+            })
+    };
+};
+
+export const izmeniTipPregleda = (izmena) => {
+    return dispatch => {
+        console.log(izmena);
+        const authData = {
+            id: izmena.id,
+            naziv: izmena.ime,
+
+            returnSecureToken: true,
+        };
+        
+        const url = '/modifikujTipPregleda';
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+
+            //dispatch(sacuvajSalu(response.data));
+        })
+        .catch(err => {
+             console.log(err);
+        });
+        
+    };
+};
+
+export const unosTipaPregleda = (naziv) => {
+    return dispatch => {
+        const authData = {
+            naziv: naziv,
+        };
+
+        const url = '/unosTipaPregleda';        
+        
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+
+        })
+        .catch(err => {
+             console.log(err);
+        });
+    };
+};
+
+export const izbrisiSalu = (izmena) => {
+    return dispatch => {
+        console.log(izmena);
+        const authData = {
+            id: izmena.id,
+            broj: izmena.broj,
+            slobodna: izmena.slobodna,
+
+            returnSecureToken: true,
+        };
+        
+        const url = '/izbrisiSalu';
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+        })
+        .catch(err => {
+             console.log(err);
+        });
+        
+    };
+};
+
+export const sacuvajPrijavljenogKorisnika= (prijavljenKorisnik) => {
+    return {
+        type: actionTypes.SACUVAJ_PRIJAVLJENOG_KORISNIKA,
+        prijavljenKorisnik: prijavljenKorisnik,
+    }
+}
+
+export const prijavljenKorisnik = () => {
+
+    return dispatch => {
+    
+        const url = "/prijavljenKorisnik";
+        const token = sessionStorage.getItem('token');
+
+        axios.get(url, {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
+            .then(response => {
+                console.log(response);
+                dispatch(sacuvajPrijavljenogKorisnika(response.data));
+
+            }).catch(error => {
+                console.log(error);
+            })
+    };
+};
+

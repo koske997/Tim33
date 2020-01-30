@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,7 +28,16 @@ public class Room {
     @OneToMany(mappedBy = "room", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<User> userList = new ArrayList<>();
 
+    //Sa ovim se desava rekurzivna beskonacnost, sa JeonIgnore puca program, ovako radi
+    //@OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //private List<Checkup> checkupList = new ArrayList<>();
+
+
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "operationId")
     private Operation operationRoom;
+
+
+
 }

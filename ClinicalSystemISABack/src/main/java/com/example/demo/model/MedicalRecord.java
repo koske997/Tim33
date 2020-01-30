@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import lombok.*;
+import org.hibernate.annotations.Check;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -23,6 +24,9 @@ public class MedicalRecord {
 
     @OneToMany(mappedBy = "medRecord", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Visit> visitList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "medRecord", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Checkup> checkupList = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(

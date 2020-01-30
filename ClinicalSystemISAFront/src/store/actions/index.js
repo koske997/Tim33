@@ -8,5 +8,17 @@ export {
     login,
     pacijenti,
     klinike,
-    karton
+    karton,
+    unosPregleda,
+    sale,
+    doktori,
+    tipoviPregleda,
+    unosSale,
+    izmeniSalu,
+    pregledi,
+    izmeniTipPregleda,
+    unosTipaPregleda,
+    izbrisiSalu,
+    izmeniPrijavljenogKorisnika,
+    prijavljenKorisnik,
 } from './auth';
