@@ -5,7 +5,9 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 @Getter
 @Setter
@@ -46,12 +48,19 @@ public class Checkup {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private MedicalRecord medRecord;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private User doctor;
+    //@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    //private User doctor;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private User patient;
+    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //@JoinColumn("checkup_id")
+    private List<User> doctor = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Room room;
+    //@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    //private User patient;
+
+    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Room> room = new ArrayList<>();
+
+    //@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    //private Room room;
 }

@@ -7,16 +7,20 @@ import com.example.demo.service.CustomUserDetailsService;
 
 import com.example.demo.service.RoomService;
 import com.example.demo.service.UserService;
+import com.example.demo.view.RoomView;
+import com.example.demo.view.UserViewRegister;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -101,5 +105,16 @@ public class PacijentiController {
         System.out.println("AAAAAAAAAAAAAAAAA" + loggedUser.getEmail() + "BBBBBBBBBBBBBBBBBBBBBBB");
 
         return new ResponseEntity<User>(loggedUser, HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(value = "/izmeniPrijavljenogKorisnika")
+    public ResponseEntity<?> izmenaKorisnika(@RequestBody UserViewRegister userView) throws AuthenticationException, IOException {
+
+        System.out.println("CCCCCCCC" + userView.getEmail() + ' ' + userView.getId() + ' ' + userView.getAddress());
+
+        User modUser = this.userService.modifikacija(userView);
+
+        return new ResponseEntity<User>(modUser, HttpStatus.CREATED);
     }
 }

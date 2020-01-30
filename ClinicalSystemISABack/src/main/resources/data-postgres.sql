@@ -12,9 +12,9 @@ insert into checkup_type(name) values ('Sistematski');
 insert into medical_record (id) values (1);
 insert into medical_record (id) values (2);
 
-insert into users (first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled) values ('Aleksandar', 'Kosic', 'sickokralj4@gmail.com', '$2a$10$PckbyvdiGuU9H9HIzQT8nuMX/n30JwNMCmH/MbK6UWVQbggL55rnm', 'Kula', 'Srbija', 06139356, 0297, 'ADMINCC', true);
-insert into users (first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled) values ('Jovan', 'Jenjic', 'jovan.jenjic@gmail.com', '$2a$10$PckbyvdiGuU9H9HIzQT8nuMX/n30JwNMCmH/MbK6UWVQbggL55rnm', 'Srbija', 'Srbijaa', 069356, 02997, 'DOCTOR', true);
-insert into users (first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled) values ('Aeesfleksandar', 'Kosdfsic', 'dsidsdsffckokralj4@gmail.com', '$2a$10$PckbyvdiGuU9H9HIzQT8nuMX/n30JwNMCmH/MbK6UWVQbggL55rnm', 'Kula', 'Srbija', 06, 022397, 'DOCTOR', true);
+insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled) values ('Sajlovo1', 'Aleksandar', 'Kosic', 'sickokralj4@gmail.com', '$2a$10$PckbyvdiGuU9H9HIzQT8nuMX/n30JwNMCmH/MbK6UWVQbggL55rnm', 'Kula', 'Srbija', 06139356, 0297, 'ADMINCC', true);
+insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled) values ('detelinara1', 'Jovan', 'Jenjic', 'jovan.jenjic@gmail.com', '$2a$10$PckbyvdiGuU9H9HIzQT8nuMX/n30JwNMCmH/MbK6UWVQbggL55rnm', 'Srbija', 'Srbijaa', 069356, 02997, 'DOCTOR', true);
+insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled) values ('naselje1', 'Aeesfleksandar', 'Kosdfsic', 'dsidsdsffckokralj4@gmail.com', '$2a$10$PckbyvdiGuU9H9HIzQT8nuMX/n30JwNMCmH/MbK6UWVQbggL55rnm', 'Kula', 'Srbija', 06, 022397, 'DOCTOR', true);
 
 
 insert into operation (description, date_time, duration_hours) values ('Transplatacija bubrega', '2019-9-8', 7);

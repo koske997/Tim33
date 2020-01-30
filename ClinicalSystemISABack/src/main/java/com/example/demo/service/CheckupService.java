@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -73,9 +74,14 @@ public class CheckupService {
 
         System.out.println(checkup.getTrajanje() + "BBBBBBBBBBBBBBBBBBBBBBBBB");
 
+        List<User> doc = new ArrayList<>();
+        doc.add(doctor);
+
+        List<Room> ro = new ArrayList<>();
+        ro.add(room);
 
         Checkup c = Checkup.builder().name(checkup.getNaziv()).description(checkup.getOpis()).type(checkup.getTip())
-                .doctor(doctor).room(room).medRecord(null).price(Integer.parseInt(checkup.getCena())).duration(Integer.parseInt(checkup.getTrajanje())).dateTime(cal).patient(null).enabled(true).build();
+                .doctor(doc).room(ro).medRecord(null).price(Integer.parseInt(checkup.getCena())).duration(Integer.parseInt(checkup.getTrajanje())).dateTime(cal).enabled(true).build();
 
 
         return this.checkupRepository.save(c);

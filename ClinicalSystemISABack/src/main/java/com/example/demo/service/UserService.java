@@ -1,9 +1,11 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Authority;
+import com.example.demo.model.Room;
 import com.example.demo.model.User;
 import com.example.demo.model.UserRole;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.view.RoomView;
 import com.example.demo.view.UserViewRegister;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -50,6 +52,31 @@ public class UserService {
         u.setAuthorities(auth);
 
         return this.userRepository.save(u);
+    }
+
+    public User modifikacija(UserViewRegister u) {
+
+        List<User> userList = this.findAll();
+        User use = new User();
+
+        for (User us : userList)
+        {
+            if (u.getId() == us.getId())
+            {
+                us.setAddress(u.getAddress());
+                us.setCity(u.getCity());
+                us.setCountry(u.getCountry());
+                us.setEmail(u.getEmail());
+                us.setFirstName(u.getFirstName());
+                us.setLastName(u.getLastName());
+                us.setPhoneNumber(u.getPhoneNumber());
+                us.setPassword(u.getPassword());
+
+                use = us;
+            }
+        }
+
+        return this.userRepository.save(use);
     }
 
     public void remove(Long id) {
