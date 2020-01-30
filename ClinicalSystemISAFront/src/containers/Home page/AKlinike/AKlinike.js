@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import {Redirect} from 'react-router-dom';
 import * as actions from '../../../store/actions/index';
 import {connect} from 'react-redux';
+import IzmenaPodataka from '../IzmenaPodatakaKorisnika/IzmeniPodatke';
+
 
 
 
@@ -19,7 +21,23 @@ state = {
     redirectPregled: false,
     redirectSala: false,
     redirectTipoviPregleda: false, 
+
+    prijavljenKorisnik: null,
+    openModal: false,
 }
+
+handleClick = id => {
+ 
+    this.setState({
+        openModal: true,
+    });
+  }
+  
+  closeModal = () => {
+    this.setState({
+        openModal: false,
+    });
+  }
 
   
 setRedirect = (e) => {
@@ -59,6 +77,8 @@ renderRedirect = () => {
   render() {
       return (
       <div>
+         <IzmenaPodataka prijavljenKorisnik={this.props.prijavljenKorisnik} openModal={this.state.openModal} closeModal={this.closeModal} /> 
+
             <h2>Administrator klinike </h2>
 
         <div className="ui segment">
@@ -86,6 +106,13 @@ renderRedirect = () => {
             <button className="Tipovi_pregleda" onClick = { (e) => {this.setRedirect_2(e); this.props.prikazi_preglede(e)}}>Tipovi pregleda</button> 
             <hr/>
         </div>
+
+        <div className="ui segment">
+            <h3>Izmeni svoje podatke</h3>
+
+            <button className="Izmeni_svoje_podatke" onClick = { (e) => { this.handleClick(e); this.props.izmeni_priavljenog_korisnika(e);}}>Izmeni</button> 
+            <hr/>
+        </div>
    </div>
     );
   }
@@ -98,7 +125,10 @@ const mapStateToProps = state => {
     return {
         sale: state.auth.sale,
         doktori: state.auth.doktori,
-        tipoviPregleda: state.auth.tipoviPregleda
+        tipoviPregleda: state.auth.tipoviPregleda,
+
+        prijavljenKorisnik: state.auth.prijavljenKorisnik
+
     }
 }
 
@@ -109,6 +139,7 @@ const mapDispatchToProps = dispatch => {
         prikazi_tipove_pregleda: () => dispatch(actions.tipoviPregleda()),
 
         prikazi_preglede: () => dispatch(actions.pregledi()),
+        izmeni_priavljenog_korisnika: () => dispatch(actions.prijavljenKorisnik()),
     }
 };
 

@@ -12,7 +12,8 @@ class Layout extends Component {
     state = {
         object: {
             name: '',
-            title: ''
+            title: '',
+            prijavljenKorisnik: undefined,
         }
     }
 
@@ -81,7 +82,7 @@ class Layout extends Component {
 
                     {!this.props.logged ? (<button className={classes.Button} onClick={this.loginHandler}>Login</button>) : null}
                     
-                    {!this.props.logged ? (<button className={classes.Button} onClick={this.homepage}>Home page</button>) : null}
+                    {!this.props.logged ? (<button className={classes.Button} onClick={ (e) => {this.homepage(e); this.props.prijavljenKorisnik(e)}}>Home page</button>) : null}
 
                     {!this.props.logged ? (<button className={classes.Button} onClick={this.pacijenti}>Pacijenti</button>) : null}
 
@@ -104,13 +105,15 @@ const mapStateToProps = (state) => {
     console.log(state)
     return {
         added: state.object.added,
-        logged: state.auth.token !== null
+        logged: state.auth.token !== null,
+        peijavljenKorisnik: state.auth.peijavljenKorisnik,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAddObject: (data) => dispatch(actions.addObject(data))
+        onAddObject: (data) => dispatch(actions.addObject(data)),
+        prijavljenKorisnik: () => dispatch(actions.prijavljenKorisnik())
     };
 };
 

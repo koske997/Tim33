@@ -19,6 +19,7 @@ export {
     izmeniTipPregleda,
     unosTipaPregleda,
     izbrisiSalu,
-    izmeniPrijavljenogKorisnika,
     prijavljenKorisnik,
+    izmeniPrijavljenogKorisnika,
+    obrisiPrijavljenogKorisnika,
 } from './auth';

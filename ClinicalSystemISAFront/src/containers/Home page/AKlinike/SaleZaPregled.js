@@ -18,7 +18,6 @@ class saleZaPregled extends React.Component {
 
   state = {
     redirectPregled: false,
-    redirectSala: false,
 }
 
   
@@ -29,20 +28,13 @@ setRedirect = (e) => {
 }
 
   
-setRedirect_1 = (e) => {
-    this.setState({
-      redirectSala: true
-    })
-}
+
 
 renderRedirect = () => {
     if (this.state.redirectPregled) {
       return <Redirect to='/unosSale' />
     }
-    else if(this.state.redirectSala)
-    {
-        return <Redirect to='/saleZaPregled' />
-    }
+
 }
 
 

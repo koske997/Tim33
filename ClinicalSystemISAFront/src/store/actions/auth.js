@@ -225,7 +225,6 @@ export const sveSale = (sale) => {
 export const sale = () => {
 
     return dispatch => {
-        console.log('UdjesLi?????');
         const url = "/sveSale";
         const token = sessionStorage.getItem('token');
 
@@ -474,6 +473,37 @@ export const prijavljenKorisnik = () => {
             }).catch(error => {
                 console.log(error);
             })
+    };
+};
+
+export const izmeniPrijavljenogKorisnika = (izmena) => {
+    return dispatch => {
+        console.log(izmena);
+        const authData = {
+            id: izmena.id,
+            firstName: izmena.firstName,
+            lastName: izmena.lastName,
+            email: izmena.email,
+            password: izmena.password,
+            address: izmena.address,
+            city: izmena.city,
+            country: izmena.country,
+            phoneNumber: izmena.phoneNumber,
+
+            returnSecureToken: true,
+        };
+        
+        const url = '/izmeniPrijavljenogKorisnika';
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+
+            //dispatch(sacuvajSalu(response.data));
+        })
+        .catch(err => {
+             console.log(err);
+        });
+        
     };
 };
 
