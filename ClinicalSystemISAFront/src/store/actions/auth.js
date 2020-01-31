@@ -458,7 +458,6 @@ export const sacuvajPrijavljenogKorisnika= (prijavljenKorisnik) => {
 export const prijavljenKorisnik = () => {
 
     return dispatch => {
-    
         const url = "/prijavljenKorisnik";
         const token = sessionStorage.getItem('token');
 
@@ -472,8 +471,40 @@ export const prijavljenKorisnik = () => {
                 dispatch(sacuvajPrijavljenogKorisnika(response.data));
 
             }).catch(error => {
+
                 console.log(error);
             })
     };
 };
+
+export const sacuvajSortiranePacijente = (pacijentisort) => {
+    return {
+        type: actionTypes.VRATI_SORTIRANE_PACIJENTE,
+        pacijentisort: pacijentisort,
+    }
+}
+
+export const sortiraniPacijenti = () => {
+    return dispatch => {
+        const url = "/sortpacijenti";
+        const token = sessionStorage.getItem('token');
+
+        axios.get(url, {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        }).then(response => {
+            console.log(response);
+            dispatch(sacuvajSortiranePacijente(response.data));
+        }).catch(error => {
+            console.log(error);
+        })
+
+    };
+};
+
+
+
+
+
 

@@ -2,7 +2,7 @@ import React from 'react';
 import get from 'lodash/get';
 import * as actions from '../../../store/actions/index';
 import {connect} from 'react-redux';
-import { Button, Header, Image, Modal } from 'semantic-ui-react'
+import { Button, Header, Image, Modal } from 'semantic-ui-react';
 import ReactDOM from 'react-dom'
 
 
@@ -123,12 +123,12 @@ class ListaSala_1 extends React.Component {
             const slobodna = sala.free ? 'Slobodna' : 'Zauzeta';
     
             return (
-                    <div key={sala.id} id={sala.id} class="ui link cards">
-                        <div class="card">
-                            <div class="content"  onClick={(e) => {this.handleClick(sala.id); }}>
-                                <div class="header">Sala (Soba) {sala.number}</div>
-                                <div class="meta">{slobodna}</div>
-                            <div class="description">
+                    <div key={sala.id} id={sala.id} className="ui link cards">
+                        <div className="card">
+                            <div className="content"  onClick={(e) => {this.handleClick(sala.id); }}>
+                                <div className="header">Sala (Soba) {sala.number}</div>
+                                <div className="meta">{slobodna}</div>
+                            <div className="description">
                                 Sala za pregled i operacije.
                             </div>
                             </div>

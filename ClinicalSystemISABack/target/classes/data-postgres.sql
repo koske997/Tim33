@@ -1,8 +1,8 @@
 insert into clinic_center (name) values ('Klinicki Centar VNS');
 
-insert into clinic (name, clinic_center_id, city, picture) values ('Klinika 1', 1, 'Novi Sad', '/images/kc1.jpg');
-insert into clinic (name, clinic_center_id, city, picture) values ('Klinika 2', 1, 'Beograd', '/images/kc2.jpg');
-insert into clinic (name, clinic_center_id, city, picture) values ('Klinika 3', 1, 'Nis', '/images/kc3.jpg');
+insert into clinic (name, clinic_center_id, city, picture) values ('Klinika 1', 1, 'Novi Sad', '');
+insert into clinic (name, clinic_center_id, city, picture) values ('Klinika 2', 1, 'Beograd', '');
+insert into clinic (name, clinic_center_id, city, picture) values ('Klinika 3', 1, 'Nis', '');
 
 insert into checkup_type(name) values ('Kardioloski');
 insert into checkup_type(name) values ('Stomatoloski');

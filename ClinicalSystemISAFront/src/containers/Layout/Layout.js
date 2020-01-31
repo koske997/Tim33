@@ -57,6 +57,10 @@ class Layout extends Component {
         this.props.history.push("/adminKlinike");
     }
 
+    medSestra = () => {
+        this.props.history.push("/medSestra");
+    }
+
     render() {
         let redirect = null;
         if (this.props.added) {
@@ -76,7 +80,7 @@ class Layout extends Component {
                     onChange={(event) => this.inputChangehandler(event, 'title')}/>
                 <button onClick={(event) => this.objectHandler(event)} className={classes.Button}>Apply</button> */}
 
-                <div className='ui menu'>
+                <div className='ui three item menu'>
                     {!this.props.logged ? (<button className={classes.Button} onClick={this.registerHandler}>Register</button>) : null}
 
                     {!this.props.logged ? (<button className={classes.Button} onClick={this.loginHandler}>Login</button>) : null}
@@ -88,6 +92,8 @@ class Layout extends Component {
                     {!this.props.logged ? (<button className={classes.Button} onClick={this.doktori}>Doktori</button>) : null}
 
                     {!this.props.logged ? (<button className={classes.Button} onClick={this.adminKlinike}>Admin klinike</button>) : null}
+
+                    {!this.props.logged ? (<button className={classes.Button} onClick={this.medSestra}>Medicinska Sestra</button>) : null}
 
 
                 </div>

@@ -52,6 +52,14 @@ public class PacijentiController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/sortpacijenti")
+    public ResponseEntity<?> sortpacineti(){
+        List<User> pacijenti = this.userService.findAllByRoleOrderByFirstName(UserRole.valueOf("PATIENT"));
+
+        return new ResponseEntity<>(pacijenti, HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/klinike")
     public ResponseEntity<?>klinike() {
 

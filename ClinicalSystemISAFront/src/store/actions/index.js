@@ -21,4 +21,5 @@ export {
     izbrisiSalu,
     izmeniPrijavljenogKorisnika,
     prijavljenKorisnik,
+    sortiraniPacijenti,
 } from './auth';

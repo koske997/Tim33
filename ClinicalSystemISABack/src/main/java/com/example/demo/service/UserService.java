@@ -31,6 +31,8 @@ public class UserService {
 
     public List<User> findAllByRole(UserRole role) {return this.userRepository.findAllByRole(role); }
 
+    public List<User> findAllByRoleOrderByFirstName(UserRole role) {return this.userRepository.findAllByRoleOrderByFirstName(role); }
+
     public List<User> findAll() {
         return this.userRepository.findAll();
     }
