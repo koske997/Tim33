@@ -58,9 +58,9 @@ public class AKlinikeController {
 
         System.out.println(checkup.getTip());
 
-        Checkup saveCheckup = this.checkupService.save(checkup);
+        User saveCheckup = this.checkupService.save(checkup);
 
-        return new ResponseEntity<Checkup>(saveCheckup, HttpStatus.CREATED);
+        return new ResponseEntity<User>(saveCheckup, HttpStatus.CREATED);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")

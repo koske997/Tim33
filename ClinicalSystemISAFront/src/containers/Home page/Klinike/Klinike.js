@@ -1,11 +1,18 @@
 import React, { Component } from "react";
 import Auth from "../../../store/actions/auth"
-
+import * as actions from '../../../store/actions/index';
 import {connect} from 'react-redux';
+import ListaKlinika from "../Klinike/ListaKlinika";
+import { Button, Header, Image, Modal } from 'semantic-ui-react';
+
 
 
  
 class Klinike extends Component {
+
+  state = {
+    sveKlinike: null,
+  }
 
   
 
@@ -17,30 +24,30 @@ class Klinike extends Component {
         <p>Ovde mozete da vidite osnovne podatke o svim klinikama  koje postoje u nasoj evidenciji.</p>
 
         <div>
-           <span>{this.props.userId} </span>
+         <hr />
+              <ListaKlinika klinike={this.props.sveKlinike} />
+         <hr />      
+          <Button onClick = { (e) => {this.props.prikazi_klinike(e); }}>Prikazi klinike</Button>
         </div>
 
-        <button className="ageUp" onClick={this.props.onAgeUp} >Button1</button>
-        <button className="ageDown" onClick={this.props.onAgeDown} >Button2</button>
-        <hr/>
-        <div>History</div>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => {
-  console.log(state);
+  console.log(state.auth);
   return {
-      token: state.token,
-      userId: state.userId
-  }}
+      sveKlinike: state.auth.klinike,
+
+  }
+}
 
 const mapDispatchToProps = dispatch => {
   return {
-     onAgeUp: () => dispatch({type: "AGE_UP", value: 1}),
-      onAgeDown: () => dispatch({type: "AGE_DOWN", value: 1})
+      prikazi_klinike: () => dispatch(actions.klinike()),
+
   }
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Klinike);

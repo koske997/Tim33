@@ -15,6 +15,7 @@ import SaleZaPregled from './containers/Home page/AKlinike/SaleZaPregled';
 import UnosSale from './containers/Home page/AKlinike/UnosSale';
 import TipoviPregleda from './containers/Home page/AKlinike/TipoviPregleda/TipoviPregleda';
 import UnosTipaPregleda from './containers/Home page/AKlinike/TipoviPregleda/UnosTipaPregleda';
+import PretragaKlinika from './containers/Home page/Pacijenti/PretragaKlinika/PretragaKlinika';
 
 
 
@@ -42,6 +43,8 @@ class App extends Component {
           <Route path="/unosSale" component={UnosSale} />
           <Route path="/tipoviPregleda" component={TipoviPregleda} />
           <Route path="/unosTipaPregleda" component={UnosTipaPregleda} />
+          <Route path="/pretragaKlinika" component={PretragaKlinika} />
+
 
 
 

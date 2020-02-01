@@ -32,11 +32,19 @@ public class Room {
     //@OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     //private List<Checkup> checkupList = new ArrayList<>();
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name="room_checkup",
+            joinColumns = @JoinColumn(name = "room_id"),
+            inverseJoinColumns = @JoinColumn(name = "checkup_id")
+    )
+    private List<Checkup> checkups;
 
-    @JsonIgnore
+
+   /* @JsonIgnore
     @OneToOne
     @JoinColumn(name = "operationId")
-    private Operation operationRoom;
+    private Operation operationRoom;*/
 
 
 

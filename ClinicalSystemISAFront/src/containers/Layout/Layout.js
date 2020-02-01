@@ -42,11 +42,11 @@ class Layout extends Component {
         this.props.history.push("/login");
     }
 
-    homepage = () => {///////////////////////////////////////////////
+    homepage = () => {
         this.props.history.push("/homepage");
     }
 
-    pacijenti = () => {///////////////////////////////////////////////
+    pacijenti = () => {
         this.props.history.push("/pacijenti");
     }
 

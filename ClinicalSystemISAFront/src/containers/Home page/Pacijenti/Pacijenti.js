@@ -20,6 +20,8 @@ class Pacijenti extends React.Component {
 
   state = {
     redirect: false,
+    redirectPretrazi: false,
+
     prijavljenKorisnik: null,
     openModal: false,
 }
@@ -45,9 +47,19 @@ setRedirect = () => {
     })
 }
 
+setRedirect2 = () => {
+  this.setState({
+    redirectPretrazi: true
+  })
+}
+
 renderRedirect = () => {
     if (this.state.redirect) {
       return <Redirect to='/medicinskiKarton' />
+    } 
+    else if ( this.state.redirectPretrazi)
+    {
+      return <Redirect to='/pretragaKlinika' /> 
     }
 }
   
@@ -71,8 +83,10 @@ renderPrijavljenogPacijenta = () => {
             <div>
               <ListaKlinika klinike={this.props.klinike} />
             </div>
-  
+              {this.renderRedirect()}
+
             <button className="Prikazi_klinike" onClick={this.props.prikazi_klinike} >Prikazi klinike</button>
+            <button className="Filtriraj_klinike" onClick={(e) => { this.props.prikazi_klinike(e); this.setRedirect2(e); this.props.tipovi_pregleda(e); this.props.svi_pregledi(e);}} > Pretrazi klinike</button> 
           </div>
   
           <div className="ui segment">
@@ -84,7 +98,7 @@ renderPrijavljenogPacijenta = () => {
   
           <div className="ui segment">
             <h2>Izmeni svoje podatke</h2>      
-            <button className="Promeni_podatke" onClick={ (e) => { this.handleClick(e); this.props.prikazi_prijavljenKorisnik(e) }} >Promeni</button>
+            <button className="Promeni_podatke" onClick={ (e) => { this.handleClick(e); this.props.prikazi_prijavljenKorisnik(e); }} >Promeni</button>
           </div>
   
       </div>
@@ -124,6 +138,11 @@ const mapDispatchToProps = dispatch => {
      prikazi_karton: () => dispatch(actions.karton()),
 
      prikazi_prijavljenKorisnik: () => dispatch(actions.prijavljenKorisnik()),
+
+     tipovi_pregleda: () => dispatch(actions.tipoviPregleda()),
+
+     svi_pregledi: () => dispatch(actions.pregledi()),
+
   }
 }
 

@@ -22,4 +22,6 @@ export {
     prijavljenKorisnik,
     izmeniPrijavljenogKorisnika,
     obrisiPrijavljenogKorisnika,
+    sacuvajObelezenuKliniku,
+
 } from './auth';

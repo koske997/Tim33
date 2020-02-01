@@ -360,6 +360,13 @@ export const izmeniSalu = (izmena) => {
     };
 };
 
+export const sviPregledi = (sviPregledii) => {
+    return {
+        type: actionTypes.SACUVAJ_PREGLEDE,
+        sviPregledii: sviPregledii,
+    }
+}
+
 export const pregledi = () => {
 
     return dispatch => {
@@ -373,7 +380,7 @@ export const pregledi = () => {
         })
             .then(response => {
                 console.log(response);
-                dispatch(sveSale(response.data));
+                dispatch(sviPregledi(response.data));
 
             }).catch(error => {
                 console.log(error);
@@ -502,8 +509,16 @@ export const izmeniPrijavljenogKorisnika = (izmena) => {
         })
         .catch(err => {
              console.log(err);
-        });
-        
+        }); 
     };
 };
+
+export const sacuvajObelezenuKliniku= (obelezenaKlinika) => {
+    return {
+        type: actionTypes.SACUVAJ_OBELEZENU_KLINIKU,
+        obelezenaKlinika: obelezenaKlinika,
+    }
+}
+
+
 

@@ -48,7 +48,7 @@ public class CheckupService {
     //}
 
 
-    public Checkup save(CheckupView checkup)
+    public User save(CheckupView checkup)
     {
         User u = new User();
 
@@ -77,14 +77,22 @@ public class CheckupService {
         List<User> doc = new ArrayList<>();
         doc.add(doctor);
 
+
+
         List<Room> ro = new ArrayList<>();
         ro.add(room);
 
         Checkup c = Checkup.builder().name(checkup.getNaziv()).description(checkup.getOpis()).type(checkup.getTip())
-                .doctor(doc).room(ro).medRecord(null).price(Integer.parseInt(checkup.getCena())).duration(Integer.parseInt(checkup.getTrajanje())).dateTime(cal).enabled(true).build();
+                .doctor(doc).rooms(ro).medRecord(null).price(Integer.parseInt(checkup.getCena())).duration(Integer.parseInt(checkup.getTrajanje())).dateTime(cal).build();
 
+        doctor.setCheckup(c);
+        //Cudno ali novi pregled ne moze da doda samo ako u bazu ubacimo ovaj gore pregled
+        //on doda sve ali na taj nacin ne moze da doda doktora
+        //tek kada doktoru dodamo neki pregled, pregled se doda, cudno ali radi
 
-        return this.checkupRepository.save(c);
+        //this.userRepository.save(doctor);
+
+        return this.userRepository.save(doctor);
     }
 
     public void remove(Long id) {

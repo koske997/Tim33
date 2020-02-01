@@ -18,14 +18,11 @@ import java.util.List;
 public class Checkup {
 
 
-    private boolean enabled;
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String name;
 
     @Column(name = "description")
@@ -41,25 +38,24 @@ public class Checkup {
     @Column(name = "price")
     private float price;
 
-    @Column(name = "dateTime", nullable = false)
+    @Column(name = "dateTime")
     @Temporal(TemporalType.TIMESTAMP)
     private java.util.Calendar dateTime;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private MedicalRecord medRecord;
 
-    //@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    //private User doctor;
 
-    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    //@JoinColumn("checkup_id")
+
+    @OneToMany(mappedBy = "checkup", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<User> doctor = new ArrayList<>();
 
-    //@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    //private User patient;
 
-    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Room> room = new ArrayList<>();
+    @ManyToMany
+    private List<Room> rooms;
+
+    //@OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //private List<Room> room = new ArrayList<>();
 
     //@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     //private Room room;
