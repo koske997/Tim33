@@ -40,14 +40,28 @@ class MedicinskaSestra extends React.Component {
         }
 
         if(this.state.po==='ZAHTEV'){
-            return <FormaMejla />
+            return <FormaMejla vrati={this.funZaMail}/>
         }
 
         if(this.state.po==='KALENDAR'){
             return <Calendar />
         }
 
+        if(this.state.po==='ODG' && this.props.odgovor==null){
+            return <Spinner poruka="Slanje zahteva"/>
+        }
+
+        if(this.state.po==='ODG' && this.props.odgovor==201){
+            return <div className="ui success message"><div className="header">Zahtev poslat!</div><p>Vas zahtev je uspesno poslat administratoru klinike.</p></div>
+        }
+
     }
+
+    funZaMail = (podaci) => {
+        this.props.slanjeMaila(this.props.korisnik.username, podaci.tip, podaci.tekst);
+        this.setState({po: 'ODG'});
+    }
+
 
     funZaSortiranje =(pod) => {
       this.setState({po: pod});
@@ -104,10 +118,12 @@ const mapStateToProps = state => {
     console.log(state.auth.prijavljenKorisnik);
     console.log(state.auth.pacijenti);
     console.log(state.auth.pacijentisort);
+    console.log(state.auth.odgovor);
     return {
        korisnik: state.auth.prijavljenKorisnik,
        pacijenti: state.auth.pacijenti,
-       pacijentisort: state.auth.pacijentisort
+       pacijentisort: state.auth.pacijentisort,
+       odgovor: state.auth.odgovor
     }
 };
 
@@ -116,7 +132,8 @@ const mapDispatchToProps = dispatch => {
     return {
         vratiKorisnike: () => dispatch(actions.prijavljenKorisnik()),
         sviPacijenti: () => dispatch(actions.pacijenti()),
-        sortiraniPacijenti: () => dispatch(actions.sortiraniPacijenti())
+        sortiraniPacijenti: () => dispatch(actions.sortiraniPacijenti()),
+        slanjeMaila: (mailFrom, mailTo, dodatak) => dispatch(actions.slanjeMaila(mailFrom, mailTo, dodatak))
     }
 };
 

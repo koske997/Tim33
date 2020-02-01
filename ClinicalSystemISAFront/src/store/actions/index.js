@@ -22,4 +22,5 @@ export {
     izmeniPrijavljenogKorisnika,
     prijavljenKorisnik,
     sortiraniPacijenti,
+    slanjeMaila,
 } from './auth';

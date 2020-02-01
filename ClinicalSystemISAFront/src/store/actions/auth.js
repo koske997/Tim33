@@ -214,6 +214,36 @@ export const unosPregleda = (naziv, opis, tip, sala, lekar, cena, datumVreme, tr
     };
 };
 
+export const sacuvajOdgovor = (odg) => {
+    console.log(odg);
+    return {
+        type: actionTypes.SACUVAJ_ODGOVOR,
+        odgovor: odg
+    }
+}
+
+export const slanjeMaila = (mailFrom, mailTo, dodatak) => {
+    return dispatch => {
+        const authData = {
+            mailFrom: mailFrom,
+            mailTo: mailTo,
+            dodatak: dodatak
+        };
+        const url = '/mailSestre';
+
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+            dispatch(sacuvajOdgovor(response.status));
+        }).catch(err => {
+                console.log(err);
+        });
+
+    };
+};
+
+
+
 
 export const sveSale = (sale) => {
     return {

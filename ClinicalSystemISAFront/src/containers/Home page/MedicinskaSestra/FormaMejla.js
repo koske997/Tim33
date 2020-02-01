@@ -3,22 +3,33 @@ import React from 'react';
 
 class FormaMejla extends React.Component{
 
+    state = { tip: '', tekst: ''};
+
+    cerajDalje(){
+        this.props.vrati(this.state);
+    }
+
+
     render(){
         return (
             <div className="ui form success">
                 <div className="field">
-                    <label>E-mail</label>
-                    <input type="email" placeholder="nekimejl@gmail.com"/>
-                </div>
+                    <div className="ui radio checkbox">
+                        <input type="radio" name="example2" onClick={(e) => {this.setState({tip: 'godisnji'});}}/>
+                        <label>Godisnji</label>
+                    </div>
+                </div>     
                 <div className="field">
-                    <label>Text</label>
-                    <textarea></textarea>
+                    <div className="ui radio checkbox">
+                        <input type="radio" name="example2" onClick={(e) => {this.setState({tip: 'odsustvo'});}}/>
+                        <label>Odsustvo</label>
+                    </div>
+                </div> 
+                <div className="field">
+                    <label>Navedite razlog za slanje zahteva:</label>
+                    <textarea  value={this.state.tekst}  onChange={(e) => {this.setState({tekst: e.target.value});}}></textarea>
                 </div>
-                <div className="ui success message">
-                    <div className="header">Form Completed</div>
-                    <p>You're all signed up for the newsletter.</p>
-                </div>
-                <div className="ui submit button">Posalji zahtev</div>
+                <div className="ui submit button" onClick={(e) => {this.cerajDalje();}}>Posalji zahtev</div>
             </div>
         );
     }
