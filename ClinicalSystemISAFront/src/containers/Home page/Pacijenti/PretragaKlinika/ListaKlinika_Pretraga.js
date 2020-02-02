@@ -126,12 +126,15 @@ class ListaKlinika_Pretraga extends React.Component {
     handleClick = id => {
         const klinike = this.props.klinike;
         const klinika = klinike.find(value => id === value.id);
-        this.setState({
-            selectedKlinika: klinika,
-            openModal: true,
-            doktori: this.props.doktori,
-            pregled: this.props.pregled
-        });
+        if(this.props.pretraziTip)
+        {
+            this.setState({
+                selectedKlinika: klinika,
+                openModal: true,
+                doktori: this.props.doktori,
+                pregled: this.props.pregled
+            });
+        }
     }
 
     closeModal = () => {

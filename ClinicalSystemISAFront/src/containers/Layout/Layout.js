@@ -82,7 +82,7 @@ class Layout extends Component {
 
                     {!this.props.logged ? (<button className={classes.Button} onClick={this.loginHandler}>Login</button>) : null}
                     
-                    {!this.props.logged ? (<button className={classes.Button} onClick={ (e) => {this.homepage(e); this.props.prijavljenKorisnik(e)}}>Home page</button>) : null}
+                    {!this.props.logged ? (<button className={classes.Button} onClick={this.homepage}>Home page</button>) : null}
 
                     {!this.props.logged ? (<button className={classes.Button} onClick={this.pacijenti}>Pacijenti</button>) : null}
 

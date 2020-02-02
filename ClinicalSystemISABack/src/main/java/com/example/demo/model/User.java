@@ -34,6 +34,7 @@ public class User implements UserDetails {
     private String city;
     private String country;
     private Integer phoneNumber;
+    private Integer likes;
     private Integer userId;
     @Enumerated(EnumType.STRING)
     private UserRole role;

@@ -80,35 +80,177 @@ class PretragaKlinika extends React.Component {
         console.log(this.state.brLajkova);
         console.log(this.state.grad);
         console.log(this.state.tip);
+        console.log(this.state.naziv);
+        console.log(this.state.tip);
+        console.log(this.state.pretraziTip)
 
-
-        
-        if (this.state.pretraziTip === true)
+        if(this.props.klinikee != null && this.props.klinikee != undefined)
         {
-            
-                const klinikeee = this.props.klinikee;
+            if ((this.state.naziv === undefined || this.state.naziv === null || this.state.naziv === '') &&
+            (this.state.grad === undefined || this.state.grad === null || this.state.grad === '') &&
+            (this.state.brLajkova === undefined || this.state.brLajkova === null || this.state.brLajkova === '')
+            && !this.state.pretraziTip)
+            {
 
-                console.log('Udjes li 3');
+                this.setState({
+                    pronadjeneKlinike: this.props.klinikee,
+                })
+            }
+            else if ((this.state.naziv !== undefined && this.state.naziv !== null && this.state.naziv !== '') &&
+            (this.state.grad === undefined || this.state.grad === null || this.state.grad === '') &&
+            (this.state.brLajkova === undefined || this.state.brLajkova === null || this.state.brLajkova === '')
+             && !this.state.pretraziTip)
+            {
+                let noveKlinike = [];
 
+                for (let i=0; i<this.props.klinikee.length; i++)
+                {
+                    if (this.props.klinikee[i].name === this.state.naziv)
+                    {
+                        noveKlinike.push(this.props.klinikee[i]);
+                    }
+                }
+
+                this.setState({
+                    pronadjeneKlinike: noveKlinike,
+                })
+            }
+            else if ((this.state.naziv === undefined || this.state.naziv === null || this.state.naziv === '') &&
+            (this.state.grad !== undefined && this.state.grad !== null && this.state.grad !== '') &&
+            (this.state.brLajkova === undefined || this.state.brLajkova === null || this.state.brLajkova === '') 
+            && !this.state.pretraziTip)
+            {
+                let noveKlinike = [];
+
+                for (let i=0; i<this.props.klinikee.length; i++)
+                {
+                    if (this.props.klinikee[i].city === this.state.grad)
+                    {
+                        noveKlinike.push(this.props.klinikee[i]);
+                    }
+                }
+
+                this.setState({
+                    pronadjeneKlinike: noveKlinike,
+                })
+            }
+            else if ((this.state.naziv === undefined || this.state.naziv === null || this.state.naziv === '') &&
+            (this.state.grad === undefined || this.state.grad === null || this.state.grad === '') &&
+            (this.state.brLajkova !== undefined && this.state.brLajkova !== null && this.state.brLajkova !== '')
+            && !this.state.pretraziTip)
+            {
+                let noveKlinike = [];
+
+                for (let i=0; i<this.props.klinikee.length; i++)
+                {
+                    if (this.props.klinikee[i].likes >= this.state.brLajkova)
+                    {
+                        noveKlinike.push(this.props.klinikee[i]);
+                    }
+                }
+
+                this.setState({
+                    pronadjeneKlinike: noveKlinike,
+                })
+            }
+            else if ((this.state.naziv !== undefined && this.state.naziv !== null && this.state.naziv !== '') &&
+            (this.state.grad !== undefined && this.state.grad !== null && this.state.grad !== '') &&
+            (this.state.brLajkova === undefined || this.state.brLajkova === null || this.state.brLajkova === '')
+             && !this.state.pretraziTip)
+            {
+                let noveKlinike = [];
+
+                for (let i=0; i<this.props.klinikee.length; i++)
+                {
+                    if (this.props.klinikee[i].city === this.state.grad && this.props.klinikee[i].name === this.state.naziv)
+                    {
+                        noveKlinike.push(this.props.klinikee[i]);
+                    }
+                }
+
+                this.setState({
+                    pronadjeneKlinike: noveKlinike,
+                })
+            }
+            else if ((this.state.naziv !== undefined && this.state.naziv !== null && this.state.naziv !== '') &&
+            (this.state.grad === undefined || this.state.grad === null || this.state.grad === '') &&
+            (this.state.brLajkova !== undefined && this.state.brLajkova !== null && this.state.brLajkova !== '') &&
+             !this.state.pretraziTip)
+            {
+                let noveKlinike = [];
+
+                for (let i=0; i<this.props.klinikee.length; i++)
+                {
+                    if (this.props.klinikee[i].name === this.state.naziv && this.props.klinikee[i].likes >= this.state.brLajkova)
+                    {
+                        noveKlinike.push(this.props.klinikee[i]);
+                    }
+                }
+
+                this.setState({
+                    pronadjeneKlinike: noveKlinike,
+                })
+            }
+            else if ((this.state.naziv === undefined || this.state.naziv === null || this.state.naziv === '') &&
+            (this.state.grad !== undefined && this.state.grad !== null && this.state.grad !== '') &&
+            (this.state.brLajkova !== undefined && this.state.brLajkova !== null && this.state.brLajkova !== '')
+             && !this.state.pretraziTip)
+            {
+                let noveKlinike = [];
+
+                for (let i=0; i<this.props.klinikee.length; i++)
+                {
+                    if (this.props.klinikee[i].city === this.state.grad && this.props.klinikee[i].likes >= this.state.brLajkova)
+                    {
+                        noveKlinike.push(this.props.klinikee[i]);
+                    }
+                }
+
+                this.setState({
+                    pronadjeneKlinike: noveKlinike,
+                })
+            }
+            else if ((this.state.naziv !== undefined && this.state.naziv !== null && this.state.naziv !== '') &&
+            (this.state.grad !== undefined && this.state.grad !== null && this.state.grad !== '') &&
+            (this.state.brLajkova !== undefined && this.state.brLajkova !== null && this.state.brLajkova !== '')
+            && !this.state.pretraziTip)
+            {
+                let noveKlinike = [];
+
+                for (let i=0; i<this.props.klinikee.length; i++)
+                {
+                    if (this.props.klinikee[i].name === this.state.naziv && this.props.klinikee[i].city === this.state.grad && this.props.klinikee[i].likes >= this.state.brLajkova)
+                    {
+                        noveKlinike.push(this.props.klinikee[i]);
+                    }
+                }
+
+                this.setState({
+                    pronadjeneKlinike: noveKlinike,
+                })
+            }
+            else if ((this.state.naziv === undefined || this.state.naziv === null || this.state.naziv === '') &&
+            (this.state.grad === undefined || this.state.grad === null || this.state.grad === '') &&
+            (this.state.brLajkova === undefined || this.state.brLajkova === null || this.state.brLajkova === '') &&
+            (this.state.tip !== undefined && this.state.tip !== null && this.state.tip !== '') && this.state.pretraziTip)
+            {
                 let noveKlinike = [];
                 let pregled;
                 let doktori = [];
 
-                console.log(this.state.tip);
-
-                for (let i=0; i<klinikeee.length; i++)
+                for (let i=0; i<this.props.klinikee.length; i++)
                 {
-                    for(let j=0; j<klinikeee[i].user.length; j++)
+                    for(let j=0; j<this.props.klinikee[i].user.length; j++)
                     {
                         for(let z=0; z<this.props.sviPregledi.length; z++)
                         {
                             for (let b=0; b<this.props.sviPregledi[z].doctor.length; b++)
                             {
-                                if(klinikeee[i].user[j].id === this.props.sviPregledi[z].doctor[b].id)
+                                if(this.props.klinikee[i].user[j].id === this.props.sviPregledi[z].doctor[b].id)
                                 {
                                     if(this.props.sviPregledi[z].type === this.state.tip)
                                     {
-                                        noveKlinike.push(klinikeee[i]);
+                                        noveKlinike.push(this.props.klinikee[i]);
 
                                         pregled = this.props.sviPregledi[z];
 
@@ -136,129 +278,402 @@ class PretragaKlinika extends React.Component {
 
                 this.setState({
                     pronadjeneKlinike: noveKlinike,
+
                     pronadjenPregled: pregled,
                     pronadjeniDoktori: doktori,
                 })
-                ///console.log(...state.pronadjeneKlinikee);
+            }
+            else if ((this.state.naziv !== undefined && this.state.naziv !== null && this.state.naziv !== '') &&
+            (this.state.grad === undefined || this.state.grad === null || this.state.grad === '') &&
+            (this.state.brLajkova === undefined || this.state.brLajkova === null || this.state.brLajkova === '') &&
+            (this.state.tip !== undefined && this.state.tip !== null && this.state.tip !== '') && this.state.pretraziTip)
+            {
+                let noveKlinike = [];
+                let pregled;
+                let doktori = [];
 
-                
+                for (let i=0; i<this.props.klinikee.length; i++)
+                {
+                    for(let j=0; j<this.props.klinikee[i].user.length; j++)
+                    {
+                        for(let z=0; z<this.props.sviPregledi.length; z++)
+                        {
+                            for (let b=0; b<this.props.sviPregledi[z].doctor.length; b++)
+                            {
+                                if(this.props.klinikee[i].user[j].id === this.props.sviPregledi[z].doctor[b].id)
+                                {
+                                    if(this.props.sviPregledi[z].type === this.state.tip &&
+                                         this.props.klinikee[i].name === this.state.naziv)
+                                    {
+                                        noveKlinike.push(this.props.klinikee[i]);
+
+                                        pregled = this.props.sviPregledi[z];
+
+                                        doktori.push(this.props.sviPregledi[z].doctor[b]);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (noveKlinike.length > 1)
+                {
+                    for (let k=0; k<noveKlinike.length; k++)
+                    {
+                        for (let kk=0; kk<noveKlinike.length; kk++)
+                        {
+                            if(noveKlinike[k].id === noveKlinike[kk].id)
+                            {
+                                noveKlinike.pop(noveKlinike[k]);
+                            }
+                        }
+                    }
+                }
+
+                this.setState({
+                    pronadjeneKlinike: noveKlinike,
+
+                    pronadjenPregled: pregled,
+                    pronadjeniDoktori: doktori,
+                })
+            }
+            else if ((this.state.naziv === undefined || this.state.naziv === null || this.state.naziv === '') &&
+            (this.state.grad !== undefined && this.state.grad !== null && this.state.grad !== '') &&
+            (this.state.brLajkova === undefined || this.state.brLajkova === null || this.state.brLajkova === '') &&
+            (this.state.tip !== undefined && this.state.tip !== null && this.state.tip !== '') && this.state.pretraziTip)
+            {
+                let noveKlinike = [];
+                let pregled;
+                let doktori = [];
+
+                for (let i=0; i<this.props.klinikee.length; i++)
+                {
+                    for(let j=0; j<this.props.klinikee[i].user.length; j++)
+                    {
+                        for(let z=0; z<this.props.sviPregledi.length; z++)
+                        {
+                            for (let b=0; b<this.props.sviPregledi[z].doctor.length; b++)
+                            {
+                                if(this.props.klinikee[i].user[j].id === this.props.sviPregledi[z].doctor[b].id)
+                                {
+                                    if(this.props.sviPregledi[z].type === this.state.tip &&
+                                         this.props.klinikee[i].city === this.state.grad)
+                                    {
+                                        noveKlinike.push(this.props.klinikee[i]);
+
+                                        pregled = this.props.sviPregledi[z];
+
+                                        doktori.push(this.props.sviPregledi[z].doctor[b]);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (noveKlinike.length > 1)
+                {
+                    for (let k=0; k<noveKlinike.length; k++)
+                    {
+                        for (let kk=0; kk<noveKlinike.length; kk++)
+                        {
+                            if(noveKlinike[k].id === noveKlinike[kk].id)
+                            {
+                                noveKlinike.pop(noveKlinike[k]);
+                            }
+                        }
+                    }
+                }
+
+                this.setState({
+                    pronadjeneKlinike: noveKlinike,
+
+                    pronadjenPregled: pregled,
+                    pronadjeniDoktori: doktori,
+                })
+            }
+            else if ((this.state.naziv === undefined || this.state.naziv === null || this.state.naziv === '') &&
+            (this.state.grad === undefined || this.state.grad === null || this.state.grad === '') &&
+            (this.state.brLajkova !== undefined && this.state.brLajkova !== null && this.state.brLajkova !== '') &&
+            (this.state.tip !== undefined && this.state.tip !== null && this.state.tip !== '') && this.state.pretraziTip)
+            {
+                let noveKlinike = [];
+                let pregled;
+                let doktori = [];
+
+                for (let i=0; i<this.props.klinikee.length; i++)
+                {
+                    for(let j=0; j<this.props.klinikee[i].user.length; j++)
+                    {
+                        for(let z=0; z<this.props.sviPregledi.length; z++)
+                        {
+                            for (let b=0; b<this.props.sviPregledi[z].doctor.length; b++)
+                            {
+                                if(this.props.klinikee[i].user[j].id === this.props.sviPregledi[z].doctor[b].id)
+                                {
+                                    if(this.props.sviPregledi[z].type === this.state.tip &&
+                                         this.props.klinikee[i].likes >= this.state.brLajkova)
+                                    {
+                                        noveKlinike.push(this.props.klinikee[i]);
+
+                                        pregled = this.props.sviPregledi[z];
+
+                                        doktori.push(this.props.sviPregledi[z].doctor[b]);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (noveKlinike.length > 1)
+                {
+                    for (let k=0; k<noveKlinike.length; k++)
+                    {
+                        for (let kk=0; kk<noveKlinike.length; kk++)
+                        {
+                            if(noveKlinike[k].id === noveKlinike[kk].id)
+                            {
+                                noveKlinike.pop(noveKlinike[k]);
+                            }
+                        }
+                    }
+                }
+
+                this.setState({
+                    pronadjeneKlinike: noveKlinike,
+
+                    pronadjenPregled: pregled,
+                    pronadjeniDoktori: doktori,
+                })
+            }
+            else if ((this.state.naziv !== undefined && this.state.naziv !== null && this.state.naziv !== '') &&
+            (this.state.grad === undefined || this.state.grad === null || this.state.grad === '') &&
+            (this.state.brLajkova !== undefined && this.state.brLajkova !== null && this.state.brLajkova !== '') &&
+            (this.state.tip !== undefined && this.state.tip !== null && this.state.tip !== '') && this.state.pretraziTip)
+            {
+                let noveKlinike = [];
+                let pregled;
+                let doktori = [];
+
+                for (let i=0; i<this.props.klinikee.length; i++)
+                {
+                    for(let j=0; j<this.props.klinikee[i].user.length; j++)
+                    {
+                        for(let z=0; z<this.props.sviPregledi.length; z++)
+                        {
+                            for (let b=0; b<this.props.sviPregledi[z].doctor.length; b++)
+                            {
+                                if(this.props.klinikee[i].user[j].id === this.props.sviPregledi[z].doctor[b].id)
+                                {
+                                    if(this.props.sviPregledi[z].type === this.state.tip &&
+                                         this.props.klinikee[i].likes >= this.state.brLajkova &&
+                                         this.props.klinikee[i].name === this.state.naziv)
+                                    {
+                                        noveKlinike.push(this.props.klinikee[i]);
+
+                                        pregled = this.props.sviPregledi[z];
+
+                                        doktori.push(this.props.sviPregledi[z].doctor[b]);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (noveKlinike.length > 1)
+                {
+                    for (let k=0; k<noveKlinike.length; k++)
+                    {
+                        for (let kk=0; kk<noveKlinike.length; kk++)
+                        {
+                            if(noveKlinike[k].id === noveKlinike[kk].id)
+                            {
+                                noveKlinike.pop(noveKlinike[k]);
+                            }
+                        }
+                    }
+                }
+
+                this.setState({
+                    pronadjeneKlinike: noveKlinike,
+
+                    pronadjenPregled: pregled,
+                    pronadjeniDoktori: doktori,
+                })
+            }
+            else if ((this.state.naziv !== undefined && this.state.naziv !== null && this.state.naziv !== '') &&
+            (this.state.grad !== undefined && this.state.grad !== null && this.state.grad !== '') &&
+            (this.state.brLajkova === undefined || this.state.brLajkova === null || this.state.brLajkova === '') &&
+            (this.state.tip !== undefined && this.state.tip !== null && this.state.tip !== '') && this.state.pretraziTip)
+            {
+                let noveKlinike = [];
+                let pregled;
+                let doktori = [];
+
+                for (let i=0; i<this.props.klinikee.length; i++)
+                {
+                    for(let j=0; j<this.props.klinikee[i].user.length; j++)
+                    {
+                        for(let z=0; z<this.props.sviPregledi.length; z++)
+                        {
+                            for (let b=0; b<this.props.sviPregledi[z].doctor.length; b++)
+                            {
+                                if(this.props.klinikee[i].user[j].id === this.props.sviPregledi[z].doctor[b].id)
+                                {
+                                    if(this.props.sviPregledi[z].type === this.state.tip &&
+                                         this.props.klinikee[i].city === this.state.grad &&
+                                         this.props.klinikee[i].name === this.state.naziv)
+                                    {
+                                        noveKlinike.push(this.props.klinikee[i]);
+
+                                        pregled = this.props.sviPregledi[z];
+
+                                        doktori.push(this.props.sviPregledi[z].doctor[b]);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (noveKlinike.length > 1)
+                {
+                    for (let k=0; k<noveKlinike.length; k++)
+                    {
+                        for (let kk=0; kk<noveKlinike.length; kk++)
+                        {
+                            if(noveKlinike[k].id === noveKlinike[kk].id)
+                            {
+                                noveKlinike.pop(noveKlinike[k]);
+                            }
+                        }
+                    }
+                }
+
+                this.setState({
+                    pronadjeneKlinike: noveKlinike,
+
+                    pronadjenPregled: pregled,
+                    pronadjeniDoktori: doktori,
+                })
+            }
+            else if ((this.state.naziv === undefined || this.state.naziv === null || this.state.naziv === '') &&
+            (this.state.grad !== undefined && this.state.grad !== null && this.state.grad !== '') &&
+            (this.state.brLajkova !== undefined && this.state.brLajkova !== null && this.state.brLajkova !== '') &&
+            (this.state.tip !== undefined && this.state.tip !== null && this.state.tip !== '') && this.state.pretraziTip)
+            {
+                let noveKlinike = [];
+                let pregled;
+                let doktori = [];
+
+                for (let i=0; i<this.props.klinikee.length; i++)
+                {
+                    for(let j=0; j<this.props.klinikee[i].user.length; j++)
+                    {
+                        for(let z=0; z<this.props.sviPregledi.length; z++)
+                        {
+                            for (let b=0; b<this.props.sviPregledi[z].doctor.length; b++)
+                            {
+                                if(this.props.klinikee[i].user[j].id === this.props.sviPregledi[z].doctor[b].id)
+                                {
+                                    if(this.props.sviPregledi[z].type === this.state.tip &&
+                                         this.props.klinikee[i].likes >= this.state.brLajkova &&
+                                         this.props.klinikee[i].city === this.state.grad)
+                                    {
+                                        noveKlinike.push(this.props.klinikee[i]);
+
+                                        pregled = this.props.sviPregledi[z];
+
+                                        doktori.push(this.props.sviPregledi[z].doctor[b]);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (noveKlinike.length > 1)
+                {
+                    for (let k=0; k<noveKlinike.length; k++)
+                    {
+                        for (let kk=0; kk<noveKlinike.length; kk++)
+                        {
+                            if(noveKlinike[k].id === noveKlinike[kk].id)
+                            {
+                                noveKlinike.pop(noveKlinike[k]);
+                            }
+                        }
+                    }
+                }
+
+                this.setState({
+                    pronadjeneKlinike: noveKlinike,
+
+                    pronadjenPregled: pregled,
+                    pronadjeniDoktori: doktori,
+                })
+            }
+            else if ((this.state.naziv !== undefined && this.state.naziv !== null && this.state.naziv !== '') &&
+            (this.state.grad !== undefined && this.state.grad !== null && this.state.grad !== '') &&
+            (this.state.brLajkova !== undefined && this.state.brLajkova !== null && this.state.brLajkova !== '') &&
+            (this.state.tip !== undefined && this.state.tip !== null && this.state.tip !== '') && this.state.pretraziTip)
+            {
+                let noveKlinike = [];
+                let pregled;
+                let doktori = [];
+
+                for (let i=0; i<this.props.klinikee.length; i++)
+                {
+                    for(let j=0; j<this.props.klinikee[i].user.length; j++)
+                    {
+                        for(let z=0; z<this.props.sviPregledi.length; z++)
+                        {
+                            for (let b=0; b<this.props.sviPregledi[z].doctor.length; b++)
+                            {
+                                if(this.props.klinikee[i].user[j].id === this.props.sviPregledi[z].doctor[b].id)
+                                {
+                                    if(this.props.sviPregledi[z].type === this.state.tip &&
+                                         this.props.klinikee[i].likes >= this.state.brLajkova &&
+                                         this.props.klinikee[i].city === this.state.grad && 
+                                         this.props.klinikee[i].name === this.state.naziv)
+                                    {
+                                        noveKlinike.push(this.props.klinikee[i]);
+
+                                        pregled = this.props.sviPregledi[z];
+
+                                        doktori.push(this.props.sviPregledi[z].doctor[b]);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (noveKlinike.length > 1)
+                {
+                    for (let k=0; k<noveKlinike.length; k++)
+                    {
+                        for (let kk=0; kk<noveKlinike.length; kk++)
+                        {
+                            if(noveKlinike[k].id === noveKlinike[kk].id)
+                            {
+                                noveKlinike.pop(noveKlinike[k]);
+                            }
+                        }
+                    }
+                }
+
+                this.setState({
+                    pronadjeneKlinike: noveKlinike,
+
+                    pronadjenPregled: pregled,
+                    pronadjeniDoktori: doktori,
+                })
+            }
         }
-
-         else if ((this.state.brLajkova === undefined || this.state.brLajkova === '') && (this.state.grad === undefined || this.state.grad === ''))
-            {
-                if(this.state.pretraziTip === false)
-                {
-
-                    const klinikeee = this.props.klinikee;
-                
-                    const klinika = klinikeee.find(({name}) => name === this.state.naziv);
-
-                    console.log(klinika);
-
-                    console.log(klinikeee.length);
-
-                    this.setState({
-                        pronadjeneKlinike: klinika,
-                    })
-                }
-                else
-                {
-                    //console.log(...pronadjeneKlinike)
-                    const klinikeee = this.state.pronadjeneKlinikee;
-                
-                    const klinika = klinikeee.find(({name}) => name === this.state.naziv);
-
-                    console.log(klinika);
-
-                    console.log(klinikeee.length);
-
-                    this.setState({
-                        pronadjeneKlinike: klinika,
-                    })
-                }
-            }
-            else if ((this.state.brLajkova === undefined || this.state.brLajkova === '') && (this.state.naziv === undefined || this.state.naziv === ''))
-            {
-                const klinikeee = this.props.klinikee;
-                const klinika = klinikeee.find(({city}) => city === this.state.grad);
-
-                console.log(klinika);
-
-                this.setState({
-                    pronadjeneKlinike: klinika,
-                })
-            }
-            else if ((this.state.naziv === undefined || this.state.naziv === '') && (this.state.grad === undefined || this.state.grad === ''))
-            {
-                const klinikeee = this.props.klinikee;
-
-                let noveKlinike = [];
-
-                for (let i=0; i<klinikeee.length; i++)
-                {
-                    if(klinikeee[i].likes > this.state.brLajkova)
-                    {
-                        noveKlinike.push(klinikeee[i]);
-                    }
-                }
-
-                this.setState({
-                    pronadjeneKlinike: noveKlinike
-                })
-        
-            }
-
-            else if ((this.state.naziv !== undefined || this.state.naziv !== '') && (this.state.grad !== undefined))
-            {
-                const klinikeee = this.props.klinikee;
-
-                console.log('Udjes li1 ');
-
-                let noveKlinike = [];
-
-                console.log(this.state.grad);
-                console.log(this.state.naziv);
-
-
-                for (let i=0; i<klinikeee.length; i++)
-                {
-                    if(klinikeee[i].name === this.state.naziv && klinikeee[i].city === this.state.grad)
-                    {
-                        console.log('??????????????');
-                        noveKlinike.push(klinikeee[i]);
-                    }
-                }
-
-                this.setState({
-                    pronadjeneKlinike: noveKlinike
-                })
-            }
-            else if ((this.state.naziv !== undefined || this.state.naziv !== '') && (this.state.brLajkova !== undefined || this.state.brLajkova !== ''))
-            {
-                const klinikeee = this.props.klinikee;
-
-                console.log('Udjes li 2');
-
-                let noveKlinike = [];
-
-                console.log(this.state.naziv);
-                console.log(this.state.brLajkova);
-
-
-                for (let i=0; i<klinikeee.length; i++)
-                {
-                    if(klinikeee[i].name === this.state.naziv && klinikeee[i].likes >= this.state.brLajkova)
-                    {
-                        noveKlinike.push(klinikeee[i]);
-                    }
-                }
-
-                this.setState({
-                    pronadjeneKlinike: noveKlinike
-                })
-            }
-        
-        
      }
 
     render() {
@@ -298,7 +713,7 @@ class PretragaKlinika extends React.Component {
                 <div>
                     <h3>Pronadjene klinike</h3>
 
-                    <ListaKlinika_Pretraga klinike={this.state.pronadjeneKlinike} doktori={this.state.pronadjeniDoktori} pregled={this.state.pronadjenPregled} />
+                    <ListaKlinika_Pretraga pretraziTip={this.state.pretraziTip} klinike={this.state.pronadjeneKlinike} doktori={this.state.pronadjeniDoktori} pregled={this.state.pronadjenPregled} />
 
                 </div>
 

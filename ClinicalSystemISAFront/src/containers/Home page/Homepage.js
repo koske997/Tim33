@@ -6,6 +6,7 @@ import Kontakt from "./Kontakt/Kontakt";
 import Klinike from "./Klinike/Klinike";
 import Pacijenti from "./Pacijenti/Pacijenti";
 import PodaciKlinike from "./Klinike/PodaciKlinike";
+import PretragaDoktora from "./Klinike/PretragaDoktora"
 
 class Homepage extends React.Component {
   render() {
@@ -37,6 +38,8 @@ class Homepage extends React.Component {
                 <Route path="/klinike" component={Klinike} />
                 <Route path="/kontakt" component={Kontakt}/>
                 <Route path="/podaciKlinike" component={PodaciKlinike} />
+                <Route path="/pretragaDoktora" component={PretragaDoktora} />
+
             </div>
             </div>
         </HashRouter>

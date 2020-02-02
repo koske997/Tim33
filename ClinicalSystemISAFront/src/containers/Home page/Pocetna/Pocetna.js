@@ -5,11 +5,9 @@ class Pocetna extends Component {
   render() {
     return (
       <div>
-        <h2>Dobrodosli!</h2>
-        <p>Opis....</p>
- 
-        <p>Opis2...</p>
+        <h2>KLINICKI CENTAR VOJVODINE</h2>
       </div>
+      
     );
   }
 }

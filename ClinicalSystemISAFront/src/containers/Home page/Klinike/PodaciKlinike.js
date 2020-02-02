@@ -4,6 +4,8 @@ import * as actions from '../../../store/actions/index';
 import {connect} from 'react-redux';
 import ListaKlinika from "../Klinike/ListaKlinika";
 import { Button, Header, Image, Modal } from 'semantic-ui-react';
+import {Redirect} from 'react-router-dom';
+
 
 
 
@@ -13,7 +15,29 @@ class PodaciKlinike extends React.Component {
   state = {
     sveKlinike: null,
     obelezenaKlinika: null,
+    redirectPretragaDoktora: false,
   }
+
+  renderRedirect = () => {
+    if (this.state.redirectPretragaDoktora) {
+        
+      return <Redirect to='/pretragaDoktora'/>
+    }
+    
+  }
+
+
+  handleClick = () => {
+
+      this.setState({
+          redirectPretragaDoktora: true,
+      });
+
+      this.props.tipovi_pregleda();
+      this.props.svi_pregledi();
+
+  }
+
 
   renderObelezeneKlinike = () => {
     console.log(this.props);
@@ -22,7 +46,7 @@ class PodaciKlinike extends React.Component {
       return (
         <div>
           <hr />
-          
+
           <h1>{this.props.obelezenaKlinika.name} </h1>
 
           <div>
@@ -48,7 +72,7 @@ class PodaciKlinike extends React.Component {
                   {this.props.obelezenaKlinika.user.length}
                 </div>
                 <div class="label">
-                  Doctors
+                  Members
                 </div>
               </div>
 
@@ -63,12 +87,14 @@ class PodaciKlinike extends React.Component {
               </div>
             </div>
           </div>
+          <hr />
+          
 
           <hr />
           <div class="ui items">
-            <div class="item">
+            <div class="item" onClick={(e) => {this.handleClick(e);}}>
               <div class="middle aligned content">
-                <a class="header">Prikazi sve zaposlene doktore</a>
+                <a class="header">Pretrazi doktore ove klinike</a>
               </div>
             </div>
           </div>
@@ -83,7 +109,7 @@ class PodaciKlinike extends React.Component {
     return (
       <div>
         {this.renderObelezeneKlinike()}
-
+        {this.renderRedirect()}
       </div>
     );
   }
@@ -97,7 +123,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    tipovi_pregleda: () => dispatch(actions.tipoviPregleda()),
 
+    svi_pregledi: () => dispatch(actions.pregledi()),
   }
 };
 
