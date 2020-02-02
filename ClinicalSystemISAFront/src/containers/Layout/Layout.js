@@ -12,7 +12,8 @@ class Layout extends Component {
     state = {
         object: {
             name: '',
-            title: ''
+            title: '',
+            prijavljenKorisnik: undefined,
         }
     }
 
@@ -41,11 +42,11 @@ class Layout extends Component {
         this.props.history.push("/login");
     }
 
-    homepage = () => {///////////////////////////////////////////////
+    homepage = () => {
         this.props.history.push("/homepage");
     }
 
-    pacijenti = () => {///////////////////////////////////////////////
+    pacijenti = () => {
         this.props.history.push("/pacijenti");
     }
 
@@ -110,13 +111,15 @@ const mapStateToProps = (state) => {
     console.log(state)
     return {
         added: state.object.added,
-        logged: state.auth.token !== null
+        logged: state.auth.token !== null,
+        peijavljenKorisnik: state.auth.peijavljenKorisnik,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAddObject: (data) => dispatch(actions.addObject(data))
+        onAddObject: (data) => dispatch(actions.addObject(data)),
+        prijavljenKorisnik: () => dispatch(actions.prijavljenKorisnik())
     };
 };
 

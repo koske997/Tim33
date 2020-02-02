@@ -1,8 +1,12 @@
 insert into clinic_center (name) values ('Klinicki Centar VNS');
 
-insert into clinic (name, clinic_center_id, city, picture) values ('Klinika 1', 1, 'Novi Sad', '');
-insert into clinic (name, clinic_center_id, city, picture) values ('Klinika 2', 1, 'Beograd', '');
-insert into clinic (name, clinic_center_id, city, picture) values ('Klinika 3', 1, 'Nis', '');
+insert into clinic (name, clinic_center_id, city, picture, likes) values ('Klinika 1', 1, 'Novi Sad', '/images/kc1.jpg', 32);
+insert into clinic (name, clinic_center_id, city, picture, likes) values ('Klinika 2', 1, 'Beograd', '/images/kc2.jpg', 79);
+insert into clinic (name, clinic_center_id, city, picture, likes) values ('Klinika 3', 1, 'Nis', '/images/kc3.jpg', 121);
+
+insert into checkup(name, description, type, duration, price) values ('Pregled 1', 'Redovan sistematski pregled', 'Sistematski', 5, 120);
+insert into checkup(name, description, type, duration, price) values ('Pregled 2', 'Redovan kardioloski pregled srca', 'Kardioloski', 8, 380);
+
 
 insert into checkup_type(name) values ('Kardioloski');
 insert into checkup_type(name) values ('Stomatoloski');
@@ -12,18 +16,19 @@ insert into checkup_type(name) values ('Sistematski');
 insert into medical_record (id) values (1);
 insert into medical_record (id) values (2);
 
-insert into users (first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled) values ('Aleksandar', 'Kosic', 'sickokralj4@gmail.com', '$2a$10$PckbyvdiGuU9H9HIzQT8nuMX/n30JwNMCmH/MbK6UWVQbggL55rnm', 'Kula', 'Srbija', 06139356, 0297, 'ADMINCC', true);
-insert into users (first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled) values ('Jovan', 'Jenjic', 'jovan.jenjic@gmail.com', '$2a$10$PckbyvdiGuU9H9HIzQT8nuMX/n30JwNMCmH/MbK6UWVQbggL55rnm', 'Srbija', 'Srbijaa', 069356, 02997, 'DOCTOR', true);
-insert into users (first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled) values ('Aeesfleksandar', 'Kosdfsic', 'dsidsdsffckokralj4@gmail.com', '$2a$10$PckbyvdiGuU9H9HIzQT8nuMX/n30JwNMCmH/MbK6UWVQbggL55rnm', 'Kula', 'Srbija', 06, 022397, 'DOCTOR', true);
+insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, checkup_id, likes) values ('Sajlovo1', 'Aleksandar', 'Kosic', 'sickokralj4@gmail.com', '$2a$10$PckbyvdiGuU9H9HIzQT8nuMX/n30JwNMCmH/MbK6UWVQbggL55rnm', 'Kula', 'Srbija', 06139356, 0297, 'ADMINCC', true, 1, 1, 432);
+insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, checkup_id, likes) values ('detelinara1', 'Jovan', 'Jenjic', 'jovan.jenjic@gmail.com', '$2a$10$PckbyvdiGuU9H9HIzQT8nuMX/n30JwNMCmH/MbK6UWVQbggL55rnm', 'Srbija', 'Srbijaa', 069356, 02997, 'DOCTOR', true, 1, 1, 222);
+insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, checkup_id, likes) values ('naselje1', 'Aeesfleksandar', 'Kosdfsic', 'dsidsdsffckokralj4@gmail.com', '$2a$10$PckbyvdiGuU9H9HIzQT8nuMX/n30JwNMCmH/MbK6UWVQbggL55rnm', 'Kula', 'Srbija', 06, 022397, 'DOCTOR', true, 1, 2, 279);
+
 
 
 insert into operation (description, date_time, duration_hours) values ('Transplatacija bubrega', '2019-9-8', 7);
 insert into operation (description, date_time, duration_hours) values ('Transplatacija srca', '2019-3-25', 12);
 
-insert into room (number, free, operation_id) values (10, true, 1);
-insert into room (number, free, operation_id) values (11, true, 2);
-insert into room (number, free, operation_id) values (12, true, 1);
-insert into room (number, free, operation_id) values (13, false, 2);
+insert into room (number, free) values (10, true);
+insert into room (number, free) values (11, true);
+insert into room (number, free) values (12, true);
+insert into room (number, free) values (13, false);
 
 insert into sick (name, description, date_start) values ('Prehlada', 'Obicna', '2019-10-5');
 insert into sick (name, description, date_start) values ('Dijabetes', 'Nizak rizik', '2019-5-21');
@@ -59,3 +64,4 @@ alter sequence recipe_id_seq restart with 3;
 alter sequence authority_id_seq restart with 2;
 alter sequence medical_record_id_seq restart with 3;
 alter sequence checkup_type_id_seq restart with 3;
+alter sequence checkup_id_seq restart with 3;

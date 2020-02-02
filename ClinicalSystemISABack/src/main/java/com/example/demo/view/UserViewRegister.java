@@ -36,6 +36,7 @@ public class UserViewRegister {
         this.phoneNumber = phoneNumber;
         this.userId = userId;
         this.role = role;
+        this.address = address;
     }
 
     public UserViewRegister(Long id, String firstName, String lastName, String email, String password, String repeatPassword, String address, String city, String country, Integer phoneNumber, Integer userId, String role) {
@@ -51,6 +52,7 @@ public class UserViewRegister {
         this.phoneNumber = phoneNumber;
         this.userId = userId;
         this.role = role;
+        this.address = address;
     }
 
     public Long getId() {

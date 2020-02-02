@@ -25,6 +25,6 @@ public class ClinicCenter {
 //    private List<Clinic> clinicList = new ArrayList<Clinic>();
 
     //samo admin klinickog centra sme
-    @OneToMany(mappedBy = "clinicCenter", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<User> userList = new ArrayList<>();
+    //@OneToMany(mappedBy = "clinicCenter", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+   // private List<User> userList = new ArrayList<>();
 }

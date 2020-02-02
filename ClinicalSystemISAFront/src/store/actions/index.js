@@ -19,8 +19,12 @@ export {
     izmeniTipPregleda,
     unosTipaPregleda,
     izbrisiSalu,
-    izmeniPrijavljenogKorisnika,
     prijavljenKorisnik,
     sortiraniPacijenti,
     slanjeMaila,
+    izmeniPrijavljenogKorisnika,
+    obrisiPrijavljenogKorisnika,
+    sacuvajObelezenuKliniku,
+
+
 } from './auth';

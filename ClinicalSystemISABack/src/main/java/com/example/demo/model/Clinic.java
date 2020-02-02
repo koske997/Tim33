@@ -24,6 +24,8 @@ public class Clinic {
 
     private String city;
 
+    private int likes;
+
     private String picture;
 
 
@@ -31,6 +33,6 @@ public class Clinic {
     private ClinicCenter clinicCenter;
 
     //veze sa klinikom mogu imati doktor, sestra i admin klinike
-    //@OneToMany(mappedBy = "clinic", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    //private List<User> userList = new ArrayList<>();
+    @OneToMany(mappedBy = "clinic", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<User> user = new ArrayList<>();
 }

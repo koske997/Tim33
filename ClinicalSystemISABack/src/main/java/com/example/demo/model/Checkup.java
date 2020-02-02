@@ -5,7 +5,9 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,14 +18,11 @@ import java.util.Calendar;
 public class Checkup {
 
 
-    private boolean enabled;
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String name;
 
     @Column(name = "description")
@@ -39,19 +38,25 @@ public class Checkup {
     @Column(name = "price")
     private float price;
 
-    @Column(name = "dateTime", nullable = false)
+    @Column(name = "dateTime")
     @Temporal(TemporalType.TIMESTAMP)
     private java.util.Calendar dateTime;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private MedicalRecord medRecord;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private User doctor;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private User patient;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Room room;
+    @OneToMany(mappedBy = "checkup", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<User> doctor = new ArrayList<>();
+
+
+    @ManyToMany
+    private List<Room> rooms;
+
+    //@OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //private List<Room> room = new ArrayList<>();
+
+    //@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    //private Room room;
 }

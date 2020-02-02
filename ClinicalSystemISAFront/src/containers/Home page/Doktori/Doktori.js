@@ -3,7 +3,9 @@ import Auth from "../../../store/actions/auth"
 import * as actions from '../../../store/actions/index';
 import {connect} from 'react-redux';
 import ListaPacijenata from './ListaPacijenata';
-import { Redirect } from 'react-router-dom'
+import { Redirect } from 'react-router-dom';
+import IzmenaPodataka from '../IzmenaPodatakaKorisnika/IzmeniPodatke';
+
 
 
 
@@ -16,7 +18,22 @@ const initialState = {
 class Doktori extends React.Component {
 
     state = {
-        redirect: false
+        redirect: false,
+        prijavljenKorisnik: null,
+        openModal: false,
+    }
+
+    handleClick = id => {
+ 
+      this.setState({
+          openModal: true,
+      });
+    }
+    
+    closeModal = () => {
+      this.setState({
+          openModal: false,
+      });
     }
 
       
@@ -37,6 +54,11 @@ class Doktori extends React.Component {
     console.log(this.props.pacijenti);
     console.log(this.props.token);
     return (
+
+      <div>
+
+        <IzmenaPodataka prijavljenKorisnik={this.props.prijavljenKorisnik} openModal={this.state.openModal} closeModal={this.closeModal} /> 
+     
       <div className="ui segment">
         <h2>Lista svih pacijenata </h2>
 
@@ -61,6 +83,12 @@ class Doktori extends React.Component {
 
       </div>
 
+      <div className="ui segment">
+            <h2>Izmeni svoje podatke</h2>      
+            <button className="Promeni_podatke" onClick={ (e) => { this.handleClick(e); this.props.prikazi_prijavljenog_korisnika(e) }} >Promeni</button>
+      </div>
+     
+      </div>
      
     );
   }
@@ -70,13 +98,14 @@ const mapStateToProps = state => {
   console.log(state.auth);
   return {
       pacijenti: state.auth.pacijenti,
+      prijavljenKorisnik: state.auth.prijavljenKorisnik,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
      prikazi_pacijente: () => dispatch(actions.pacijenti()),
-    
+     prikazi_prijavljenog_korisnika: () => dispatch(actions.prijavljenKorisnik()),
     }
 }
 

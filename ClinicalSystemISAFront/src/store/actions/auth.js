@@ -255,7 +255,6 @@ export const sveSale = (sale) => {
 export const sale = () => {
 
     return dispatch => {
-        console.log('UdjesLi?????');
         const url = "/sveSale";
         const token = sessionStorage.getItem('token');
 
@@ -391,6 +390,13 @@ export const izmeniSalu = (izmena) => {
     };
 };
 
+export const sviPregledi = (sviPregledii) => {
+    return {
+        type: actionTypes.SACUVAJ_PREGLEDE,
+        sviPregledii: sviPregledii,
+    }
+}
+
 export const pregledi = () => {
 
     return dispatch => {
@@ -404,7 +410,7 @@ export const pregledi = () => {
         })
             .then(response => {
                 console.log(response);
-                dispatch(sveSale(response.data));
+                dispatch(sviPregledi(response.data));
 
             }).catch(error => {
                 console.log(error);
@@ -507,6 +513,7 @@ export const prijavljenKorisnik = () => {
     };
 };
 
+
 export const sacuvajSortiranePacijente = (pacijentisort) => {
     return {
         type: actionTypes.VRATI_SORTIRANE_PACIJENTE,
@@ -534,6 +541,43 @@ export const sortiraniPacijenti = () => {
 };
 
 
+
+export const izmeniPrijavljenogKorisnika = (izmena) => {
+    return dispatch => {
+        console.log(izmena);
+        const authData = {
+            id: izmena.id,
+            firstName: izmena.firstName,
+            lastName: izmena.lastName,
+            email: izmena.email,
+            password: izmena.password,
+            address: izmena.address,
+            city: izmena.city,
+            country: izmena.country,
+            phoneNumber: izmena.phoneNumber,
+
+            returnSecureToken: true,
+        };
+        
+        const url = '/izmeniPrijavljenogKorisnika';
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+
+            //dispatch(sacuvajSalu(response.data));
+        })
+        .catch(err => {
+             console.log(err);
+        }); 
+    };
+};
+
+export const sacuvajObelezenuKliniku= (obelezenaKlinika) => {
+    return {
+        type: actionTypes.SACUVAJ_OBELEZENU_KLINIKU,
+        obelezenaKlinika: obelezenaKlinika,
+    }
+}
 
 
 

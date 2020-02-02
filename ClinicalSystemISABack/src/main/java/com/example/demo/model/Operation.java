@@ -36,8 +36,8 @@ public class Operation {
     @OneToOne(mappedBy = "operationPatient")
     private User patient;
 
-    @OneToOne(mappedBy = "operationRoom", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Room room;
+    //@OneToOne(mappedBy = "operationRoom", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    //private Room room;
 
 
 }
