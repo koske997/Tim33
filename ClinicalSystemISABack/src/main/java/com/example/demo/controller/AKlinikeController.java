@@ -1,15 +1,14 @@
 package com.example.demo.controller;
 
+import com.example.demo.DemoApplication;
 import com.example.demo.exception.ResourceConflictException;
 import com.example.demo.model.*;
 import com.example.demo.security.TokenUtils;
 import com.example.demo.service.*;
 
-import com.example.demo.view.CheckupTypeView;
-import com.example.demo.view.CheckupView;
-import com.example.demo.view.RoomView;
-import com.example.demo.view.UserViewRegister;
+import com.example.demo.view.*;
 import org.hibernate.annotations.Check;
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -62,6 +61,23 @@ public class AKlinikeController {
 
         return new ResponseEntity<Checkup>(saveCheckup, HttpStatus.CREATED);
     }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(value = "/mailSestre")
+    public ResponseEntity<?> mailSestre(@RequestBody MailView mailView){
+
+        Mail mail = new Mail();
+        mail.setMailFrom(mailView.getMailFrom());
+        mail.setMailTo("koske.koske035@gmail.com");
+        mail.setMailSubject("Zahtev za "+mailView.getMailTo()+" od "+mailView.getMailFrom());
+        mail.setMailContent("Zelela bih da dobijem "+mailView.getMailTo()+". Razlog: "+mailView.getDodatak());
+        MailService mailService = DemoApplication.getCtx();
+        mailService.sendMail(mail);
+
+
+        return  new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/sviTipoviPregleda")

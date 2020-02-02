@@ -214,6 +214,36 @@ export const unosPregleda = (naziv, opis, tip, sala, lekar, cena, datumVreme, tr
     };
 };
 
+export const sacuvajOdgovor = (odg) => {
+    console.log(odg);
+    return {
+        type: actionTypes.SACUVAJ_ODGOVOR,
+        odgovor: odg
+    }
+}
+
+export const slanjeMaila = (mailFrom, mailTo, dodatak) => {
+    return dispatch => {
+        const authData = {
+            mailFrom: mailFrom,
+            mailTo: mailTo,
+            dodatak: dodatak
+        };
+        const url = '/mailSestre';
+
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+            dispatch(sacuvajOdgovor(response.status));
+        }).catch(err => {
+                console.log(err);
+        });
+
+    };
+};
+
+
+
 
 export const sveSale = (sale) => {
     return {
@@ -458,7 +488,6 @@ export const sacuvajPrijavljenogKorisnika= (prijavljenKorisnik) => {
 export const prijavljenKorisnik = () => {
 
     return dispatch => {
-    
         const url = "/prijavljenKorisnik";
         const token = sessionStorage.getItem('token');
 
@@ -472,8 +501,40 @@ export const prijavljenKorisnik = () => {
                 dispatch(sacuvajPrijavljenogKorisnika(response.data));
 
             }).catch(error => {
+
                 console.log(error);
             })
     };
 };
+
+export const sacuvajSortiranePacijente = (pacijentisort) => {
+    return {
+        type: actionTypes.VRATI_SORTIRANE_PACIJENTE,
+        pacijentisort: pacijentisort,
+    }
+}
+
+export const sortiraniPacijenti = () => {
+    return dispatch => {
+        const url = "/sortpacijenti";
+        const token = sessionStorage.getItem('token');
+
+        axios.get(url, {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        }).then(response => {
+            console.log(response);
+            dispatch(sacuvajSortiranePacijente(response.data));
+        }).catch(error => {
+            console.log(error);
+        })
+
+    };
+};
+
+
+
+
+
 

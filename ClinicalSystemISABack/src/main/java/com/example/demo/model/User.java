@@ -57,11 +57,11 @@ public class User implements UserDetails {
 
 
     //Pri unosu pregleda, desi se rekurzivna besk. ako je ovo otkomentarisano, a jsa 2JsonIgnore, ne radi
-    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Checkup> checkupListDoctor = new ArrayList<>();
+    //OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //private List<Checkup> checkupListDoctor = new ArrayList<>();
 
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Checkup> checkupListPatient = new ArrayList<>();
+    //@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //private List<Checkup> checkupListPatient = new ArrayList<>();
 
 
     //pacijent sa zdravstvenim kartonom, nova tabela
