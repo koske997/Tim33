@@ -21,6 +21,8 @@ class Doktori extends React.Component {
         redirect: false,
         prijavljenKorisnik: null,
         openModal: false,
+
+        redirectNaPretragu: false,
     }
 
     handleClick = id => {
@@ -43,9 +45,20 @@ class Doktori extends React.Component {
         })
     }
 
+    setRedirect2 = () => {
+      this.setState({
+        redirectNaPretragu: true
+      })
+    }
+
     renderRedirect = () => {
-        if (this.state.redirect) {
+        if (this.state.redirect) 
+        {
           return <Redirect to='/pregled' />
+        }
+        else if (this.state.redirectNaPretragu)
+        {
+          return <Redirect to='/pretragaPacijenata' />
         }
     }
 
@@ -67,6 +80,7 @@ class Doktori extends React.Component {
         </div>
 
         <button className="ui button" onClick={this.props.prikazi_pacijente} >Prikazi pacijente</button>
+        <button className="ui button" onClick={ (e) => {this.setRedirect2(e); this.props.prikazi_pacijente(e);}} > Pretrazi i filtriraj pacijente </button>
         <hr/>
 
         <button class="ui labeled icon button">

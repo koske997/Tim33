@@ -25,6 +25,10 @@ export {
     izmeniPrijavljenogKorisnika,
     obrisiPrijavljenogKorisnika,
     sacuvajObelezenuKliniku,
-
+    sacuvajObelezenogPacijenta,
+    bolesti,
+    lekovi,
+    unosPregledaDoktora,
+    sacuvajPregledKarton,
 
 } from './auth';

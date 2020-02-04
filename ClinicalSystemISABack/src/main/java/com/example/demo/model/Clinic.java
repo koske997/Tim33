@@ -1,10 +1,13 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -32,7 +35,7 @@ public class Clinic {
     @ManyToOne(fetch = FetchType.EAGER)
     private ClinicCenter clinicCenter;
 
-    //veze sa klinikom mogu imati doktor, sestra i admin klinike
-    @OneToMany(mappedBy = "clinic", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<User> user = new ArrayList<>();
+    @OneToMany(mappedBy = "clinic", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private Set<User> user = new HashSet<>();
 }

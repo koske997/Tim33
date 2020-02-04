@@ -27,13 +27,11 @@ public class UserService {
     @Autowired
     private AuthorityService authorityService;
 
-    public User findOne(Long id) {
-        return this.userRepository.findById(id).orElseGet(null);
+    public User findOneById(Long id) {
+        return this.userRepository.findOneById(id);
     }
 
     public List<User> findAllByRole(UserRole role) {return this.userRepository.findAllByRole(role); }
-
-    public List<User> findAllByRoleOrderByFirstName(UserRole role) {return this.userRepository.findAllByRoleOrderByFirstName(role); }
 
     public List<User> findAll() {
         return this.userRepository.findAll();

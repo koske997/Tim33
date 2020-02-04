@@ -15,7 +15,7 @@ class Homepage extends React.Component {
             <div>
 
               <div class="ui primary pointing menu">
-                  <a class="active item">
+                  <a class="item">
                     <li><NavLink exact to="/">Pocetna stranica</NavLink></li>
                   </a>
 
@@ -27,7 +27,7 @@ class Homepage extends React.Component {
                     <li><NavLink exact to="/klinike">Klinike</NavLink></li>
                   </a>
 
-                  <a class="ui item">
+                  <a class="item">
                       <li><NavLink exact to="/kontakt">Kontakt</NavLink></li>
                   </a>
               </div>

@@ -21,7 +21,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 public class PacijentiController {
@@ -56,14 +59,6 @@ public class PacijentiController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/sortpacijenti")
-    public ResponseEntity<?> sortpacineti(){
-        List<User> pacijenti = this.userService.findAllByRoleOrderByFirstName(UserRole.valueOf("PATIENT"));
-
-        return new ResponseEntity<>(pacijenti, HttpStatus.OK);
-    }
-
-    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/klinike")
     public ResponseEntity<?>klinike() {
 
@@ -79,16 +74,17 @@ public class PacijentiController {
 
         User loggedUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println("AAAAAAAAAAAAAAAAA" + loggedUser.getEmail() + "BBBBBBBBBBBBBBBBBBBBBBB");
-        MedicalRecord karton = loggedUser.getMedicalRecord();
 
-        return new ResponseEntity<>(karton, HttpStatus.OK);
+        Set<MedicalRecord> ml = new HashSet<>();
+        //ml = loggedUser.getMedicalRecords();
+
+        return new ResponseEntity<>(ml, HttpStatus.OK);
     }
 
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/sveSale")
     public ResponseEntity<?>Sale() {
-
 
         List<Room> sale = this.roomService.findAll();
 
