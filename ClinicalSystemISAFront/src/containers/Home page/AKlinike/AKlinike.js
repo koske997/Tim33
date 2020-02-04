@@ -3,11 +3,8 @@ import {Redirect} from 'react-router-dom';
 import * as actions from '../../../store/actions/index';
 import {connect} from 'react-redux';
 import IzmenaPodataka from '../IzmenaPodatakaKorisnika/IzmeniPodatke';
-
-
-
-
-
+import KarticaZahteva from './KarticaZahteva';
+import ListaZahteva from './ListaZahteva';
 
 const initialState = {
     sale: null,
@@ -59,6 +56,10 @@ setRedirect_2 = (e) => {
     })
 }
 
+    componentDidMount(){
+        this.props.sviZahtevi();
+    }
+
 renderRedirect = () => {
     if (this.state.redirectPregled) {
       return <Redirect to='/unosPregleda' />
@@ -73,10 +74,18 @@ renderRedirect = () => {
     }
 }
 
-  
+    renderZahteva(){
+        if(this.props.zahtevi!=null){
+            return <ListaZahteva podaci={this.props.zahtevi}/>;
+        }
+    }
+
+
   render() {
       return (
-      <div>
+        <div>
+                {this.renderZahteva()}
+          {/*
          <IzmenaPodataka prijavljenKorisnik={this.props.prijavljenKorisnik} openModal={this.state.openModal} closeModal={this.closeModal} /> 
 
             <h2>Administrator klinike </h2>
@@ -113,6 +122,7 @@ renderRedirect = () => {
             <button className="Izmeni_svoje_podatke" onClick = { (e) => { this.handleClick(e); this.props.izmeni_priavljenog_korisnika(e);}}>Izmeni</button> 
             <hr/>
         </div>
+          */}
    </div>
     );
   }
@@ -122,12 +132,14 @@ renderRedirect = () => {
 
 const mapStateToProps = state => {
     console.log(state.auth.doktori);
+    console.log(state.auth.sviZahtevi);
     return {
         sale: state.auth.sale,
         doktori: state.auth.doktori,
         tipoviPregleda: state.auth.tipoviPregleda,
 
-        prijavljenKorisnik: state.auth.prijavljenKorisnik
+        prijavljenKorisnik: state.auth.prijavljenKorisnik,
+        zahtevi: state.auth.sviZahtevi
 
     }
 }
@@ -140,6 +152,7 @@ const mapDispatchToProps = dispatch => {
 
         prikazi_preglede: () => dispatch(actions.pregledi()),
         izmeni_priavljenog_korisnika: () => dispatch(actions.prijavljenKorisnik()),
+        sviZahtevi: () => dispatch(actions.vratiZahteve())
     }
 };
 

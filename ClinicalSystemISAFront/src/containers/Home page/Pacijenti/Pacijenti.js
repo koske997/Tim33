@@ -8,6 +8,8 @@ import {Redirect} from 'react-router-dom';
 import { Button, Header, Image, Modal } from 'semantic-ui-react';
 import get from 'lodash/get';
 import IzmenaPodataka from '../IzmenaPodatakaKorisnika/IzmeniPodatke';
+import Spinner from '../Spinner';
+import KarticaKorisnika from '../MedicinskaSestra/KarticaKorisnika';
 
 
 const initialState = {
@@ -21,8 +23,8 @@ class Pacijenti extends React.Component {
   state = {
     redirect: false,
     redirectPretrazi: false,
-
-    prijavljenKorisnik: null,
+    odabir: '',
+    prijavljenKorisnik2: null,
     openModal: false,
 }
 
@@ -53,25 +55,81 @@ setRedirect2 = () => {
   })
 }
 
-renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to='/medicinskiKarton' />
-    } 
-    else if ( this.state.redirectPretrazi)
-    {
-      return <Redirect to='/pretragaKlinika' /> 
+
+    componentDidMount(){
+      this.props.prikazi_prijavljenKorisnik();
+      this.props.prikazi_klinike();  
+      this.props.tipovi_pregleda();
+      this.props.svi_pregledi();      
     }
-}
+
+    renderRedirect = () => {
+        if (this.state.redirect) {
+          return <Redirect to='/medicinskiKarton' />
+        } 
+        else if ( this.state.redirectPretrazi)
+        {
+          return <Redirect to='/pretragaKlinika' /> 
+        }
+    }
+
+    renderKorisnika(){
+
+      if(this.props.prijavljenKorisnik!=null){
+        console.log(this.props.prijavljenKorisnik);
+          return (<div style={{ float: "right"}}> 
+                        <a className="ui blue image label"><img src="https://react.semantic-ui.com/images/avatar/small/veronika.jpg"/>
+                        {this.props.prijavljenKorisnik.username}
+                        <div className="detail">{this.props.prijavljenKorisnik.role}</div></a>
+                    </div>
+                  );
+      }
+      return <Spinner poruka="Ucitavanje"/> ;      
+    }
+
   
+    renderMeni(){
+      if(this.state.odabir==='PROFIL'){
+        return <div className="ui link cards"><KarticaKorisnika slika={this.props.prijavljenKorisnik}/></div>;
+      }
+
+      if(this.state.odabir==='KLINIKE'){
+        return <ListaKlinika klinike={this.props.klinike} />;
+      }
+
+      if(this.state.odabir==='PRETRAGA'){
+        return <Redirect to='/pretragaKlinika' /> 
+      }
+      
+  }
+
+
 renderPrijavljenogPacijenta = () => {
       return (
           <div>
-  
-          <div className="ui segment">
+            <div style={{ float: "left"}}>
+                        <div className="ui secondary  menu">
+                            <a className="item"> Pocetna</a>
+                            <a className="item" onClick={(e) => {this.setState({odabir: 'KLINIKE'});}}> Klinike</a>
+                            <a className="item" onClick={(e) => {this.setState({ odabir: 'PROFIL'});}}>Profil</a>
+                            <a className="item" onClick={(e) => {this.setState({odabir: 'PRETRAGA'});}}> Pretrazi klinike</a>
+                        </div>
+                    </div>
+              {this.renderKorisnika()}
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                    {this.renderMeni()}
+              </div>
+              {this.renderRedirect()}
+     {/*   <div className="ui segment">
+            
             <h2>Lista svih pacijenata </h2>
-            <div>         
+                {this.renderKorisnika()}
               <ListaPacijenata pacijenti={this.props.pacijenti}/>
-            </div>
+           
   
             <button className="Prikazi_pacijente" onClick={this.props.prikazi_pacijente} >Prikazi pacijente</button>
             <hr/>
@@ -100,27 +158,29 @@ renderPrijavljenogPacijenta = () => {
             <h2>Izmeni svoje podatke</h2>      
             <button className="Promeni_podatke" onClick={ (e) => { this.handleClick(e); this.props.prikazi_prijavljenKorisnik(e); }} >Promeni</button>
           </div>
-  
+  */}
       </div>
       );
   }
 
 
 
-  render() {
-    return (
-      <div>
-      <IzmenaPodataka prijavljenKorisnik={this.props.prijavljenKorisnik} openModal={this.state.openModal} closeModal={this.closeModal} /> 
-          {this.renderPrijavljenogPacijenta()}
-      </div>
-  );
-      
-  }
-
+  render(){
+        return (
+          <div>
+          {/*
+          <IzmenaPodataka prijavljenKorisnik={this.props.prijavljenKorisnik} openModal={this.state.openModal} closeModal={this.closeModal} />
+          
+          */} 
+              {this.renderPrijavljenogPacijenta()}
+          </div>
+      );
+    }   
+  
 }
 
 const mapStateToProps = state => {
-  console.log(state.auth);
+  console.log(state.auth.klinike);
   return {
       pacijenti: state.auth.pacijenti,
       klinike: state.auth.klinike,

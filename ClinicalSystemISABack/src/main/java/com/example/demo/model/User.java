@@ -2,15 +2,14 @@ package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
@@ -63,7 +62,20 @@ public class User implements UserDetails {
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Operation operation;
 
+    //zahtevi
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private Set<Request> requests = new HashSet<Request>();
 
+    //posiljaoci zahteva
+    @OneToMany(mappedBy = "posiljalac", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private Set<Request> req2 = new HashSet<Request>();
+
+    //doktori zahteva
+    @OneToMany(mappedBy = "doktor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private Set<Request> req3 = new HashSet<Request>();
 
     //Pri unosu pregleda, desi se rekurzivna besk. ako je ovo otkomentarisano, a jsa 2JsonIgnore, ne radi
     //OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

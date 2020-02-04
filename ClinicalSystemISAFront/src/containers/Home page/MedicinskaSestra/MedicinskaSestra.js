@@ -59,6 +59,7 @@ class MedicinskaSestra extends React.Component {
 
     funZaMail = (podaci) => {
         this.props.slanjeMaila(this.props.korisnik.username, podaci.tip, podaci.tekst);
+        this.props.slanjeZahteva(podaci.tip, '', '', '', this.props.korisnik.id);
         this.setState({po: 'ODG'});
     }
 
@@ -119,6 +120,7 @@ const mapStateToProps = state => {
     console.log(state.auth.pacijenti);
     console.log(state.auth.pacijentisort);
     console.log(state.auth.odgovor);
+    console.log(state.auth.zahtevSestre);
     return {
        korisnik: state.auth.prijavljenKorisnik,
        pacijenti: state.auth.pacijenti,
@@ -133,7 +135,8 @@ const mapDispatchToProps = dispatch => {
         vratiKorisnike: () => dispatch(actions.prijavljenKorisnik()),
         sviPacijenti: () => dispatch(actions.pacijenti()),
         sortiraniPacijenti: () => dispatch(actions.sortiraniPacijenti()),
-        slanjeMaila: (mailFrom, mailTo, dodatak) => dispatch(actions.slanjeMaila(mailFrom, mailTo, dodatak))
+        slanjeMaila: (mailFrom, mailTo, dodatak) => dispatch(actions.slanjeMaila(mailFrom, mailTo, dodatak)),
+        slanjeZahteva: (tip, datum, doktorId, adminId, posiljalacId) => dispatch(actions.slanjeZahteva(tip, datum, doktorId, adminId, posiljalacId))
     }
 };
 

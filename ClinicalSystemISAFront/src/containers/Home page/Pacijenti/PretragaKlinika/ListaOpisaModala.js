@@ -39,12 +39,13 @@ class ListaOpisaModala extends React.Component {
 
         return doktorii.map((doktor) => {    
             return (
-                <div>
+                <div key={doktor.id}>
                     <Modal.Description>
+                        
                         <Header>doc.med.spec. {doktor.firstName} {doktor.lastName}</Header>
-                        <Button >Zakazi pregled</Button>
+                        <Button value={doktor.id} onClick={(e) => {console.log(e.target.value);}}>Zakazi pregled</Button>
                     </Modal.Description>
-                    <hl />
+                    <hr />
                 </div>
             );
         });

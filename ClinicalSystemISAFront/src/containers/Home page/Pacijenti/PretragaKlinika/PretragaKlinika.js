@@ -706,7 +706,7 @@ class PretragaKlinika extends React.Component {
                     </div>
                 </div>
 
-                <button class="ui button" type="submit" onClick={ (e) => {this.props.prikazi_klinike(e); this.filtrirajHandler(e)}}>Pretrazi</button>
+                <button className="ui button" type="submit" onClick={ (e) => {this.props.prikazi_klinike(e); this.filtrirajHandler(e)}}>Pretrazi</button>
                 <input type="checkbox" checked={this.state.pretraziTip} onChange={this.handlePretraziPoTipu} ></input>
             </form>
 

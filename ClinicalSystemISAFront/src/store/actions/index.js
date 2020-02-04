@@ -25,6 +25,7 @@ export {
     izmeniPrijavljenogKorisnika,
     obrisiPrijavljenogKorisnika,
     sacuvajObelezenuKliniku,
-
+    slanjeZahteva,
+    vratiZahteve,
 
 } from './auth';

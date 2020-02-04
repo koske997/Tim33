@@ -242,6 +242,35 @@ export const slanjeMaila = (mailFrom, mailTo, dodatak) => {
     };
 };
 
+export const sacuvajZahtev = (odg) => {
+    console.log(odg);
+    return{
+        type: actionTypes.SACUVAJ_POSLATI_ZAHTEV,
+        zahtevSestre: odg
+    }
+}
+
+export const slanjeZahteva = (tip, datum, doktorId, adminId, posiljalacId) => {
+    return dispatch => {
+        const authData = {
+            tip: tip,
+            datum: datum,
+            doktorId: doktorId,
+            adminId: adminId,
+            posiljalacId: posiljalacId
+        };
+        const url = '/zahtevSestre';
+
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+            dispatch(sacuvajZahtev(response.data));
+        }).catch(err => {
+            console.log(err);
+        });
+
+    };
+};
 
 
 
@@ -540,6 +569,31 @@ export const sortiraniPacijenti = () => {
     };
 };
 
+export const sacuvajVraceneZahteve = (zahtevi) => {
+    return{
+        type: actionTypes.SACUVAJ_SVE_ZAHTEVE,
+        sviZahtevi: zahtevi,
+    }
+}
+
+export const vratiZahteve = () => {
+    return dispatch => {
+        const url = '/sviZahtevi';
+        const token = sessionStorage.getItem('token');
+
+        axios.get(url,{
+            headers:{
+                'Authorization': 'Bearer ' + token
+            }  
+        }).then(response => {
+            console.log(response);
+            dispatch(sacuvajVraceneZahteve(response.data));
+        }).catch(err => {
+            console.log(err);
+        });
+
+    };
+};
 
 
 export const izmeniPrijavljenogKorisnika = (izmena) => {
