@@ -21,6 +21,13 @@ class Doktori extends React.Component {
         redirect: false,
         prijavljenKorisnik: null,
         openModal: false,
+
+        redirectNaPretragu: false,
+    }
+
+    componentDidMount() {
+      this.props.prikazi_pacijente();
+      this.props.prikazi_prijavljenog_korisnika();
     }
 
     handleClick = id => {
@@ -36,60 +43,92 @@ class Doktori extends React.Component {
       });
     }
 
-      
-   setRedirect = () => {
-        this.setState({
-          redirect: true
-        })
+
+    setRedirect2 = () => {
+      this.setState({
+        redirectNaPretragu: true
+      })
     }
 
     renderRedirect = () => {
-        if (this.state.redirect) {
-          return <Redirect to='/pregled' />
+        if (this.state.redirectNaPretragu)
+        {
+          return <Redirect to='/pretragaPacijenata' />
         }
     }
 
+  renderPac(){
+    if (this.state.po==='PROFIL'){
+        return this.renderProfilDoktora();
+    }
+
+    if (this.state.po==='PRIKAZI PACIJENTE'){
+        return this.renderPacijenti();
+    }
+  }
+
+  renderProfilDoktora() {
+    if (this.props.prijavljenKorisnik !== null && this.props.prijavljenKorisnik !== undefined)
+    {
+    return (
+      <div className="ui link cards">
+          <div className="card">
+              <div className="image">
+                  <img alt="da" src="https://react.semantic-ui.com/images/avatar/large/matthew.png"/>
+              </div>
+          <div className="content">
+              <div className="header">{this.props.prijavljenKorisnik.firstName} {this.props.prijavljenKorisnik.lastName}</div>
+              <div className="meta">
+                  <a>{this.props.prijavljenKorisnik.role}</a>
+              </div>
+              <div className="description">
+                  {this.props.prijavljenKorisnik.address}, {this.props.prijavljenKorisnik.city}, {this.props.prijavljenKorisnik.country} 
+              </div>
+          </div>
+          <div className="extra content">
+              <span className="right floated">
+              {this.props.prijavljenKorisnik.phoneNumber}
+              </span>
+              <span>
+                  <i className="user icon"></i>
+                  {this.props.prijavljenKorisnik.username}
+              </span>
+          </div>
+          </div>
+      </div>
+    );
+    }
+  }
+
+  renderPacijenti() {
+    return (
+      <div>
+        <ListaPacijenata  pacijenti={this.props.pacijenti}/>
+      </div>
+    );
+  }
 
   render() {
-    console.log(this.props.pacijenti);
-    console.log(this.props.token);
     return (
-
       <div>
-
-        <IzmenaPodataka prijavljenKorisnik={this.props.prijavljenKorisnik} openModal={this.state.openModal} closeModal={this.closeModal} /> 
-     
-      <div className="ui segment">
-        <h2>Lista svih pacijenata </h2>
-
-        <div>         
-          <ListaPacijenata  pacijenti={this.props.pacijenti}/>
-        </div>
-
-        <button className="ui button" onClick={this.props.prikazi_pacijente} >Prikazi pacijente</button>
-        <hr/>
-
-        <button class="ui labeled icon button">
-            <i class="left arrow icon"></i>
-                Istorija pregleda
-        </button>
-
         {this.renderRedirect()}
+        <IzmenaPodataka prijavljenKorisnik={this.props.prijavljenKorisnik} openModal={this.state.openModal} closeModal={this.closeModal} /> 
+          <div>
+              <div style={{ float: "center"}}>
+                  <div className="ui secondary  menu">
+                      <a className="item" onClick={(e)=>{ this.setState({po: 'PROFIL'});}}>Profil</a>
+                      <a className="item" onClick={ (e) => {this.setRedirect2(e); this.props.prikazi_pacijente(e);}}> Pretrazi i filtriraj pacijente</a>
+                      <a className="item" onClick={(e)=>{ this.setState({po: 'PRIKAZI PACIJENTE'});}}>Prikazi sve pacijente</a>
+                      <a className="item" onClick={ (e) => { this.handleClick(e); this.props.prikazi_prijavljenog_korisnika(e) }}>Izmeni svoje podatke</a>
 
-        <button class="ui right labeled icon button" onClick={this.setRedirect}>
-            <i class="right arrow icon"></i>
-                Zapocni pregled
-        </button>
-
+                  </div>
+              </div>
+              <div>
+                  <br /> < br/>
+                  {this.renderPac()}
+              </div>
+         </div>
       </div>
-
-      <div className="ui segment">
-            <h2>Izmeni svoje podatke</h2>      
-            <button className="Promeni_podatke" onClick={ (e) => { this.handleClick(e); this.props.prikazi_prijavljenog_korisnika(e) }} >Promeni</button>
-      </div>
-     
-      </div>
-     
     );
   }
 }

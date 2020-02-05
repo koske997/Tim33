@@ -22,7 +22,16 @@ const ListaPacijenata = props => {
                             />
                         </div>
                         <div className="content">
-                            <a className="header">{pacijent.lastName}</a>
+                            <a className="header">{pacijent.lastName} {pacijent.lastName}</a>
+                        </div>
+                        <div class="meta">
+                            <span class="date">{pacijent.role}</span>
+                        </div>
+                        <div class="extra content">
+                            <a>
+                            <i class="user icon"></i>
+                            ID Patient : {parseInt(pacijent.id)}
+                            </a>
                         </div>
                     </div>
                 </div>

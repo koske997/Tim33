@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,6 +28,9 @@ public class Visit {
     @Temporal(TemporalType.TIMESTAMP)
     private java.util.Calendar dateTime;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private MedicalRecord medRecord;
+    //@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@JoinColumn(name = "medical_record_id")
+    //@JsonBackReference
+    //private MedicalRecord medicalRecord;
+
 }

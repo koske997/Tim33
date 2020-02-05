@@ -12,10 +12,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class CheckupService {
@@ -52,7 +52,6 @@ public class CheckupService {
     {
         User u = new User();
 
-        Calendar cal = Calendar.getInstance();
 
         String doktor = checkup.getLekar();
 
@@ -79,13 +78,17 @@ public class CheckupService {
 
 
 
-        List<Room> ro = new ArrayList<>();
+        Set<Room> ro = new HashSet<>();
         ro.add(room);
 
-        Checkup c = Checkup.builder().name(checkup.getNaziv()).description(checkup.getOpis()).type(checkup.getTip())
-                .doctor(doc).rooms(ro).medRecord(null).price(Integer.parseInt(checkup.getCena())).duration(Integer.parseInt(checkup.getTrajanje())).dateTime(cal).build();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
 
-        doctor.setCheckup(c);
+        Checkup c = Checkup.builder().name(checkup.getNaziv()).description(checkup.getOpis()).type(checkup.getTip()).
+                idLekara(Integer.parseInt(checkup.getLekar())).unapred(true).
+                rooms(ro).price(Integer.parseInt(checkup.getCena())).duration(Integer.parseInt(checkup.getTrajanje())).dateTime(dateFormat.format(date)).build();
+
+        //doctor.setCheckup(c);
         //Cudno ali novi pregled ne moze da doda samo ako u bazu ubacimo ovaj gore pregled
         //on doda sve ali na taj nacin ne moze da doda doktora
         //tek kada doktoru dodamo neki pregled, pregled se doda, cudno ali radi

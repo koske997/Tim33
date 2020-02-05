@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -35,6 +36,11 @@ public class User implements UserDetails {
     private Integer phoneNumber;
     private Integer likes;
     private Integer userId;
+    private float ocena;
+
+    @Column(name = "br_puta_ocenjivanja")
+    private int brPutaOcenjivanja;
+
     @Enumerated(EnumType.STRING)
     private UserRole role;
     private boolean enabled;
@@ -44,19 +50,21 @@ public class User implements UserDetails {
     //private List<Clinic> clinic = new ArrayList<>();
 
     //samo admin klinickog centra moze ovde
-    @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "clinic_id")
+    @JsonBackReference
     private Clinic clinic;
 
-    @JsonIgnore
+    /*@JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "checkup_id")
     private Checkup checkup;
 
-    //doktori
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Room room;
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "checkup_patient_id")
+    private Checkup checkupPatient;*/
+
 
     //doktori
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -88,15 +96,13 @@ public class User implements UserDetails {
    // private List<Checkup> checkupListPatient = new ArrayList<>();
 
 
-
     //pacijent sa zdravstvenim kartonom, nova tabela
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "patient_med_record",
-            joinColumns = @JoinColumn(name = "patient_id"),
-            inverseJoinColumns = @JoinColumn(name = "med_record_id")
-    )
-    private MedicalRecord medicalRecord;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private Set<MedicalRecord> medicalRecords = new HashSet<>();
+
+
 
     //operacije i pacijenti, nova tabela
     @OneToOne(fetch = FetchType.EAGER)

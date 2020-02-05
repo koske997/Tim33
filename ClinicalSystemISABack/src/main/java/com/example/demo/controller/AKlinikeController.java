@@ -1,14 +1,15 @@
 package com.example.demo.controller;
 
-import com.example.demo.DemoApplication;
 import com.example.demo.exception.ResourceConflictException;
 import com.example.demo.model.*;
 import com.example.demo.security.TokenUtils;
 import com.example.demo.service.*;
 
-import com.example.demo.view.*;
+import com.example.demo.view.CheckupTypeView;
+import com.example.demo.view.CheckupView;
+import com.example.demo.view.RoomView;
+import com.example.demo.view.UserViewRegister;
 import org.hibernate.annotations.Check;
-import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -61,6 +62,7 @@ public class AKlinikeController {
 
         return new ResponseEntity<User>(saveCheckup, HttpStatus.CREATED);
     }
+
 
 
 
@@ -131,7 +133,7 @@ public class AKlinikeController {
         System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + pregledi);
 
 
-        return new ResponseEntity<List<Checkup>>(pregledi, HttpStatus.OK);
+        return new ResponseEntity<>(pregledi, HttpStatus.OK);
 
     }
 

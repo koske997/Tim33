@@ -716,6 +716,155 @@ export const cuvajIdDoktora = (id) => {
     }
 }
 
+export const sacuvajObelezenogPacijenta= (obelezenPacijent) => {
+    console.log(obelezenPacijent);
+    return {
+        type: actionTypes.SACUVAJ_OBELEZENOG_PACIJENTA,
+        obelezenPacijent: obelezenPacijent,
+    }
+}
+
+export const sveBolesti = (sveBolesti) => {
+    return {
+        type: actionTypes.SACUVAJ_BOLESTI,
+        sveBolesti: sveBolesti,
+    }
+}
+
+export const bolesti = () => {
+
+    return dispatch => {
+        const url = "/sveBolesti";
+        const token = sessionStorage.getItem('token');
+
+        axios.get(url, {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
+            .then(response => {
+                console.log(response);
+                dispatch(sveBolesti(response.data));
+
+            }).catch(error => {
+                console.log(error);
+            })
+    };
+};
+
+export const sviLekovi = (sviLekovi) => {
+    return {
+        type: actionTypes.SACUVAJ_LEKOVE,
+        sviLekovi: sviLekovi,
+    }
+}
+
+export const lekovi = () => {
+
+    return dispatch => {
+        const url = "/sviLekovi";
+        const token = sessionStorage.getItem('token');
+
+        axios.get(url, {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
+            .then(response => {
+                console.log(response);
+                dispatch(sviLekovi(response.data));
+
+            }).catch(error => {
+                console.log(error);
+            })
+    };
+};
 
 
+export const unosPregledaDoktora = (pregled) => {
+    return dispatch => {
+        console.log(pregled);
+        const authData = {
+            bolest: pregled.bolest,
+            lek: pregled.lek,
+            cena: pregled.cena,
+            idLekara: pregled.idLekara,
+            idPacijenta: pregled.idPacijenta,
+            opis: pregled.opis,
+            tip: pregled.tip,
+            naziv: pregled.naziv,
+             doktorska_stranica,
 
+            returnSecureToken: true
+        };
+
+        const url = '/unosPregledaDoktora';        
+        
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+
+            //dispatch(sacuvajPregled(response.data));
+        })
+        .catch(err => {
+             console.log(err);
+        });
+    };
+};
+
+export const sacuvajPregledKarton = (pregledKarton) => {
+    return {
+        type: actionTypes.SACUVAJ_PREGLED_KARTON,
+        pregledKarton: pregledKarton,
+    }
+}
+
+export const unosOceneKlinike = (podaci) => {
+    return dispatch => {
+        console.log(podaci);
+        const authData = {
+            id: podaci.id,
+            idPregleda: podaci.idPregleda,
+            ocena: podaci.ocena,
+
+            returnSecureToken: true
+        };
+
+        const url = '/unosOceneKlinike';        
+        
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+
+            dispatch(sacuvajPregledKarton(response.data));
+        })
+        .catch(err => {
+             console.log(err);
+        });
+    };
+};
+
+export const unosOceneLekara = (podaci) => {
+    return dispatch => {
+        console.log(podaci);
+        const authData = {
+            id: podaci.id,
+            idPregleda: podaci.idPregleda,
+            ocena: podaci.ocena,
+
+            returnSecureToken: true
+        };
+
+        const url = '/unosOceneLekara';        
+        
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+
+            dispatch(sacuvajPregledKarton(response.data));
+        })
+        .catch(err => {
+             console.log(err);
+        });
+    };
+};

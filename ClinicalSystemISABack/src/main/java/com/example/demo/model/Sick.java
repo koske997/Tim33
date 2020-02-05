@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,14 +27,14 @@ public class Sick {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "dateStart", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private java.util.Calendar dateStart;
+    @Column(name = "sick_number")
+    private int sickNumber;
 
-    @Column(name = "dateEnd")
-    @Temporal(TemporalType.TIMESTAMP)
-    private java.util.Calendar dateEnd;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "checkup_id")
+    @JsonBackReference
+    private Checkup checkup;
 
-    @ManyToMany(mappedBy = "sickList")
-    private List<MedicalRecord> medicalRecordList = new ArrayList<MedicalRecord>();
+    /*@ManyToMany(mappedBy = "sickList")
+    private List<MedicalRecord> medicalRecordList = new ArrayList<MedicalRecord>();*/
 }

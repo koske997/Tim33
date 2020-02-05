@@ -30,5 +30,12 @@ export {
     brisiZahtev,
     slanjePotvrdnogMaila,
     cuvajIdDoktora,
+    sacuvajObelezenogPacijenta,
+    bolesti,
+    lekovi,
+    unosPregledaDoktora,
+    sacuvajPregledKarton,
+    unosOceneKlinike,
+    unosOceneLekara,
 
 } from './auth';

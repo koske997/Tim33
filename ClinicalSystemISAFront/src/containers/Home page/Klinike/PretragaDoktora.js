@@ -67,10 +67,11 @@ filtrirajHandler = (e) =>
 
     if((this.state.ime === undefined || this.state.ime === null|| this.state.ime === '')&&
     (this.state.prezime === undefined || this.state.prezime === null|| this.state.prezime === '')&&
-    (this.state.brLajkova === undefined || this.state.brLajkova === null|| this.state.brLajkova === '')&&
-    (this.state.tip === undefined || this.state.tip === null || this.state.tip === '') && !this.state.pretraziTip)
+    (this.state.brLajkova === undefined || this.state.brLajkova === null|| this.state.brLajkova === '') && !this.state.pretraziTip)
     {
         let noviNiz = [];
+
+        console.log('kkkkkkkkkkkkk')
 
         for (let i=0; i<this.props.obelezenaKlinika.user.length; i++)
         {
@@ -86,7 +87,7 @@ filtrirajHandler = (e) =>
     else if((this.state.ime !== undefined && this.state.ime !== null && this.state.ime !== '')&&
     (this.state.prezime === undefined || this.state.prezime === null || this.state.prezime === '')&&
     (this.state.brLajkova === undefined || this.state.brLajkova === null || this.state.brLajkova === '')&&
-    (this.state.tip === undefined || this.state.tip === null || this.state.tip === '') && !this.state.pretraziTip)
+     !this.state.pretraziTip)
     {
         let noviNiz = [];
 
@@ -104,7 +105,7 @@ filtrirajHandler = (e) =>
     else if((this.state.ime === undefined || this.state.ime === null || this.state.ime === '')&&
     (this.state.prezime !== undefined && this.state.prezime !== null && this.state.prezime !== '')&&
     (this.state.brLajkova === undefined || this.state.brLajkova === null || this.state.brLajkova === '')&&
-    (this.state.tip === undefined || this.state.tip === null || this.state.tip === '') && !this.state.pretraziTip)
+     !this.state.pretraziTip)
     {
         let noviNiz = [];
 
@@ -122,7 +123,7 @@ filtrirajHandler = (e) =>
     else if((this.state.ime === undefined || this.state.ime === null || this.state.ime === '')&&
     (this.state.prezime === undefined || this.state.prezime === null || this.state.prezime === '')&&
     (this.state.brLajkova !== undefined && this.state.brLajkova !== null && this.state.brLajkova !== '')&&
-    (this.state.tip === undefined || this.state.tip === null || this.state.tip === '') && !this.state.pretraziTip)
+     !this.state.pretraziTip)
     {
         let noviNiz = [];
 
@@ -140,7 +141,7 @@ filtrirajHandler = (e) =>
     if((this.state.ime !== undefined && this.state.ime !== null && this.state.ime !== '')&&
     (this.state.prezime !== undefined && this.state.prezime !== null && this.state.prezime !== '')&&
     (this.state.brLajkova === undefined || this.state.brLajkova === null|| this.state.brLajkova === '')&&
-    (this.state.tip === undefined || this.state.tip === null || this.state.tip === '') && !this.state.pretraziTip)
+     !this.state.pretraziTip)
     {
         let noviNiz = [];
 
@@ -160,7 +161,7 @@ filtrirajHandler = (e) =>
     if((this.state.ime !== undefined && this.state.ime !== null && this.state.ime !== '')&&
     (this.state.prezime === undefined || this.state.prezime === null || this.state.prezime === '')&&
     (this.state.brLajkova !== undefined && this.state.brLajkova !== null && this.state.brLajkova !== '')&&
-    (this.state.tip === undefined || this.state.tip === null || this.state.tip === '') && !this.state.pretraziTip)
+    !this.state.pretraziTip)
     {
         let noviNiz = [];
 
@@ -180,7 +181,7 @@ filtrirajHandler = (e) =>
     if((this.state.ime === undefined || this.state.ime === null || this.state.ime === '')&&
     (this.state.prezime !== undefined && this.state.prezime !== null && this.state.prezime !== '')&&
     (this.state.brLajkova !== undefined && this.state.brLajkova !== null && this.state.brLajkova !== '')&&
-    (this.state.tip === undefined || this.state.tip === null || this.state.tip === '') && !this.state.pretraziTip)
+     !this.state.pretraziTip)
     {
         let noviNiz = [];
 
@@ -200,7 +201,7 @@ filtrirajHandler = (e) =>
     if((this.state.ime !== undefined && this.state.ime !== null && this.state.ime !== '')&&
     (this.state.prezime !== undefined && this.state.prezime !== null && this.state.prezime !== '')&&
     (this.state.brLajkova !== undefined && this.state.brLajkova !== null && this.state.brLajkova !== '')&&
-    (this.state.tip === undefined || this.state.tip === null || this.state.tip === '') && !this.state.pretraziTip)
+     !this.state.pretraziTip)
     {
         let noviNiz = [];
 

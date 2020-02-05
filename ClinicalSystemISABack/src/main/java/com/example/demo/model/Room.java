@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
@@ -25,20 +26,15 @@ public class Room {
     @Column(name = "free")
     private Boolean free;
 
-    @OneToMany(mappedBy = "room", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<User> userList = new ArrayList<>();
 
     //Sa ovim se desava rekurzivna beskonacnost, sa JeonIgnore puca program, ovako radi
     //@OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     //private List<Checkup> checkupList = new ArrayList<>();
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name="room_checkup",
-            joinColumns = @JoinColumn(name = "room_id"),
-            inverseJoinColumns = @JoinColumn(name = "checkup_id")
-    )
-    private List<Checkup> checkups;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "checkup_id")
+    @JsonBackReference
+    private Checkup checkup;
 
 
    /* @JsonIgnore

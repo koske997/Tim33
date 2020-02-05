@@ -19,6 +19,5 @@ public class CheckupType {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    //@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    //private Medicine medicine;
+
 }
