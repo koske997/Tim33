@@ -457,6 +457,9 @@ export const sviPregledi = (sviPregledii) => {
     }
 }
 
+
+
+
 export const pregledi = () => {
 
     return dispatch => {
@@ -679,10 +682,37 @@ export const brisiZahtev = (tip, datum, doktorId, adminId, posiljalacId) => {
 };
 
 
+export const zahtevZaPregled = (tip, datum, doktorId, adminId, posiljalacId) => {
+    return dispatch => {
+        const authData = {
+            tip: tip,
+            datum: datum,
+            doktorId: doktorId,
+            adminId: adminId,
+            posiljalacId: posiljalacId
+        };
+        const url = '/zahtevPregled';
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+        }).catch(err => {
+            console.log(err);
+        });
+    };
+};
+
+
 export const sacuvajObelezenuKliniku= (obelezenaKlinika) => {
     return {
         type: actionTypes.SACUVAJ_OBELEZENU_KLINIKU,
         obelezenaKlinika: obelezenaKlinika,
+    }
+}
+
+export const cuvajIdDoktora = (id) => {
+    return {
+        type: actionTypes.SACUVAJ_DOKTORE_ID,
+        doktorId: id
     }
 }
 

@@ -41,7 +41,6 @@ class PretragaKlinika extends React.Component {
     }
 
     selectChangeHandler = (e) => {
-
         this.setState({
             tip: e.target.value,
         });
@@ -713,7 +712,7 @@ class PretragaKlinika extends React.Component {
                 <div>
                     <h3>Pronadjene klinike</h3>
 
-                    <ListaKlinika_Pretraga pretraziTip={this.state.pretraziTip} klinike={this.state.pronadjeneKlinike} doktori={this.state.pronadjeniDoktori} pregled={this.state.pronadjenPregled} />
+                    <ListaKlinika_Pretraga tip={this.state.tip} pretraziTip={this.state.pretraziTip} klinike={this.state.pronadjeneKlinike} doktori={this.state.pronadjeniDoktori} pregled={this.state.pronadjenPregled} />
 
                 </div>
 

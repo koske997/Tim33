@@ -41,9 +41,8 @@ class ListaOpisaModala extends React.Component {
             return (
                 <div key={doktor.id}>
                     <Modal.Description>
-                        
                         <Header>doc.med.spec. {doktor.firstName} {doktor.lastName}</Header>
-                        <Button value={doktor.id} onClick={(e) => {console.log(e.target.value);}}>Zakazi pregled</Button>
+                        <Button value={doktor.id} onClick={(e) => { this.props.vrati(e.target.value);}}>Zakazi pregled</Button>
                     </Modal.Description>
                     <hr />
                 </div>

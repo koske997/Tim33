@@ -3,16 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0f4b188f-f237-49e6-bb6c-9d35a0eb204c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/AKlinikeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/AKlinikeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/MailServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/MailServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/RequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/RequestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/RequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/RequestRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/service/RequestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/RequestService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/AKlinike/AKlinike.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/AKlinike/AKlinike.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/AKlinike/KarticaZahteva.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/AKlinike/KarticaZahteva.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/AKlinike/ListaZahteva.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/AKlinike/ListaZahteva.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/store/actions/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/store/actions/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/store/actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/store/actions/index.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

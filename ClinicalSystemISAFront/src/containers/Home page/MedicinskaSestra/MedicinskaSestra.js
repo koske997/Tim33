@@ -8,19 +8,24 @@ import ListaKorisnika from './ListaKorisnika';
 import SelektBar from './SelektBar';
 import Calendar from 'react-calendar';
 import FormaMejla from './FormaMejla';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+
+
 
 
 const initialState = { korisnik : null, pacijenti: [], pacijentisort: []}
 
 class MedicinskaSestra extends React.Component {
 
-    state = { po: '' };
+    state = { po: '', datum: null };
 
     componentDidMount(){
         console.log('MAUNT');
         this.props.vratiKorisnike();
         this.props.sviPacijenti();
         this.props.sortiraniPacijenti();
+        this.setState({datum: new Date()});
     }
 
 
@@ -44,7 +49,17 @@ class MedicinskaSestra extends React.Component {
         }
 
         if(this.state.po==='KALENDAR'){
-            return <Calendar />
+            return (
+              <DatePicker
+              onChange={date => this.promeni(date)}
+              selected={this.state.datum}
+                showTimeSelect
+                timeFormat="HH:mm"
+                timeIntervals={15}
+                timeCaption="time"
+                dateFormat="MMMM d, yyyy h:mm aa"
+              />
+            );
         }
 
         if(this.state.po==='ODG' && this.props.odgovor==null){
@@ -63,6 +78,12 @@ class MedicinskaSestra extends React.Component {
         this.setState({po: 'ODG'});
     }
 
+    promeni(date){
+        const sada = new Date();
+        if(moment(sada).isBefore(date)){
+            this.setState({datum: date});
+        }
+    }
 
     funZaSortiranje =(pod) => {
       this.setState({po: pod});

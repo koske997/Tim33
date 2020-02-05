@@ -29,5 +29,6 @@ export {
     vratiZahteve,
     brisiZahtev,
     slanjePotvrdnogMaila,
+    cuvajIdDoktora,
 
 } from './auth';
