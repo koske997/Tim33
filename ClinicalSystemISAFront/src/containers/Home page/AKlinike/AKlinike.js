@@ -3,11 +3,10 @@ import {Redirect} from 'react-router-dom';
 import * as actions from '../../../store/actions/index';
 import {connect} from 'react-redux';
 import IzmenaPodataka from '../IzmenaPodatakaKorisnika/IzmeniPodatke';
-
-
-
-
-
+import KarticaZahteva from './KarticaZahteva';
+import ListaZahteva from './ListaZahteva';
+import Spinner from '../Spinner';
+import Odgovor from './Odgovor';
 
 const initialState = {
     sale: null,
@@ -21,7 +20,8 @@ state = {
     redirectPregled: false,
     redirectSala: false,
     redirectTipoviPregleda: false, 
-
+    po: '',
+    zapamcenid: null,
     prijavljenKorisnik: null,
     openModal: false,
 }
@@ -59,6 +59,11 @@ setRedirect_2 = (e) => {
     })
 }
 
+    componentDidMount(){
+        this.props.sviZahtevi();
+        this.props.vratiKorisnika();
+    }
+
 renderRedirect = () => {
     if (this.state.redirectPregled) {
       return <Redirect to='/unosPregleda' />
@@ -73,11 +78,114 @@ renderRedirect = () => {
     }
 }
 
-  
+
+    obradiZahtev = (id, str) => {
+        console.log(id);
+        console.log(str);
+        if(str==='ODB'){
+            this.setState({po: 'FORMA', zapamcenid: id});
+        }else{
+            this.props.slanjePotvrdnogMaila(this.props.prijavljenKorisnik.username,'Prihvati',id);
+            this.props.brisiZahtev('', '', id, '', '');
+            this.props.sviZahtevi();
+            this.setState({po: 'OSVEZI'});
+        }
+    }
+
+    renderZahteva(){
+        if(this.props.zahtevi!=null){
+            return <ListaZahteva  obrada={this.obradiZahtev} podaci={this.props.zahtevi} />;
+        }
+    }
+
+    renderOdgovora = (tekst) => {
+        console.log(tekst);
+        console.log(this.state.zapamcenid);
+        this.props.slanjePotvrdnogMaila(this.props.prijavljenKorisnik.username,tekst,this.state.zapamcenid);
+        this.props.brisiZahtev('', '', this.state.zapamcenid, '', '');
+        this.props.sviZahtevi();
+        this.setState({po: 'OSVEZI'});
+    }
+
+    renderPac(){
+        if(this.state.po==='ZAHTEV'){
+            return <div>{this.renderZahteva()}</div>
+        }
+
+        if(this.state.po==='OSVEZI' && this.props.odgovor2==201){
+            return <div>{this.renderZahteva()}</div>
+        }
+
+        if(this.state.po==='OSVEZI' && this.props.odgovor2!=201){
+            return <Spinner poruka="Slanje odgovora"/>
+        }
+
+        if(this.state.po==='TIPOVI'){
+            return <Redirect to='/tipoviPregleda' />;
+        }
+
+        if(this.state.po==='NOVI'){
+            return <Redirect to='/unosPregleda' />;
+        }
+
+        if(this.state.po==='FORMA'){
+            return <Odgovor vrati={this.renderOdgovora}/>
+        }
+
+        if(this.state.po==='IZMENA'){
+            this.setState({
+                openModal: true,
+            });
+        }
+
+
+
+    }
+
+    renderComponent(){
+        if(this.props.prijavljenKorisnik!=null){
+            return (
+                <div>
+                    <div style={{ float: "left"}}>
+                        <div className="ui secondary  menu">
+                            <a className="item" onClick={(e)=>{ this.setState({po: 'NOVI'});}}> Unesi Novi pregled</a>
+                            <a className="item" > Sale za pregled i operacije</a>
+                            <a className="item" onClick={(e)=>{ this.setState({po: 'TIPOVI'});}}>Tipovi pregleda</a>
+                            <a className="item" onClick={(e)=>{ this.setState({po: 'ZAHTEV'});}}> Zahtevi</a>
+                            <a className="item" onClick={(e)=>{this.handleClick(e); this.props.vratiKorisnika(e);}}> Izmeni podatke</a>
+                        </div>
+                    </div>
+                    <div style={{ float: "right"}}> 
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a className="ui blue image label" onClick={(e) => { this.setState({po: 'SESTRA'});}}>
+                                    <img src="https://react.semantic-ui.com/images/avatar/small/veronika.jpg"/>{this.props.prijavljenKorisnik.username}
+                                        <div className="detail">{this.props.prijavljenKorisnik.role}</div> 
+                                </a> 
+                                
+                    </div>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                        {this.renderPac()}
+                    </div>    
+                </div>
+            );     
+        }
+        return <Spinner poruka="Ucitavanje"/>
+    }
+
+
+
   render() {
       return (
-      <div>
-         <IzmenaPodataka prijavljenKorisnik={this.props.prijavljenKorisnik} openModal={this.state.openModal} closeModal={this.closeModal} /> 
+        <div>
+
+            {this.renderComponent()}
+                
+            <IzmenaPodataka prijavljenKorisnik={this.props.prijavljenKorisnik} openModal={this.state.openModal} closeModal={this.closeModal} /> 
+          {/*
+         
 
             <h2>Administrator klinike </h2>
 
@@ -110,9 +218,10 @@ renderRedirect = () => {
         <div className="ui segment">
             <h3>Izmeni svoje podatke</h3>
 
-            <button className="Izmeni_svoje_podatke" onClick = { (e) => { this.handleClick(e); this.props.izmeni_priavljenog_korisnika(e);}}>Izmeni</button> 
+            <button className="Izmeni_svoje_podatke" onClick = { (e) => { this.handleClick(e); this.props.izmeni_priavljenog_korisnika(e); }}>Izmeni</button> 
             <hr/>
         </div>
+          */}
    </div>
     );
   }
@@ -122,12 +231,15 @@ renderRedirect = () => {
 
 const mapStateToProps = state => {
     console.log(state.auth.doktori);
+    console.log(state.auth.sviZahtevi);
     return {
         sale: state.auth.sale,
         doktori: state.auth.doktori,
         tipoviPregleda: state.auth.tipoviPregleda,
 
-        prijavljenKorisnik: state.auth.prijavljenKorisnik
+        prijavljenKorisnik: state.auth.prijavljenKorisnik,
+        zahtevi: state.auth.sviZahtevi,
+        odgovor2: state.auth.odgovor2
 
     }
 }
@@ -139,7 +251,10 @@ const mapDispatchToProps = dispatch => {
         prikazi_tipove_pregleda: () => dispatch(actions.tipoviPregleda()),
 
         prikazi_preglede: () => dispatch(actions.pregledi()),
-        izmeni_priavljenog_korisnika: () => dispatch(actions.prijavljenKorisnik()),
+        vratiKorisnika: () => dispatch(actions.prijavljenKorisnik()),
+        sviZahtevi: () => dispatch(actions.vratiZahteve()),
+        brisiZahtev: (tip, datum, doktorId, adminId, posiljalacId) => dispatch(actions.brisiZahtev(tip, datum, doktorId, adminId, posiljalacId)),
+        slanjePotvrdnogMaila: (mailFrom, mailTo, dodatak) => dispatch(actions.slanjePotvrdnogMaila(mailFrom, mailTo, dodatak))
     }
 };
 

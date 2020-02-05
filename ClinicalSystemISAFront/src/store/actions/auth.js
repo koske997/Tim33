@@ -243,6 +243,66 @@ export const slanjeMaila = (mailFrom, mailTo, dodatak) => {
 };
 
 
+export const sacuvajOdgovorPotvrde = (odg) => {
+    console.log(odg);
+    return {
+        type: actionTypes.SACUVAJ_ODGOVOR_POTVRDE,
+        odgovor2: odg
+    }
+}
+
+export const slanjePotvrdnogMaila = (mailFrom, mailTo, dodatak) => {
+    return dispatch => {
+        const authData = {
+            mailFrom: mailFrom,
+            mailTo: mailTo,
+            dodatak: dodatak
+        };
+        const url = '/mailPotvrda';
+
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+            dispatch(sacuvajOdgovorPotvrde(response.status));
+        }).catch(err => {
+                console.log(err);
+        });
+
+    };
+};
+
+
+
+export const sacuvajZahtev = (odg) => {
+    console.log(odg);
+    return{
+        type: actionTypes.SACUVAJ_POSLATI_ZAHTEV,
+        zahtevSestre: odg
+    }
+}
+
+export const slanjeZahteva = (tip, datum, doktorId, adminId, posiljalacId) => {
+    return dispatch => {
+        const authData = {
+            tip: tip,
+            datum: datum,
+            doktorId: doktorId,
+            adminId: adminId,
+            posiljalacId: posiljalacId
+        };
+        const url = '/zahtevSestre';
+
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+            dispatch(sacuvajZahtev(response.data));
+        }).catch(err => {
+            console.log(err);
+        });
+
+    };
+};
+
 
 
 export const sveSale = (sale) => {
@@ -397,6 +457,9 @@ export const sviPregledi = (sviPregledii) => {
     }
 }
 
+
+
+
 export const pregledi = () => {
 
     return dispatch => {
@@ -540,6 +603,31 @@ export const sortiraniPacijenti = () => {
     };
 };
 
+export const sacuvajVraceneZahteve = (zahtevi) => {
+    return{
+        type: actionTypes.SACUVAJ_SVE_ZAHTEVE,
+        sviZahtevi: zahtevi,
+    }
+}
+
+export const vratiZahteve = () => {
+    return dispatch => {
+        const url = '/sviZahtevi';
+        const token = sessionStorage.getItem('token');
+
+        axios.get(url,{
+            headers:{
+                'Authorization': 'Bearer ' + token
+            }  
+        }).then(response => {
+            console.log(response);
+            dispatch(sacuvajVraceneZahteve(response.data));
+        }).catch(err => {
+            console.log(err);
+        });
+
+    };
+};
 
 
 export const izmeniPrijavljenogKorisnika = (izmena) => {
@@ -572,10 +660,59 @@ export const izmeniPrijavljenogKorisnika = (izmena) => {
     };
 };
 
+
+export const brisiZahtev = (tip, datum, doktorId, adminId, posiljalacId) => {
+    return dispatch => {
+        const authData = {
+            tip: tip,
+            datum: datum,
+            doktorId: doktorId,
+            adminId: adminId,
+            posiljalacId: posiljalacId
+        };
+        const url = '/brisiZahtev';
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+            
+        }).catch(err => {
+            console.log(err);
+        });
+    };
+};
+
+
+export const zahtevZaPregled = (tip, datum, doktorId, adminId, posiljalacId) => {
+    return dispatch => {
+        const authData = {
+            tip: tip,
+            datum: datum,
+            doktorId: doktorId,
+            adminId: adminId,
+            posiljalacId: posiljalacId
+        };
+        const url = '/zahtevPregled';
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+        }).catch(err => {
+            console.log(err);
+        });
+    };
+};
+
+
 export const sacuvajObelezenuKliniku= (obelezenaKlinika) => {
     return {
         type: actionTypes.SACUVAJ_OBELEZENU_KLINIKU,
         obelezenaKlinika: obelezenaKlinika,
+    }
+}
+
+export const cuvajIdDoktora = (id) => {
+    return {
+        type: actionTypes.SACUVAJ_DOKTORE_ID,
+        doktorId: id
     }
 }
 

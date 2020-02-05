@@ -37,11 +37,11 @@ class ListaKlinika extends React.Component {
         if(klinike.length === undefined)
         {
             return (
-                <div key={klinike.id} id={klinike.id} class="ui link cards">
-                    <div class="card">
-                        <div class="content"  onClick={(e) => {this.handleClick(klinike.id); }}>
-                            <div class="header"> {klinike.name}</div>
-                        <div class="description">
+                <div key={klinike.id} id={klinike.id} className="ui link cards">
+                    <div className="card">
+                        <div className="content"  onClick={(e) => {this.handleClick(klinike.id); }}>
+                            <div className="header"> {klinike.name}</div>
+                        <div className="description">
                             {klinike.city}
                         </div>
                         </div>
@@ -54,11 +54,11 @@ class ListaKlinika extends React.Component {
         {
         return klinike.map((klinika) => {    
             return (
-                    <div key={klinika.id} id={klinika.id} class="ui link cards">
-                        <div class="card">
-                            <div class="content"  onClick={(e) => {this.handleClick(klinika.id); }}>
-                                <div class="header"> {klinika.name}</div>
-                            <div class="description">
+                    <div key={klinika.id} id={klinika.id} className="ui link cards">
+                        <div className="card">
+                            <div className="content"  onClick={(e) => {this.handleClick(klinika.id); }}>
+                                <div className="header"> {klinika.name}</div>
+                            <div className="description">
                                 {klinika.city}
                             </div>
                             </div>

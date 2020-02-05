@@ -1,12 +1,11 @@
 insert into clinic_center (name) values ('Klinicki Centar VNS');
 
-insert into clinic (name, clinic_center_id, city, picture, likes) values ('Klinika 1', 1, 'Novi Sad', '/images/kc1.jpg', 32);
-insert into clinic (name, clinic_center_id, city, picture, likes) values ('Klinika 2', 1, 'Beograd', '/images/kc2.jpg', 79);
-insert into clinic (name, clinic_center_id, city, picture, likes) values ('Klinika 3', 1, 'Nis', '/images/kc3.jpg', 121);
+insert into clinic (name, clinic_center_id, city, picture, likes) values ('Klinika 1', 1, 'Novi Sad', '', 32);
+insert into clinic (name, clinic_center_id, city, picture, likes) values ('Klinika 2', 1, 'Beograd', '', 79);
+insert into clinic (name, clinic_center_id, city, picture, likes) values ('Klinika 3', 1, 'Nis', '', 121);
 
 insert into checkup(name, description, type, duration, price) values ('Pregled 1', 'Redovan sistematski pregled', 'Sistematski', 5, 120);
 insert into checkup(name, description, type, duration, price) values ('Pregled 2', 'Redovan kardioloski pregled srca', 'Kardioloski', 8, 380);
-
 
 insert into checkup_type(name) values ('Kardioloski');
 insert into checkup_type(name) values ('Stomatoloski');
@@ -29,6 +28,8 @@ insert into room (number, free) values (10, true);
 insert into room (number, free) values (11, true);
 insert into room (number, free) values (12, true);
 insert into room (number, free) values (13, false);
+
+insert into request(posiljalac_id, admin_id, tip,  datum) values (3, 1, 'Kardioloski', '2020-3-5 16:00:00');
 
 insert into sick (name, description, date_start) values ('Prehlada', 'Obicna', '2019-10-5');
 insert into sick (name, description, date_start) values ('Dijabetes', 'Nizak rizik', '2019-5-21');

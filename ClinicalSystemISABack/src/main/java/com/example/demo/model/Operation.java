@@ -39,5 +39,4 @@ public class Operation {
     //@OneToOne(mappedBy = "operationRoom", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     //private Room room;
 
-
 }

@@ -1,10 +1,13 @@
 import React from 'react';
 import * as actions from '../../../../store/actions/index';
 import get from 'lodash/get';
+import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import PretragaKlinika from './PretragaKlinika';
 import { Button, Header, Image, Modal } from 'semantic-ui-react';
 import ListaOpisaModala from './ListaOpisaModala';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 
 
 
@@ -13,15 +16,18 @@ class Popup extends React.Component{
     state = {
         number: '',
         free: false,
-
+        id: null,
         imeKlinike: '',
         imePregleda: '',
-
+        po: '',
         doktoriTeKlinike: [],
-
+        datum: null,
         usaoJednom: true,
     };
 
+    componentDidMount(){
+        this.setState({datum: new Date()});
+    }
     componentDidUpdate(prevProps)
     {
         const doktori1= get(prevProps, 'doktorii');
@@ -77,6 +83,14 @@ class Popup extends React.Component{
         }
     }
 
+
+    uzmiId = (id2) => {
+        console.log('VRATIO');
+        console.log(this.props.tip);
+        this.props.vrni(id2, this.props.tip, this.state.datum);
+        {/* this.setState({po: 'JES', id: id2});*/}
+    }
+
     renderModala = () => {
         const { openModal, closeModal } = this.props;
 
@@ -88,21 +102,48 @@ class Popup extends React.Component{
             <Modal.Header>{this.props.klinikee.name} -> pregled : {this.props.pregledd.type}</Modal.Header>
             <Modal.Content image>
               <Image wrapped size='medium' src='https://react.semantic-ui.com/images/avatar/large/rachel.png' />
-              
+              <Modal.Description>
                 <hr />
-              <ListaOpisaModala doktori={this.state.doktoriTeKlinike} />
+              <ListaOpisaModala vrati={this.uzmiId} doktori={this.state.doktoriTeKlinike} />
                 <hr />
+                <DatePicker
+                    onChange={date => this.promeni(date)}
+                    selected={this.state.datum}
+                        showTimeSelect
+                        timeFormat="HH:mm"
+                        timeIntervals={30}
+                        timeCaption="time"
+                        dateFormat="MMMM d, yyyy h:mm aa"
+              />
+              <br/>
+              <br/>
+              <br/>
               <Button onClick={() => closeModal()} >Izadji</Button>
-
+              </Modal.Description>
             </Modal.Content>
             </Modal>
         );
         }
     }
 
+    renderCeraj(){
+        if(this.state.po==='JES'){
+            return <Redirect to={{path: '/zakazi', state:  this.state.id}} />;
+        }
+    }
+
+    promeni(date){
+        const sada = new Date();
+        if(moment(sada).isBefore(date)){
+            this.setState({datum: date});
+        }
+    }
+
+
     render() {
         return (
             <div>
+                {this.renderCeraj()}
                 {this.renderModala()}
                 {this.renderPromenuStanja()}
             </div>
@@ -144,7 +185,10 @@ class ListaKlinika_Pretraga extends React.Component {
     }
 
    
-    
+    resavaSve(id, tip, datum){
+        this.props.slanjeZahteva(tip, datum, id, '', this.props.prijavljenKorisnik.id);
+    }
+
     renderKlinike = () => {
         
         const klinike = this.props.klinike ?  this.props.klinike : [];
@@ -188,7 +232,7 @@ class ListaKlinika_Pretraga extends React.Component {
     render() {
         return (
             <div>
-                <Popup klinikee={this.state.selectedKlinika} doktorii={this.state.doktori} pregledd={this.state.pregled} openModal={this.state.openModal} closeModal={this.closeModal} /> 
+                <Popup vrni={this.resavaSve} tip={this.props.tip} klinikee={this.state.selectedKlinika} doktorii={this.state.doktori} pregledd={this.state.pregled} openModal={this.state.openModal} closeModal={this.closeModal} /> 
                 {this.renderKlinike()}
             </div>
         );
@@ -196,4 +240,20 @@ class ListaKlinika_Pretraga extends React.Component {
 
 }
 
-export default ListaKlinika_Pretraga;
+const mapStateToProps = state => {
+    console.log(state.auth.prijavljenKorisnik);
+    return {
+       korisnik: state.auth.prijavljenKorisnik
+    }
+};
+
+
+
+const mapDispatchToProps = dispatch => {
+    return {
+        slanjeZahteva: (tip, datum, doktorId, adminId, posiljalacId) => dispatch(action.slanjeZahteva(tip, datum, doktorId, adminId, posiljalacId)),
+        vratiKorisnike: () => dispatch(actions.prijavljenKorisnik())
+    }
+};
+
+export default connect(null, mapDispatchToProps)(ListaKlinika_Pretraga);

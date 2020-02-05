@@ -41,7 +41,6 @@ class PretragaKlinika extends React.Component {
     }
 
     selectChangeHandler = (e) => {
-
         this.setState({
             tip: e.target.value,
         });
@@ -706,14 +705,14 @@ class PretragaKlinika extends React.Component {
                     </div>
                 </div>
 
-                <button class="ui button" type="submit" onClick={ (e) => {this.props.prikazi_klinike(e); this.filtrirajHandler(e)}}>Pretrazi</button>
+                <button className="ui button" type="submit" onClick={ (e) => {this.props.prikazi_klinike(e); this.filtrirajHandler(e)}}>Pretrazi</button>
                 <input type="checkbox" checked={this.state.pretraziTip} onChange={this.handlePretraziPoTipu} ></input>
             </form>
 
                 <div>
                     <h3>Pronadjene klinike</h3>
 
-                    <ListaKlinika_Pretraga pretraziTip={this.state.pretraziTip} klinike={this.state.pronadjeneKlinike} doktori={this.state.pronadjeniDoktori} pregled={this.state.pronadjenPregled} />
+                    <ListaKlinika_Pretraga tip={this.state.tip} pretraziTip={this.state.pretraziTip} klinike={this.state.pronadjeneKlinike} doktori={this.state.pronadjeniDoktori} pregled={this.state.pronadjenPregled} />
 
                 </div>
 

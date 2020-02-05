@@ -17,7 +17,7 @@ import TipoviPregleda from './containers/Home page/AKlinike/TipoviPregleda/Tipov
 import UnosTipaPregleda from './containers/Home page/AKlinike/TipoviPregleda/UnosTipaPregleda';
 import MedicinskaSestra from './containers/Home page/MedicinskaSestra/MedicinskaSestra';
 import PretragaKlinika from './containers/Home page/Pacijenti/PretragaKlinika/PretragaKlinika';
-
+import ZakazivanjePregleda from './containers/Home page/Pacijenti/ZakazivanjePregleda';
 
 
 
@@ -48,6 +48,7 @@ class App extends Component {
           <Route path="/unosTipaPregleda" component={UnosTipaPregleda} />
           <Route path="/medSestra" component={MedicinskaSestra} />
           <Route path="/pretragaKlinika" component={PretragaKlinika} />
+          <Route path="/zakazi" component={ZakazivanjePregleda}/>
 
 
 
