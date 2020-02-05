@@ -12,7 +12,7 @@ const initialState = { korisnik : null, pacijenti: [], pacijentisort: []}
 class ProfilPacijenta extends React.Component {
 
     state = { 
-        po: '',
+        po: 'PROFIL',
         obelezenPacijent: null,
     };
 
@@ -20,6 +20,7 @@ class ProfilPacijenta extends React.Component {
         console.log(this.props);
         this.props.vratiKorisnike();
         this.props.sviPacijenti();
+        this.props.svi_pregledi();
     }
 
 
@@ -38,7 +39,6 @@ class ProfilPacijenta extends React.Component {
         {
             return <FormaZaPregled />
         }
-
     }
 
 
@@ -48,7 +48,6 @@ class ProfilPacijenta extends React.Component {
                 <div>
                     <div style={{ float: "left"}}>
                         <div className="ui secondary  menu">
-                            <a className="item" onClick={(e)=>{ this.setState({po: ''});}}> Pocetna</a>
                             <a className="item" onClick={(e)=>{ this.setState({po: 'PROFIL'});}}>Profil</a>
                             <a className="item" onClick={(e)=>{ this.setState({po: 'KARTON'});}}> Medicinski karton</a>
                             <a className="item" onClick={(e)=>{ this.setState({po: 'ZAPOCNI PREGLED'}); this.props.bolesti(e); this.props.lekovi(e); }}>Zapocni pregled</a>
@@ -98,6 +97,8 @@ const mapDispatchToProps = dispatch => {
 
         bolesti: () => dispatch(actions.bolesti()),
         lekovi: () => dispatch(actions.lekovi()),
+        svi_pregledi: () => dispatch(actions.pregledi())
+
     }
 };
 

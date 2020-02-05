@@ -1,11 +1,10 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Authority;
-import com.example.demo.model.Clinic;
-import com.example.demo.model.User;
-import com.example.demo.model.UserRole;
+import com.example.demo.model.*;
+import com.example.demo.repository.CheckupRepository;
 import com.example.demo.repository.ClinicRepository;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.view.OcenaKlinikeILekaraView;
 import com.example.demo.view.UserViewRegister;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,6 +19,9 @@ public class ClinicService {
 
     @Autowired
     private ClinicRepository clinicRepository;
+
+    @Autowired
+    private CheckupRepository checkupRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -39,6 +41,42 @@ public class ClinicService {
 
     public Page<Clinic> findAll(Pageable page) {
         return this.clinicRepository.findAll(page);
+    }
+
+
+    public Checkup unosOcene(OcenaKlinikeILekaraView podaci) {
+
+        int idKlinike = podaci.getId();
+
+        List<Clinic> clinicList = this.clinicRepository.findAll();
+        Clinic cl = new Clinic();
+
+        for (Clinic c : clinicList)
+        {
+            if (c.getId() == idKlinike)
+            {
+                int noviBrPutaOcenjivanja = c.getBrPutaOcenjivanja() + 1;
+                float novaOcena = (c.getBrPutaOcenjivanja()*c.getOcena() + podaci.getOcena()) / noviBrPutaOcenjivanja;
+
+                c.setBrPutaOcenjivanja(noviBrPutaOcenjivanja);
+                c.setOcena(novaOcena);
+
+                cl = c;
+            }
+        }
+
+        List<Checkup> cll = checkupRepository.findAll();
+        Checkup ch = new Checkup();
+        for ( Checkup c : cll)
+        {
+            if (c.getId() == podaci.getIdPregleda())
+            {
+                c.setOcenjenaKlinika(true);
+                ch = c;
+            }
+        }
+
+        return this.checkupRepository.save(ch);
     }
 
 }

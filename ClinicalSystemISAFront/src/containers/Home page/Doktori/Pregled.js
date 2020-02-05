@@ -5,7 +5,7 @@ import Calendar from 'react-calendar';
 
 
 
-const initialState = {
+const initialState = { //////////////////// Ova js fajl nije povezan ni sa cim
   pacijenti: null,
   date: null
 }

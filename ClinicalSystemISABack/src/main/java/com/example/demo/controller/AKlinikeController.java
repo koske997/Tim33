@@ -129,7 +129,7 @@ public class AKlinikeController {
         System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + pregledi);
 
 
-        return new ResponseEntity<List<Checkup>>(pregledi, HttpStatus.OK);
+        return new ResponseEntity<>(pregledi, HttpStatus.OK);
 
     }
 

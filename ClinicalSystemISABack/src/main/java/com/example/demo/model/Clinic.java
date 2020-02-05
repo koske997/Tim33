@@ -21,13 +21,16 @@ public class Clinic {
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private Long id;
 
-
+    @Column(name = "br_puta_ocenjivanja")
+    private int brPutaOcenjivanja;
 
     private String name;
 
     private String city;
 
     private int likes;
+
+    private float ocena;
 
     private String picture;
 

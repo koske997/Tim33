@@ -680,3 +680,53 @@ export const sacuvajPregledKarton = (pregledKarton) => {
         pregledKarton: pregledKarton,
     }
 }
+
+export const unosOceneKlinike = (podaci) => {
+    return dispatch => {
+        console.log(podaci);
+        const authData = {
+            id: podaci.id,
+            idPregleda: podaci.idPregleda,
+            ocena: podaci.ocena,
+
+            returnSecureToken: true
+        };
+
+        const url = '/unosOceneKlinike';        
+        
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+
+            dispatch(sacuvajPregledKarton(response.data));
+        })
+        .catch(err => {
+             console.log(err);
+        });
+    };
+};
+
+export const unosOceneLekara = (podaci) => {
+    return dispatch => {
+        console.log(podaci);
+        const authData = {
+            id: podaci.id,
+            idPregleda: podaci.idPregleda,
+            ocena: podaci.ocena,
+
+            returnSecureToken: true
+        };
+
+        const url = '/unosOceneLekara';        
+        
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+
+            dispatch(sacuvajPregledKarton(response.data));
+        })
+        .catch(err => {
+             console.log(err);
+        });
+    };
+};

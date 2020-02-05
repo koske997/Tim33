@@ -11,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -89,7 +91,9 @@ public class CheckupDoctorService {
         System.out.println(lek.getName());
 
 
-        Calendar cal = Calendar.getInstance();
+        //Calendar cal = Calendar.getInstance();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+        Date date = new Date();
 
 
 
@@ -101,7 +105,7 @@ public class CheckupDoctorService {
 
 
         Checkup c = Checkup.builder().name(checkup.getNaziv()).description(checkup.getOpis()).type(checkup.getTip())
-                .duration(2).price(Integer.parseInt(checkup.getCena())).dateTime(cal)
+                .duration(2).price(Integer.parseInt(checkup.getCena())).dateTime(dateFormat.format(date)).ocenjenaKlinika(false).ocenjenLekar(false)
                 .sicks(bolesti).unapred(false).idLekara(checkup.getIdLekara()).idPacijenta(checkup.getIdPacijenta()).build();
 
 

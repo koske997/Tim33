@@ -12,6 +12,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -50,7 +52,6 @@ public class CheckupService {
     {
         User u = new User();
 
-        Calendar cal = Calendar.getInstance();
 
         String doktor = checkup.getLekar();
 
@@ -80,10 +81,12 @@ public class CheckupService {
         Set<Room> ro = new HashSet<>();
         ro.add(room);
 
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
 
         Checkup c = Checkup.builder().name(checkup.getNaziv()).description(checkup.getOpis()).type(checkup.getTip()).
-                idLekara(Integer.parseInt(checkup.getLekar())).
-                rooms(ro).price(Integer.parseInt(checkup.getCena())).duration(Integer.parseInt(checkup.getTrajanje())).dateTime(cal).build();
+                idLekara(Integer.parseInt(checkup.getLekar())).unapred(true).
+                rooms(ro).price(Integer.parseInt(checkup.getCena())).duration(Integer.parseInt(checkup.getTrajanje())).dateTime(dateFormat.format(date)).build();
 
         //doctor.setCheckup(c);
         //Cudno ali novi pregled ne moze da doda samo ako u bazu ubacimo ovaj gore pregled

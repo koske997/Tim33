@@ -31,7 +31,7 @@ public class Room {
     //@OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     //private List<Checkup> checkupList = new ArrayList<>();
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "checkup_id")
     @JsonBackReference
     private Checkup checkup;

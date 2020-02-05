@@ -30,5 +30,7 @@ export {
     lekovi,
     unosPregledaDoktora,
     sacuvajPregledKarton,
+    unosOceneKlinike,
+    unosOceneLekara,
 
 } from './auth';

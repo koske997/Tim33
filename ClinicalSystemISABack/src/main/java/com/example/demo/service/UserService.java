@@ -1,10 +1,9 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Authority;
-import com.example.demo.model.Room;
-import com.example.demo.model.User;
-import com.example.demo.model.UserRole;
+import com.example.demo.model.*;
+import com.example.demo.repository.CheckupRepository;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.view.OcenaKlinikeILekaraView;
 import com.example.demo.view.RoomView;
 import com.example.demo.view.UserViewRegister;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +19,9 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private CheckupRepository checkupRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -78,6 +80,43 @@ public class UserService {
 
         return this.userRepository.save(use);
     }
+
+    public Checkup unosOcene(OcenaKlinikeILekaraView podaci) {
+
+        int idLekara = podaci.getId();
+
+        List<User> userList = this.findAll();
+        User use = new User();
+
+        for (User u : userList)
+        {
+            if (u.getId() == idLekara)
+            {
+                int noviBrPutaOcenjivanja = u.getBrPutaOcenjivanja() + 1;
+                float novaOcena = (u.getBrPutaOcenjivanja()*u.getOcena() + podaci.getOcena()) / noviBrPutaOcenjivanja;
+                u.setBrPutaOcenjivanja(noviBrPutaOcenjivanja);
+                u.setOcena(novaOcena);
+
+                use = u;
+            }
+        }
+
+        List<Checkup> cl = checkupRepository.findAll();
+        Checkup ch = new Checkup();
+        for ( Checkup c : cl)
+        {
+            if (c.getId() == podaci.getIdPregleda())
+            {
+                c.setOcenjenLekar(true);
+                ch = c;
+            }
+        }
+        this.userRepository.save(use);
+
+        return this.checkupRepository.save(ch);
+    }
+
+
 
     public void remove(Long id) {
         this.userRepository.deleteById(id);

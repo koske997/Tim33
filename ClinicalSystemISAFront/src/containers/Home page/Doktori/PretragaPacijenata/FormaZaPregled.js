@@ -154,7 +154,6 @@ class FormaZaPregled extends React.Component {
                     <label>Sifra bolesti</label>
                     <div className="ui select">
                     <select value={this.state.bolest} onChange={ this.selectChangeHandler2}>
-                        <option>Bez bolesti</option>
                         <ListaBolesti bolesti={this.props.bolesti}/> 
                     </select>
                     </div>
@@ -164,8 +163,6 @@ class FormaZaPregled extends React.Component {
                     <label>Lekovi</label>
                     <div className="ui select">
                     <select value={this.state.lek} onChange={ this.selectChangeHandler3}>
-
-                        <option>Bez leka</option>
                         <ListaLekova lekovi={this.props.lekovi}/> 
                     </select>
                     </div>

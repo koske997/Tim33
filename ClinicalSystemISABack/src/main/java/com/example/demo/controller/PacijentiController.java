@@ -7,6 +7,8 @@ import com.example.demo.service.CustomUserDetailsService;
 
 import com.example.demo.service.RoomService;
 import com.example.demo.service.UserService;
+import com.example.demo.view.CheckupDoctorView;
+import com.example.demo.view.OcenaKlinikeILekaraView;
 import com.example.demo.view.RoomView;
 import com.example.demo.view.UserViewRegister;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -120,5 +122,33 @@ public class PacijentiController {
         User modUser = this.userService.modifikacija(userView);
 
         return new ResponseEntity<User>(modUser, HttpStatus.CREATED);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(value = "/unosOceneLekara")
+    public ResponseEntity<?> unosOceneLekara(@RequestBody OcenaKlinikeILekaraView podaci) {
+
+        System.out.println(podaci.getId());
+        System.out.println(podaci.getOcena());
+        System.out.println(podaci.getIdPregleda());
+
+        Checkup u = this.userService.unosOcene(podaci);
+
+        return new ResponseEntity<>(u, HttpStatus.CREATED);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(value = "/unosOceneKlinike")
+    public ResponseEntity<?> unosOceneKlinike(@RequestBody OcenaKlinikeILekaraView podaci) {
+
+        System.out.println(podaci.getId());
+        System.out.println(podaci.getOcena());
+        System.out.println(podaci.getIdPregleda());
+
+
+        Checkup c = this.clinicService.unosOcene(podaci);
+
+
+        return new ResponseEntity<>(c, HttpStatus.CREATED);
     }
 }

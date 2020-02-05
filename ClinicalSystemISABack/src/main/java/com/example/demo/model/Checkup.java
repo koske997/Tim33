@@ -7,6 +7,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.util.*;
 
 @Getter
@@ -41,9 +42,8 @@ public class Checkup {
     @Column(name = "price")
     private float price;
 
-    @Column(name = "dateTime")
-    @Temporal(TemporalType.TIMESTAMP)
-    private java.util.Calendar dateTime;
+    @Column(name = "date_time")
+    private String dateTime;
 
 
     @Column(name = "id_lekara")
@@ -51,6 +51,15 @@ public class Checkup {
 
     @Column(name = "id_pacijenta")
     private int idPacijenta;
+
+    @Column(name = "ocenjena_klinika")
+    private boolean ocenjenaKlinika;
+
+    @Column(name = "ocenjen_lekar")
+    private boolean ocenjenLekar;
+
+
+
 
     //@OneToMany(mappedBy = "checkup", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     //@JsonManagedReference

@@ -72,6 +72,7 @@ public class DoktorController {
 
         Checkup saveCheckup = this.checkupDoctorService.save(checkup);
 
+
         return new ResponseEntity<Checkup>(saveCheckup, HttpStatus.CREATED);
     }
 

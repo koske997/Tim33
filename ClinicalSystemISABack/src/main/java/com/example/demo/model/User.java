@@ -36,6 +36,11 @@ public class User implements UserDetails {
     private Integer phoneNumber;
     private Integer likes;
     private Integer userId;
+    private float ocena;
+
+    @Column(name = "br_puta_ocenjivanja")
+    private int brPutaOcenjivanja;
+
     @Enumerated(EnumType.STRING)
     private UserRole role;
     private boolean enabled;

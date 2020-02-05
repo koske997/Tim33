@@ -42,8 +42,9 @@ class MedicinskiKartonPacijenta extends React.Component {
     preglediSamoTogPacijenta() {
         let noviPregledi = [];
 
-        if (this.props.sviPregledi !== null && this.props.sviPregledi !== undefined && 
-            this.props.obelezenPacijent !== null && this.props.obelezenPacijent !== undefined)
+        console.log(this.props.sviPregledi)
+
+        if (this.props.sviPregledi !== null && this.props.sviPregledi !== undefined)
         {
             for (let i=0; i<this.props.sviPregledi.length; i++)
             {
