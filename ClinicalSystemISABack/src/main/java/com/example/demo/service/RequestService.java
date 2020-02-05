@@ -7,9 +7,11 @@ import com.example.demo.repository.UserRepository;
 import com.example.demo.view.RequestView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Transactional
 @Service
 public class RequestService {
 
@@ -22,7 +24,7 @@ public class RequestService {
     public Request findOne(Long id){return requestRepository.findOneById(id);}
     public List<Request> findAll(){return requestRepository.findAll();}
 
-    public void deleteById(Long id){this.requestRepository.deleteById(id);}
+    public void deleteById(Long id){this.requestRepository.deleteRequest(id);}
 
     public Request save(RequestView requestView){
 

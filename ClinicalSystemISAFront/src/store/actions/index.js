@@ -27,5 +27,7 @@ export {
     sacuvajObelezenuKliniku,
     slanjeZahteva,
     vratiZahteve,
+    brisiZahtev,
+    slanjePotvrdnogMaila,
 
 } from './auth';

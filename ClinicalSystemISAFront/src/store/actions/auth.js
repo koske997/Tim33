@@ -242,6 +242,37 @@ export const slanjeMaila = (mailFrom, mailTo, dodatak) => {
     };
 };
 
+
+export const sacuvajOdgovorPotvrde = (odg) => {
+    console.log(odg);
+    return {
+        type: actionTypes.SACUVAJ_ODGOVOR_POTVRDE,
+        odgovor2: odg
+    }
+}
+
+export const slanjePotvrdnogMaila = (mailFrom, mailTo, dodatak) => {
+    return dispatch => {
+        const authData = {
+            mailFrom: mailFrom,
+            mailTo: mailTo,
+            dodatak: dodatak
+        };
+        const url = '/mailPotvrda';
+
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+            dispatch(sacuvajOdgovorPotvrde(response.status));
+        }).catch(err => {
+                console.log(err);
+        });
+
+    };
+};
+
+
+
 export const sacuvajZahtev = (odg) => {
     console.log(odg);
     return{
@@ -625,6 +656,28 @@ export const izmeniPrijavljenogKorisnika = (izmena) => {
         }); 
     };
 };
+
+
+export const brisiZahtev = (tip, datum, doktorId, adminId, posiljalacId) => {
+    return dispatch => {
+        const authData = {
+            tip: tip,
+            datum: datum,
+            doktorId: doktorId,
+            adminId: adminId,
+            posiljalacId: posiljalacId
+        };
+        const url = '/brisiZahtev';
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+            
+        }).catch(err => {
+            console.log(err);
+        });
+    };
+};
+
 
 export const sacuvajObelezenuKliniku= (obelezenaKlinika) => {
     return {

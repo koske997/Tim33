@@ -62,21 +62,7 @@ public class AKlinikeController {
         return new ResponseEntity<User>(saveCheckup, HttpStatus.CREATED);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping(value = "/mailSestre")
-    public ResponseEntity<?> mailSestre(@RequestBody MailView mailView){
 
-        Mail mail = new Mail();
-        mail.setMailFrom(mailView.getMailFrom());
-        mail.setMailTo("koske.koske035@gmail.com");
-        mail.setMailSubject("Zahtev za "+mailView.getMailTo()+" od "+mailView.getMailFrom());
-        mail.setMailContent("Zelela bih da dobijem "+mailView.getMailTo()+". Razlog: "+mailView.getDodatak());
-        MailService mailService = DemoApplication.getCtx();
-        mailService.sendMail(mail);
-
-
-        return  new ResponseEntity<>(HttpStatus.CREATED);
-    }
 
 
     @CrossOrigin(origins = "http://localhost:3000")
