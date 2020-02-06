@@ -5,7 +5,8 @@ import {updateObject} from '../../../shared/utility';
 import ListaSala from './ListaSala';
 import ListaDoktora from './ListaDoktora';
 import ListaTipovaPregleda from './ListaTipovaPregleda';
-
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 
 
 class UnosPregleda extends React.Component {
@@ -28,14 +29,42 @@ class UnosPregleda extends React.Component {
         }
     }
 
+    componentDidMount(){
+        this.setState({datumVreme: new Date()});
+        this.props.svi_lekari();
+        this.props.sve_sale();
+        this.props.svi_tipovi_regleda();
+    }
+
     pregledHandler = (event) => {
         event.preventDefault();
 
         console.log(this.state.auth.naziv, this.state.auth.opis, this.state.auth.tip, 
-            this.state.auth.sala, this.state.auth.lekar, this.state.auth.cena, this.state.auth.datumVreme, this.state.auth.trajanje);
+            this.state.auth.sala, this.state.auth.lekar, this.state.auth.cena, this.state.datumVreme, this.state.auth.trajanje);
 
-        this.props.unesiPregled(this.state.auth.naziv, this.state.auth.opis, this.state.auth.tip, 
-            this.state.auth.sala, this.state.auth.lekar, this.state.auth.cena, this.state.auth.datumVreme, this.state.auth.trajanje);
+        let podaci = {
+            naziv: this.state.auth.naziv,
+            opis: this.state.auth.opis,
+            tip: this.state.auth.tip,
+            sala: this.state.auth.sala,
+            lekar: this.state.auth.lekar,
+            cena: this.state.auth.cena,
+            datumVreme: this.state.datumVreme,
+            trajanje: this.state.auth.trajanje,
+        }
+        if (podaci.naziv === null || podaci.naziv === undefined || podaci.naziv === ''
+        || podaci.opis === null || podaci.opis === undefined || podaci.opis === ''
+        || podaci.tip === null || podaci.tip === undefined || podaci.tip === ''
+        || podaci.sala === null ||podaci. sala === undefined || podaci.sala === ''
+        || podaci.lekar === null || podaci.lekar === undefined || podaci.lekar === ''
+        || podaci.cena === null || podaci.cena === undefined || podaci.cena === ''
+        || podaci.datumVreme === null || podaci.datumVreme === undefined || podaci.datumVreme === ''
+        || podaci.trajanje === null || podaci.trajanje === undefined || podaci.trajanje === '')
+        {
+            alert('Neispravno uneti podaci.');
+        }
+        else
+            this.props.unesiPregled(podaci);
     };
 
     inputChangeHandler = (event, type) => {
@@ -54,6 +83,23 @@ class UnosPregleda extends React.Component {
         });
 
         this.setState({auth: updatedObject});
+    }
+
+          
+
+        
+    
+
+
+
+
+    promeni(date){
+        const sada = new Date();
+        if(moment(sada).isBefore(date)){
+            console.log(date);
+            this.setState({datumVreme: date});
+
+        }
     }
 
     render() {
@@ -78,8 +124,15 @@ class UnosPregleda extends React.Component {
                 </div>
                 <div className="field">
                     <label>Datum i vreme</label>
-                    <input type="number" placeholder="Datum i vreme"
-                    onChange={(event) => this.inputChangeHandler(event, 'datumVreme')} />
+                    <DatePicker
+                            onChange={date => this.promeni(date)}
+                            selected={this.state.datumVreme}
+                            showTimeSelect
+                            timeFormat="HH:mm"
+                            timeIntervals={15}
+                            timeCaption="time"
+                            dateFormat="MMMM d, yyyy h:mm aa"
+                    />
                 </div>
                 <div className="field">
                     <label>Trajanje (h)</label>
@@ -119,13 +172,7 @@ class UnosPregleda extends React.Component {
 }
 
 const mapStateToProps = state => {
-    for (const d in state.auth.doktori)
-        {
-            console.log(state.auth.doktori[d].firstName);
-            //console.log(this.state.auth.lekar);
-
-            //if(state.auth.doktori[d].)
-        }
+    console.log(state.auth)
     return {
         sale: state.auth.sale,
         doktori: state.auth.doktori,
@@ -135,8 +182,14 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        unesiPregled: (naziv, opis, tip, sala, lekar, cena, datumVreme, trajanje) => 
-            dispatch(actions.unosPregleda(naziv, opis, tip, sala, lekar, cena, datumVreme, trajanje))
+        unesiPregled: (podaci) => 
+            dispatch(actions.unosPregleda(podaci)),
+        
+        svi_lekari: () => dispatch(actions.doktori()),
+        sve_sale: () => dispatch(actions.sale()),
+        svi_tipovi_regleda: () => dispatch(actions.tipoviPregleda()),
+
+
     }
 };
 

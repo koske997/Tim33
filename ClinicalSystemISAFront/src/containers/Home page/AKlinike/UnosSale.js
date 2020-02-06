@@ -42,6 +42,7 @@ class UnosSale extends React.Component {
 
     render() {
         return (
+            
             <div>
                 <input type="number" placeholder="Broj sale"
                     onChange={(event) => this.inputChangeHandler(event, 'broj')} />

@@ -5,21 +5,31 @@ insert into clinic (name, clinic_center_id, city, picture, likes, ocena, br_puta
 insert into clinic (name, clinic_center_id, city, picture, likes, ocena, br_puta_ocenjivanja) values ('Klinika 3', 1, 'Nis', '/images/kc3.jpg', 121, 9, 1);
 
 
+
 insert into checkup_type(name) values ('Kardioloski');
 insert into checkup_type(name) values ('Stomatoloski');
 insert into checkup_type(name) values ('Sistematski');
 
 
-insert into checkup(name, description, type, duration, price, unapred_definisan, id_lekara, id_pacijenta, ocenjena_klinika, ocenjen_lekar, date_time) values ('Pregled 1', 'Redovan sistematski pregled', 'Sistematski', 5, 120, true, 3, 4, false, false, '2002/05/31 12:12');
-insert into checkup(name, description, type, duration, price, unapred_definisan, id_lekara, id_pacijenta, ocenjena_klinika, ocenjen_lekar, date_time) values ('Pregled 2', 'Redovan kardioloski pregled srca', 'Kardioloski', 8, 380, true, 2, 4, false, false, '2006/12/21 16:13');
+insert into checkup(name, description, type, duration, price, unapred_definisan, id_lekara, id_pacijenta, ocenjena_klinika, ocenjen_lekar, date_time) values ('Pregled 1', 'Redovan sistematski pregled', 'Sistematski', 5, 120, false , 3, 4, false, false, '2012-01-27T16:25:52.000Z');
+insert into checkup(name, description, type, duration, price, unapred_definisan, id_lekara, id_pacijenta, ocenjena_klinika, ocenjen_lekar, date_time) values ('Pregled 2', 'Redovan kardioloski pregled srca', 'Kardioloski', 8, 380, false, 2, 4, false, false, '2020-01-27T16:25:52.000Z');
+insert into checkup(name, description, type, duration, price, unapred_definisan, id_lekara, id_pacijenta, ocenjena_klinika, ocenjen_lekar, date_time) values ('Pregled 3', 'Redocan stomatoloski pregled', 'Stomatoloski', 1, 1999, false, 3, 2, false, false, '2020-01-10T16:25:52.000Z');
+insert into checkup(name, description, type, duration, price, unapred_definisan, id_lekara, id_pacijenta, ocenjena_klinika, ocenjen_lekar, date_time) values ('Pregled 4', 'Redocan zubarski pregled', 'Stomatoloski', 2, 899, false, 3, 2, false, false, '2020-01-10T16:25:52.000Z');
+insert into checkup(name, description, type, duration, price, unapred_definisan, id_lekara, id_pacijenta, ocenjena_klinika, ocenjen_lekar, date_time) values ('Pregled 5', 'A', 'Stomatoloski', 1, 1000, false, 3, 4, false, false, '2020-02-10T16:25:52.000Z');
+insert into checkup(name, description, type, duration, price, unapred_definisan, id_lekara, id_pacijenta, ocenjena_klinika, ocenjen_lekar, date_time) values ('Pregled 6', 'B', 'Stomatoloski', 2, 0, false, 2, 4, false, false, '2020-02-11T16:25:52.000Z');
+insert into checkup(name, description, type, duration, price, unapred_definisan, id_lekara, id_pacijenta, ocenjena_klinika, ocenjen_lekar, date_time) values ('Pregled 7', 'C', 'Stomatoloski', 1, 1200, false, 2, 4, false, false, '2020-02-20T16:25:52.000Z');
+insert into checkup(name, description, type, duration, price, unapred_definisan, id_lekara, id_pacijenta, ocenjena_klinika, ocenjen_lekar, date_time) values ('Pregled 8', 'D', 'Stomatoloski', 2, 1000, false, 2, 4, false, false, '2020-02-06T16:25:52.000Z');
 
 
-insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja) values ('Sajlovo1', 'Aleksandar', 'Kosic', 'sickokralj4@gmail.com', '$2a$10$PckbyvdiGuU9H9HIzQT8nuMX/n30JwNMCmH/MbK6UWVQbggL55rnm', 'Kula', 'Srbija', 06139356, 0297, 'ADMINCC', true, 1, 43, 6, 1);
-insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja) values ('detelinara1', 'Jovan', 'Jenjic', 'jovan.jenjic@gmail.com', '$2a$10$PckbyvdiGuU9H9HIzQT8nuMX/n30JwNMCmH/MbK6UWVQbggL55rnm', 'Srbija', 'Srbijaa', 069356, 02997, 'DOCTOR', true, 1,  222, 6, 1);
-insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja) values ('naselje1', 'Aeesfleksandar', 'Kosdfsic', 'dsidsdsffckokralj4@gmail.com', '$2a$10$PckbyvdiGuU9H9HIzQT8nuMX/n30JwNMCmH/MbK6UWVQbggL55rnm', 'Kula', 'Srbija', 06, 022397, 'DOCTOR', true, 1,  279, 6, 1);
-insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja) values ('Podbara 21', 'Vanja', 'Stanojevic', 'vaksicarina@gmail.com', '123456', 'Banjaluka', 'BIH', 0699, 011397, 'PATIENT', true, 1, 111, 6, 1);
-insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja) values ('Sajmise 33', 'Nikolina', 'Ivankovic', 'nikolinaiv07@gmail.com', '654321', 'Zvornik', 'ReoSrpsa', 0655, 022337, 'PATIENT', true, 2, 450, 6, 1);
-insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja) values ('Liman 33', 'Stefan', 'Pejakovic', 'pejak021@gmail.com', '22322', 'Mrkonjic', 'SrpskaRep', 0622, 121221, 'PATIENT', true, 1, 78, 6, 1);
+
+
+insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja, prva_prijava) values ('Sajlovo1', 'Aleksandar', 'Kosic', 'sickokralj4@gmail.com', '$2a$10$PckbyvdiGuU9H9HIzQT8nuMX/n30JwNMCmH/MbK6UWVQbggL55rnm', 'Kula', 'Srbija', 06139356, 0297, 'ADMINCC', true, 1, 43, 6, 1, false);
+insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja, prva_prijava) values ('detelinara1', 'Jovan', 'Jenjic', 'jovan.jenjic@gmail.com', '$2a$10$PckbyvdiGuU9H9HIzQT8nuMX/n30JwNMCmH/MbK6UWVQbggL55rnm', 'Srbija', 'Srbijaa', 069356, 02997, 'DOCTOR', true, 1,  222, 6, 1, false);
+insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja, prva_prijava) values ('naselje1', 'Aeesfleksandar', 'Kosdfsic', 'dsidsdsffckokralj4@gmail.com', '$2a$10$PckbyvdiGuU9H9HIzQT8nuMX/n30JwNMCmH/MbK6UWVQbggL55rnm', 'Kula', 'Srbija', 06, 022397, 'DOCTOR', true, 2,  279, 6, 1, false);
+insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja, prva_prijava) values ('Podbara 21', 'Vanja', 'Stanojevic', 'vaksicarina@gmail.com', '123456', 'Banjaluka', 'BIH', 0699, 011397, 'PATIENT', true, 1, 111, 6, 1, false);
+insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja, prva_prijava) values ('Sajmise 33', 'Nikolina', 'Ivankovic', 'nikolinaiv07@gmail.com', '654321', 'Zvornik', 'ReoSrpsa', 0655, 022337, 'PATIENT', true, 2, 450, 6, 1, false);
+insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja, prva_prijava) values ('Liman 33', 'Stefan', 'Pejakovic', 'pejak021@gmail.com', '22322', 'Mrkonjic', 'SrpskaRep', 0622, 121221, 'PATIENT', true, 3, 78, 6, 1, false);
+insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja, prva_prijava) values ('Ruma', 'MMilos', 'Milos', 'milos@gmail.com', '$2a$10$PckbyvdiGuU9H9HIzQT8nuMX/n30JwNMCmH/MbK6UWVQbggL55rnm', 'Srbija', 'Srbijaa', 111, 22, 'DOCTOR', true, 1,  12, 9, 1, false);
 
 
 insert into medical_record (user_id) values (1);
@@ -43,24 +53,16 @@ insert into room (number, free, checkup_id) values (13, false, 1);
 
 insert into sick (name, description, sick_number, checkup_id) values ('', '', 0, 1);
 insert into sick (name, description, sick_number, checkup_id) values ('Prehlada', 'Obicna', 1818, 1);
-insert into sick (name, description, sick_number, checkup_id) values ('Dijabetes', 'Nizak rizik', 2929, 1);
-insert into sick (name, description, sick_number, checkup_id) values ('Visok pritisak', '140/80', 3737, 2);
-insert into sick (name, description, sick_number, checkup_id) values ('Uvecanje prostate', 'ses', 4646, 2);
+insert into sick (name, description, sick_number, checkup_id) values ('Dijabetes', 'Nizak rizik', 2929, 2);
+insert into sick (name, description, sick_number, checkup_id) values ('Visok pritisak', '140/80', 3737, 3);
+insert into sick (name, description, sick_number, checkup_id) values ('Uvecanje prostate', 'ses', 4646, 4);
 
 insert into visit (name, description, date_time) values ('Poseta1', 'Poslovna poseta', '2019-5-16');
 insert into visit (name, description, date_time) values ('Poseta2', 'Porodicna poseta', '2019-3-15');
 
 
-insert into request(posiljalac_id, admin_id, tip,  datum) values (3, 1, 'Kardioloski', '2020-3-5 16:00:00');
-
-insert into sick (name, description, date_start) values ('Prehlada', 'Obicna', '2019-10-5');
-insert into sick (name, description, date_start) values ('Dijabetes', 'Nizak rizik', '2019-5-21');
-insert into sick (name, description, date_start) values ('Visok pritisak', '140/80', '2019-8-8');
-insert into sick (name, date_start) values ('Uvecanje prostate', '2019-11-3');
-
 insert into recipe (name) values ('Recept1');
 insert into recipe (name) values ('Recept2');
-
 
 insert into medicine (name, recipe_id) values ('', 1);
 insert into medicine (name, recipe_id) values ('Defrinol', 1);
@@ -88,4 +90,4 @@ alter sequence recipe_id_seq restart with 3;
 alter sequence authority_id_seq restart with 2;
 alter sequence medical_record_id_seq restart with 7;
 alter sequence checkup_type_id_seq restart with 3;
-alter sequence checkup_id_seq restart with 3;
+alter sequence checkup_id_seq restart with 9;

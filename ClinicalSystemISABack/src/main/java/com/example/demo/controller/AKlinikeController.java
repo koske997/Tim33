@@ -58,9 +58,9 @@ public class AKlinikeController {
 
         System.out.println(checkup.getTip());
 
-        User saveCheckup = this.checkupService.save(checkup);
+        Checkup saveCheckup = this.checkupService.save(checkup);
 
-        return new ResponseEntity<User>(saveCheckup, HttpStatus.CREATED);
+        return new ResponseEntity<>(saveCheckup, HttpStatus.CREATED);
     }
 
 

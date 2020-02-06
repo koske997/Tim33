@@ -48,7 +48,7 @@ public class UserService {
                 .firstName(user.getFirstName()).lastName(user.getLastName())
                 .address(user.getAddress()).city(user.getCity()).country(user.getCountry())
                 .phoneNumber(user.getPhoneNumber()).userId(user.getUserId()).role(UserRole.valueOf(user.getRole()))
-                .enabled(true).build();
+                .enabled(true).prvaPrijava(true).build();
 
         List<Authority> auth = this.authorityService.findByName(user.getRole());
         u.setAuthorities(auth);

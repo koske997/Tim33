@@ -61,6 +61,8 @@ setRedirect2 = () => {
       this.props.prikazi_klinike();  
       this.props.tipovi_pregleda();
       this.props.svi_pregledi();      
+
+      this.props.sacuvaj_pacijenta(this.props.prijavljenKorisnik);
     }
 
     renderRedirect = () => {
@@ -90,7 +92,8 @@ setRedirect2 = () => {
   
     renderMeni(){
       if(this.state.odabir==='PROFIL'){
-        return <div className="ui link cards"><KarticaKorisnika slika={this.props.prijavljenKorisnik}/></div>;
+        this.props.sacuvaj_pacijenta(this.props.prijavljenKorisnik);
+        return <Redirect to="profilPacijenta" />
       }
 
       if(this.state.odabir==='KLINIKE'){
@@ -202,6 +205,8 @@ const mapDispatchToProps = dispatch => {
      tipovi_pregleda: () => dispatch(actions.tipoviPregleda()),
 
      svi_pregledi: () => dispatch(actions.pregledi()),
+
+     sacuvaj_pacijenta: (pacijent) => dispatch(actions.sacuvajObelezenogPacijenta(pacijent)),
 
   }
 }

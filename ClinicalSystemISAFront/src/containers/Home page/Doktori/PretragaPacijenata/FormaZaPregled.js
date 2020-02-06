@@ -6,6 +6,8 @@ import ListaTipovaPregleda from '../../AKlinike/ListaTipovaPregleda';
 import ListaBolesti from './ListaBolesti';
 import ListaLekova from './ListaLekova';
 import { Button, Header, Image, Modal } from 'semantic-ui-react';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
 
 
 class FormaZaPregled extends React.Component {
@@ -34,6 +36,7 @@ class FormaZaPregled extends React.Component {
 
         pronadjeniDoktori: null,
         pronadjenPregled: null,
+
     }
 
     componentDidMount() {
@@ -41,6 +44,7 @@ class FormaZaPregled extends React.Component {
         this.props.bolestii();
         this.props.lekovii();
         this.props.prijavljen_korisnik();
+
     }
 
 
@@ -94,6 +98,7 @@ class FormaZaPregled extends React.Component {
 
     pripremiZaUnos = (e) => {
         e.preventDefault();
+        let dv = new Date();
 
         const pregled = {
             idPacijenta: this.props.obelezenPacijent.id,
@@ -103,7 +108,8 @@ class FormaZaPregled extends React.Component {
             cena: this.state.cena,
             tip: this.state.tip,
             bolest: this.state.bolest,
-            lek: this.state.lek
+            lek: this.state.lek,
+            datumVreme: dv,
         };
         console.log(pregled);
 

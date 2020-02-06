@@ -186,17 +186,19 @@ export const sacuvajPregled = (pregled) => {
     }
 }
 
-export const unosPregleda = (naziv, opis, tip, sala, lekar, cena, datumVreme, trajanje) => {
+export const unosPregleda = (podaci) => {
+    console.log(podaci);
     return dispatch => {
         const authData = {
-            naziv: naziv,
-            opis: opis,
-            tip: tip,
-            sala: sala,
-            lekar: lekar,
-            cena: cena,
-            datumVreme: datumVreme,
-            trajanje: trajanje,
+            naziv: podaci.naziv,
+            opis: podaci.opis,
+            tip: podaci.tip,
+            sala: podaci.sala,
+            lekar: podaci.lekar,
+            cena: podaci.cena,
+            datumVreme: podaci.datumVreme,
+            trajanje: podaci.trajanje,
+
             returnSecureToken: true
         };
 
@@ -782,8 +784,8 @@ export const lekovi = () => {
 
 
 export const unosPregledaDoktora = (pregled) => {
+    console.log(pregled);
     return dispatch => {
-        console.log(pregled);
         const authData = {
             bolest: pregled.bolest,
             lek: pregled.lek,
@@ -793,7 +795,7 @@ export const unosPregledaDoktora = (pregled) => {
             opis: pregled.opis,
             tip: pregled.tip,
             naziv: pregled.naziv,
-             doktorska_stranica,
+            datumVreme: pregled.datumVreme,
 
             returnSecureToken: true
         };

@@ -34,39 +34,51 @@ renderRedirect = () => {
     if (this.state.redirectPregled) {
       return <Redirect to='/unosSale' />
     }
-
 }
+
+renderPac(){
+  if(this.state.po==='NOVA'){
+    return <Redirect to='/unosSale' />
+  }
+
+  if(this.state.po==='IZMENA'){
+      return <div>
+              <ListaSala_1 sale={this.props.sale} />
+            </div>
+  }
+}
+
+renderComponent(){
+      return (
+          <div>
+              <div style={{ float: "left"}}>
+                  <div className="ui secondary  menu">
+                      <a className="item" onClick={(e)=>{ this.setState({po: 'NOVA'});}}> Unesi novu salu za preglede i operacije</a>
+                      <a className="item" onClick={(e)=>{ this.props.prikazi_sale(e); this.setState({po: 'IZMENA'})}}> Izmeni podatke sale</a>
+                  </div>
+              </div>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                  {this.renderPac()}
+              </div>    
+          </div>
+      );     
+  }
+
 
 
   
   render() {
       return (
-      <div>
-            <h3>Sale za pregled i operacije </h3>
-
-        <div className="ui segment">
-            <h4>Dodaj novu salu</h4>
-
-            {this.renderRedirect()}
-
-            <button className="Unesi_salu" onClick={ (e) => {this.setRedirect(e);}} >Unesi novu salu</button>
-            <hr/>
+        <div>
+          {this.renderComponent()}
         </div>
-
-        <div className="ui segment">
-          <h4>Lista svih sala </h4>  
-          
-          <div>
-            <ListaSala_1 sale={this.props.sale} />
-          </div>
-          <button className="Prikazi_sale" onClick={this.props.prikazi_sale} >Prikazi sve sale</button>
-
-
-        </div>
-
-   </div>
-    );
-  }
+      );
+    }
+  
 }
 
 

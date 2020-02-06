@@ -251,7 +251,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        slanjeZahteva: (tip, datum, doktorId, adminId, posiljalacId) => dispatch(action.slanjeZahteva(tip, datum, doktorId, adminId, posiljalacId)),
+        slanjeZahteva: (tip, datum, doktorId, adminId, posiljalacId) => dispatch(actions.slanjeZahteva(tip, datum, doktorId, adminId, posiljalacId)),
         vratiKorisnike: () => dispatch(actions.prijavljenKorisnik())
     }
 };
