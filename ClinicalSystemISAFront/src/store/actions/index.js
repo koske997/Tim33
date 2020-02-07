@@ -37,5 +37,10 @@ export {
     sacuvajPregledKarton,
     unosOceneKlinike,
     unosOceneLekara,
+    pretraziKlinike,
+    traziDoktore,
+    zakaziPregled,
+    rezervisiSalu,
+    zauzeceSale,
 
 } from './auth';

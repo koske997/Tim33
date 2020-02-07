@@ -5,6 +5,7 @@ insert into clinic (name, clinic_center_id, city, picture, likes, ocena, br_puta
 insert into clinic (name, clinic_center_id, city, picture, likes, ocena, br_puta_ocenjivanja) values ('Klinika 3', 1, 'Nis', '/images/kc3.jpg', 121, 9, 1);
 
 
+
 insert into checkup_type(name) values ('Kardioloski');
 insert into checkup_type(name) values ('Stomatoloski');
 insert into checkup_type(name) values ('Sistematski');
@@ -20,7 +21,7 @@ insert into users (address, first_name, last_name, email, password, city, countr
 insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja) values ('Podbara 21', 'Vanja', 'Stanojevic', 'vaksicarina@gmail.com', '123456', 'Banjaluka', 'BIH', 0699, 011397, 'PATIENT', true, 1, 111, 6, 1);
 insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja) values ('Sajmise 33', 'Nikolina', 'Ivankovic', 'nikolinaiv07@gmail.com', '654321', 'Zvornik', 'ReoSrpsa', 0655, 022337, 'PATIENT', true, 2, 450, 6, 1);
 insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja) values ('Liman 33', 'Stefan', 'Pejakovic', 'pejak021@gmail.com', '22322', 'Mrkonjic', 'SrpskaRep', 0622, 121221, 'PATIENT', true, 1, 78, 6, 1);
-
+insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja) values ('Pavla Ivica 1', 'Aleksandra', 'Kosic', 'aleksandrakosic.kosic@gmail.com', '$2a$10$PckbyvdiGuU9H9HIzQT8nuMX/n30JwNMCmH/MbK6UWVQbggL55rnm', 'Novi Sad', 'Naselje', 0622, 121221, 'PATIENT', true, 1, 78, 6, 1);
 
 insert into medical_record (user_id) values (1);
 insert into medical_record (user_id) values (2);
@@ -51,16 +52,8 @@ insert into visit (name, description, date_time) values ('Poseta1', 'Poslovna po
 insert into visit (name, description, date_time) values ('Poseta2', 'Porodicna poseta', '2019-3-15');
 
 
-insert into request(posiljalac_id, admin_id, tip,  datum) values (3, 1, 'Kardioloski', '2020-3-5 16:00:00');
-
-insert into sick (name, description, date_start) values ('Prehlada', 'Obicna', '2019-10-5');
-insert into sick (name, description, date_start) values ('Dijabetes', 'Nizak rizik', '2019-5-21');
-insert into sick (name, description, date_start) values ('Visok pritisak', '140/80', '2019-8-8');
-insert into sick (name, date_start) values ('Uvecanje prostate', '2019-11-3');
-
 insert into recipe (name) values ('Recept1');
 insert into recipe (name) values ('Recept2');
-
 
 insert into medicine (name, recipe_id) values ('', 1);
 insert into medicine (name, recipe_id) values ('Defrinol', 1);

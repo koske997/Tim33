@@ -51,6 +51,9 @@ public class AKlinikeController {
     @Autowired
     private RoomService roomService;
 
+    @Autowired
+    private RequestService requestService;
+
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/unosPregleda")
@@ -63,7 +66,18 @@ public class AKlinikeController {
         return new ResponseEntity<User>(saveCheckup, HttpStatus.CREATED);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(value = "/zakaziPregled")
+    public ResponseEntity<?> zakaziPregled(@RequestBody CheckupView checkupView){
+            Request r = this.requestService.findOne(Long.parseLong(checkupView.getLekar()));
+            checkupView.setDatumVreme(r.getDatum());
+            checkupView.setLekar(r.getDoktor().getId().toString());
+            checkupView.setIdPac(""+r.getPosiljalac().getId());
 
+            this.checkupService.saveCheckup(checkupView);
+
+            return new ResponseEntity<>(null, HttpStatus.OK);
+    }
 
 
 

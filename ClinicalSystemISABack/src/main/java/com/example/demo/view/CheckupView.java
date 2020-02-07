@@ -16,9 +16,10 @@ public class CheckupView {
     private String cena;
     private String trajanje;
     private String datumVreme;
+    private String idPac;
 
 
-    public CheckupView(String opis, String tip, String sala, String lekar, String cena, String trajanje, String datumVreme) {
+    public CheckupView(String opis, String tip, String sala, String lekar, String cena, String trajanje, String datumVreme, String idPac) {
         this.opis = opis;
         this.tip = tip;
         this.sala = sala;
@@ -26,6 +27,7 @@ public class CheckupView {
         this.cena = cena;
         this.trajanje = trajanje;
         this.datumVreme = datumVreme;
+        this.idPac = idPac;
     }
 
     public CheckupView() {
@@ -94,5 +96,13 @@ public class CheckupView {
 
     public void setDatumVreme(String datumVreme) {
         this.datumVreme = datumVreme;
+    }
+
+    public String getIdPac() {
+        return idPac;
+    }
+
+    public void setIdPac(String idPac) {
+        this.idPac = idPac;
     }
 }

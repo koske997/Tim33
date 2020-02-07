@@ -214,6 +214,84 @@ export const unosPregleda = (naziv, opis, tip, sala, lekar, cena, datumVreme, tr
     };
 };
 
+export const rezervisiSalu = (id, idSale, datum) => {
+    return dispatch => {
+        const authData = {
+            id: id,
+            idSale: idSale,
+            datum: datum
+        };
+
+        const url = '/rezervisi';
+
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+        }).catch(err => {
+            console.log(err);
+        });
+
+
+    };
+}; 
+
+
+
+
+export const zakaziPregled = (naziv, opis, tip, sala, lekar, cena, datumVreme, trajanje) => {
+    return dispatch => {
+        const authData = {
+            naziv: naziv,
+            opis: opis,
+            tip: tip,
+            sala: sala,
+            lekar: lekar,
+            cena: cena,
+            datumVreme: datumVreme,
+            trajanje: trajanje,
+            returnSecureToken: true
+        };
+        const url = '/zakaziPregled';        
+        
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+        })
+        .catch(err => {
+             console.log(err);
+        });
+    };
+};
+
+export const cuvajZauzece = (odg) => {
+    return {
+        type: actionTypes.SACUVAJ_MOGUCNOST_REZERVACIJE,
+        moze: odg
+    }
+}
+
+export const zauzeceSale = (idSale, datum) => {
+    return dispatch => {
+        const authData = {
+            idSale: idSale,
+            datum: datum
+        };
+        
+        const url = '/traziRezercavije';
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+            dispatch(cuvajZauzece(response.data));
+        }).catch(err => {
+            console.log(err);
+        });
+
+
+    };
+}; 
+
+
+
 export const sacuvajOdgovor = (odg) => {
     console.log(odg);
     return {
@@ -793,7 +871,6 @@ export const unosPregledaDoktora = (pregled) => {
             opis: pregled.opis,
             tip: pregled.tip,
             naziv: pregled.naziv,
-             doktorska_stranica,
 
             returnSecureToken: true
         };
@@ -842,6 +919,64 @@ export const unosOceneKlinike = (podaci) => {
              console.log(err);
         });
     };
+};
+
+export const sacuvajPretragu = (odg) => {
+    return{
+        type: actionTypes.SACUVAJ_PRETRAGU,
+        pretraga: odg
+    };
+}
+
+export const pretraziKlinike = (id, naziv, grad, lajkovi, tip) => {
+    return dispatch => {
+        const authData = {
+            id: id,
+            naziv: naziv,
+            grad: grad,
+            lajkovi: lajkovi,
+            tip: tip
+        };
+        const url = '/pretraziKlinike';
+
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+            dispatch(sacuvajPretragu(response.data));
+        }).catch(err => {
+            console.log(err);
+        });
+
+    };
+};
+
+export const cuvajTrazenogDoktora = (odg) => {
+    return {
+        type: actionTypes.SACUVAJ_POTREBNE_DOKTORE,
+        potrebniDoktori: odg
+    }
+}
+
+
+export const traziDoktore = (id, naziv, grad, lajkovi, tip) => {
+        return dispatch => {
+            const authData = {
+                id: id,
+                naziv: naziv,
+                grad: grad,
+                lajkovi: lajkovi,
+                tip: tip
+            };
+            const url = '/vratiPotrebneDoktore';
+
+            axios.post(url, authData)
+            .then(response => {
+                console.log(response);
+                dispatch(cuvajTrazenogDoktora(response.data));
+            }).catch(err => {
+                console.log(err);
+            });
+        };
 };
 
 export const unosOceneLekara = (podaci) => {
