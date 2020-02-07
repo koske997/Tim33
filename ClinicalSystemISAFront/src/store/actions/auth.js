@@ -793,7 +793,6 @@ export const unosPregledaDoktora = (pregled) => {
             opis: pregled.opis,
             tip: pregled.tip,
             naziv: pregled.naziv,
-             doktorska_stranica,
 
             returnSecureToken: true
         };
@@ -842,6 +841,64 @@ export const unosOceneKlinike = (podaci) => {
              console.log(err);
         });
     };
+};
+
+export const sacuvajPretragu = (odg) => {
+    return{
+        type: actionTypes.SACUVAJ_PRETRAGU,
+        pretraga: odg
+    };
+}
+
+export const pretraziKlinike = (id, naziv, grad, lajkovi, tip) => {
+    return dispatch => {
+        const authData = {
+            id: id,
+            naziv: naziv,
+            grad: grad,
+            lajkovi: lajkovi,
+            tip: tip
+        };
+        const url = '/pretraziKlinike';
+
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+            dispatch(sacuvajPretragu(response.data));
+        }).catch(err => {
+            console.log(err);
+        });
+
+    };
+};
+
+export const cuvajTrazenogDoktora = (odg) => {
+    return {
+        type: actionTypes.SACUVAJ_POTREBNE_DOKTORE,
+        potrebniDoktori: odg
+    }
+}
+
+
+export const traziDoktore = (id, naziv, grad, lajkovi, tip) => {
+        return dispatch => {
+            const authData = {
+                id: id,
+                naziv: naziv,
+                grad: grad,
+                lajkovi: lajkovi,
+                tip: tip
+            };
+            const url = '/vratiPotrebneDoktore';
+
+            axios.post(url, authData)
+            .then(response => {
+                console.log(response);
+                dispatch(cuvajTrazenogDoktora(response.data));
+            }).catch(err => {
+                console.log(err);
+            });
+        };
 };
 
 export const unosOceneLekara = (podaci) => {

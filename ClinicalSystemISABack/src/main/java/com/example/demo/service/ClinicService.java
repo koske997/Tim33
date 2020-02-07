@@ -43,6 +43,7 @@ public class ClinicService {
         return this.clinicRepository.findAll(page);
     }
 
+    public Clinic findOneById(Long id){ return  this.clinicRepository.findOneById(id);}
 
     public Checkup unosOcene(OcenaKlinikeILekaraView podaci) {
 

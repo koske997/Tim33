@@ -27,6 +27,8 @@ class Popup extends React.Component{
 
     componentDidMount(){
         this.setState({datum: new Date()});
+        console.log('EVO VAMOOOOOOOOOOOOOOOOOOOOOOOOOO');
+        console.log(this.props.doktorii);
     }
     componentDidUpdate(prevProps)
     {
@@ -42,46 +44,7 @@ class Popup extends React.Component{
         
     }
 
-    renderPromenuStanja = () => {
-
-        if (this.props.openModal)
-        {
-            console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAA');
-            if(this.state.usaoJednom)
-            {
-                console.log('BBBBBBBBBBBBBBBBBBBBBB');
-
-                console.log(this.props);
-
-                this.setState({
-                    usaoJednom: false
-                })
-
-                let noviDoktori = [];
-
-                if(this.props.openModal)
-                {
-
-                    for (let i=0; i<this.props.doktorii.length; i++)
-                    {
-                            for (let k=0; k<this.props.klinikee.user.length; k++)
-                            {
-                                console.log('A ovde??');
-                                if( this.props.doktorii[i].id === this.props.klinikee.user[k].id)
-                                {
-                                    noviDoktori.push(this.props.doktorii[i]);
-                                    console.log('Usao sam ja bate moj');
-                                }
-                            }
-                    }
-                }
-                console.log(this.state.doktoriTeKlinike);
-                this.setState({
-                    doktoriTeKlinike: noviDoktori
-                })
-            }
-        }
-    }
+    
 
 
     uzmiId = (id2) => {
@@ -97,6 +60,8 @@ class Popup extends React.Component{
        
         if (this.props.openModal)
         {
+            console.log('SACEEEE');
+            console.log(this.props.doktorii);
         return (
             <Modal open={openModal} onClose={() => closeModal()}>
             <Modal.Header>{this.props.klinikee.name} -> pregled : {this.props.pregledd.type}</Modal.Header>
@@ -104,7 +69,7 @@ class Popup extends React.Component{
               <Image wrapped size='medium' src='https://react.semantic-ui.com/images/avatar/large/rachel.png' />
               <Modal.Description>
                 <hr />
-              <ListaOpisaModala vrati={this.uzmiId} doktori={this.state.doktoriTeKlinike} />
+              <ListaOpisaModala vrati={this.uzmiId} doktori={this.props.doktorii} />
                 <hr />
                 <DatePicker
                     onChange={date => this.promeni(date)}
@@ -145,7 +110,7 @@ class Popup extends React.Component{
             <div>
                 {this.renderCeraj()}
                 {this.renderModala()}
-                {this.renderPromenuStanja()}
+              {/** {this.renderPromenuStanja()}*/}  
             </div>
         );
     }
@@ -167,6 +132,7 @@ class ListaKlinika_Pretraga extends React.Component {
     handleClick = id => {
         const klinike = this.props.klinike;
         const klinika = klinike.find(value => id === value.id);
+        this.props.trazii(id, '', '', '', this.props.tip);
         if(this.props.pretraziTip)
         {
             this.setState({
@@ -185,23 +151,24 @@ class ListaKlinika_Pretraga extends React.Component {
     }
 
    
-    resavaSve(id, tip, datum){
-        this.props.slanjeZahteva(tip, datum, id, '', this.props.prijavljenKorisnik.id);
+    resavaSve = (id, tip, datum) => {
+        this.props.slanjeZahteva(tip, datum, id, '', this.props.korisnik.id);
     }
 
     renderKlinike = () => {
         
-        const klinike = this.props.klinike ?  this.props.klinike : [];
+        
+            const klinike = this.props.klinike ?  this.props.klinike : [];
         console.log(this.props);
 
         if(klinike.length === undefined)
         {
             return (
-                <div key={klinike.id} id={klinike.id} class="ui link cards">
-                    <div class="card">
-                        <div class="content"  onClick={(e) => {this.handleClick(klinike.id); }}>
-                            <div class="header"> {klinike.name}</div>
-                        <div class="description">
+                <div key={klinike.id} id={klinike.id} className="ui link cards">
+                    <div className="card">
+                        <div className="content"  onClick={(e) => {this.handleClick(klinike.id); }}>
+                            <div className="header"> {klinike.name}</div>
+                        <div className="description">
                             {klinike.city}
                         </div>
                         </div>
@@ -210,15 +177,17 @@ class ListaKlinika_Pretraga extends React.Component {
         );
         }
 
+
         if (klinike.length >= 1)
         {
+            
         return klinike.map((klinika) => {    
             return (
-                    <div key={klinika.id} id={klinika.id} class="ui link cards">
-                        <div class="card">
-                            <div class="content"  onClick={(e) => {this.handleClick(klinika.id); }}>
-                                <div class="header"> {klinika.name}</div>
-                            <div class="description">
+                    <div key={klinika.id} id={klinika.id} className="ui link cards">
+                        <div className="card">
+                            <div className="content"  onClick={(e) => {this.handleClick(klinika.id); }}>
+                                <div className="header"> {klinika.name}</div>
+                            <div className="description">
                                 {klinika.city}
                             </div>
                             </div>
@@ -227,12 +196,14 @@ class ListaKlinika_Pretraga extends React.Component {
             );
         });
          }
+         
+        
      }
 
     render() {
         return (
             <div>
-                <Popup vrni={this.resavaSve} tip={this.props.tip} klinikee={this.state.selectedKlinika} doktorii={this.state.doktori} pregledd={this.state.pregled} openModal={this.state.openModal} closeModal={this.closeModal} /> 
+                <Popup vrni={this.resavaSve} tip={this.props.tip} klinikee={this.state.selectedKlinika} doktorii={this.props.doktoree} pregledd={this.state.pregled} openModal={this.state.openModal} closeModal={this.closeModal} /> 
                 {this.renderKlinike()}
             </div>
         );
@@ -242,8 +213,11 @@ class ListaKlinika_Pretraga extends React.Component {
 
 const mapStateToProps = state => {
     console.log(state.auth.prijavljenKorisnik);
+    console.log('DZIM JEBOTE');
+    console.log(state.auth.potrebniDoktori);
     return {
-       korisnik: state.auth.prijavljenKorisnik
+       korisnik: state.auth.prijavljenKorisnik,
+       doktoree: state.auth.potrebniDoktori
     }
 };
 
@@ -251,9 +225,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        slanjeZahteva: (tip, datum, doktorId, adminId, posiljalacId) => dispatch(action.slanjeZahteva(tip, datum, doktorId, adminId, posiljalacId)),
-        vratiKorisnike: () => dispatch(actions.prijavljenKorisnik())
+        slanjeZahteva: (tip, datum, doktorId, adminId, posiljalacId) => dispatch(actions.slanjeZahteva(tip, datum, doktorId, adminId, posiljalacId)),
+        vratiKorisnike: () => dispatch(actions.prijavljenKorisnik()),
+        trazii: (id, naziv, grad, lajkovi, tip) => dispatch(actions.traziDoktore(id, naziv, grad, lajkovi, tip)),
     }
 };
 
-export default connect(null, mapDispatchToProps)(ListaKlinika_Pretraga);
+export default connect(mapStateToProps, mapDispatchToProps)(ListaKlinika_Pretraga);

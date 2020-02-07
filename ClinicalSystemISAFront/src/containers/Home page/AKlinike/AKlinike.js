@@ -7,6 +7,7 @@ import KarticaZahteva from './KarticaZahteva';
 import ListaZahteva from './ListaZahteva';
 import Spinner from '../Spinner';
 import Odgovor from './Odgovor';
+import Sala from './Sala';
 
 const initialState = {
     sale: null,
@@ -62,6 +63,7 @@ setRedirect_2 = (e) => {
     componentDidMount(){
         this.props.sviZahtevi();
         this.props.vratiKorisnika();
+        this.props.prikazi_sale();
     }
 
 renderRedirect = () => {
@@ -79,16 +81,28 @@ renderRedirect = () => {
 }
 
 
-    obradiZahtev = (id, str) => {
+    obradiZahtev = (id, str, tip) => {
         console.log(id);
         console.log(str);
+        console.log(tip)
         if(str==='ODB'){
             this.setState({po: 'FORMA', zapamcenid: id});
         }else{
+            if(tip==='odsustvo' || tip==='godisnji'){
+                this.props.slanjePotvrdnogMaila(this.props.prijavljenKorisnik.username,'Prihvati',id);
+                this.props.brisiZahtev('', '', id, '', '');
+                this.props.sviZahtevi();
+                this.setState({po: 'OSVEZI'});
+            }else{
+                this.setState({po: 'FORMA2', zapamcenid: id});
+                console.log(this.props.sale);
+            }
+            {/* 
             this.props.slanjePotvrdnogMaila(this.props.prijavljenKorisnik.username,'Prihvati',id);
             this.props.brisiZahtev('', '', id, '', '');
             this.props.sviZahtevi();
-            this.setState({po: 'OSVEZI'});
+            this.setState({po: 'OSVEZI'});*/}
+            
         }
     }
 
@@ -129,8 +143,13 @@ renderRedirect = () => {
         }
 
         if(this.state.po==='FORMA'){
-            return <Odgovor vrati={this.renderOdgovora}/>
+            return <Odgovor vrati={this.renderOdgovora}/>;
         }
+
+        if(this.state.po==='FORMA2'){
+            return <Sala vraceno={this.renderSala} sale={this.props.sale}/>;
+        }
+
 
         if(this.state.po==='IZMENA'){
             this.setState({

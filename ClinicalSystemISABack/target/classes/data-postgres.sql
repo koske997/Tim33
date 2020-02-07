@@ -5,6 +5,7 @@ insert into clinic (name, clinic_center_id, city, picture, likes, ocena, br_puta
 insert into clinic (name, clinic_center_id, city, picture, likes, ocena, br_puta_ocenjivanja) values ('Klinika 3', 1, 'Nis', '/images/kc3.jpg', 121, 9, 1);
 
 
+
 insert into checkup_type(name) values ('Kardioloski');
 insert into checkup_type(name) values ('Stomatoloski');
 insert into checkup_type(name) values ('Sistematski');
@@ -51,16 +52,8 @@ insert into visit (name, description, date_time) values ('Poseta1', 'Poslovna po
 insert into visit (name, description, date_time) values ('Poseta2', 'Porodicna poseta', '2019-3-15');
 
 
-insert into request(posiljalac_id, admin_id, tip,  datum) values (3, 1, 'Kardioloski', '2020-3-5 16:00:00');
-
-insert into sick (name, description, date_start) values ('Prehlada', 'Obicna', '2019-10-5');
-insert into sick (name, description, date_start) values ('Dijabetes', 'Nizak rizik', '2019-5-21');
-insert into sick (name, description, date_start) values ('Visok pritisak', '140/80', '2019-8-8');
-insert into sick (name, date_start) values ('Uvecanje prostate', '2019-11-3');
-
 insert into recipe (name) values ('Recept1');
 insert into recipe (name) values ('Recept2');
-
 
 insert into medicine (name, recipe_id) values ('', 1);
 insert into medicine (name, recipe_id) values ('Defrinol', 1);
