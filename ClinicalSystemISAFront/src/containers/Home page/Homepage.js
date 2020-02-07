@@ -7,13 +7,18 @@ import Klinike from "./Klinike/Klinike";
 import Pacijenti from "./Pacijenti/Pacijenti";
 import PodaciKlinike from "./Klinike/PodaciKlinike";
 import PretragaDoktora from "./Klinike/PretragaDoktora"
+import {connect} from 'react-redux';
+import * as actions from '../../store/actions/index';
+import {Redirect} from 'react-router-dom';
+
 
 class Homepage extends React.Component {
+  
+
   render() {
     return (
         <HashRouter>
             <div>
-
               <div class="ui primary pointing menu">
                   <a class="item">
                     <li><NavLink exact to="/">Pocetna stranica</NavLink></li>
@@ -46,5 +51,18 @@ class Homepage extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  console.log(state.auth);
+  return {
+      prijavljenKorisnik: state.auth.prijavljenKorisnik,
+  }}
+
+const mapDispatchToProps = dispatch => {
+  return {
+      prijavljen_korisnik: () => dispatch(actions.prijavljenKorisnik()),
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Homepage);
  
-export default Homepage;

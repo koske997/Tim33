@@ -72,7 +72,7 @@ public class UserService {
                 us.setFirstName(u.getFirstName());
                 us.setLastName(u.getLastName());
                 us.setPhoneNumber(u.getPhoneNumber());
-                us.setPassword(u.getPassword());
+                us.setPassword(passwordEncoder.encode(u.getPassword()));
 
                 use = us;
             }

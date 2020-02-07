@@ -20,12 +20,15 @@ import PretragaKlinika from './containers/Home page/Pacijenti/PretragaKlinika/Pr
 import ZakazivanjePregleda from './containers/Home page/Pacijenti/ZakazivanjePregleda';
 import IzvestajAdmina from './containers/Home page/AKlinike/IzvestajAdmina';
 import PrvaPrijava from './containers/Home page/PrvaPrijava/PrvaPrijava';
+import ProfilKlinike from './containers/Home page/Pacijenti/ProfilKlinike';
+
 
 
 
 import PretragaPacijenata from './containers/Home page/Doktori/PretragaPacijenata/PretragaPacijenata';
 import ProfilPacijenta from './containers/Home page/Doktori/PretragaPacijenata/ProfilPacijenta';
 import DetaljiPregleda from './containers/Home page/Doktori/PretragaPacijenata/DetaljiPregleda';
+import PretragaLekaraKlinike from './containers/Home page/Pacijenti/PretragaLekaraKlinike';
 
 
 
@@ -59,6 +62,11 @@ class App extends Component {
           <Route path="/detaljiPregleda" component={DetaljiPregleda} />
           <Route path="/izvestajAdmina" component={IzvestajAdmina} />
           <Route path="/prvaPrijava" component={PrvaPrijava} />
+          <Route path="/profilKlinike" component={ProfilKlinike} />
+          <Route path="/pretragaLekaraKlinike" component={PretragaLekaraKlinike} />
+
+          
+
 
 
 

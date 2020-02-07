@@ -37,5 +37,7 @@ export {
     sacuvajPregledKarton,
     unosOceneKlinike,
     unosOceneLekara,
+    promeniLozinku,
+    sacuvajKlinikuProfila,
 
 } from './auth';

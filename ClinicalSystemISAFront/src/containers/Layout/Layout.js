@@ -13,9 +13,25 @@ class Layout extends Component {
         object: {
             name: '',
             title: '',
-            prijavljenKorisnik: undefined,
+            prijavljenKorisnik: null,
         }
     }
+    
+      componentDidMount() {
+        this.props.prijavljen_korisnik();
+      }
+    
+      prvaPrijava(){
+        console.log('???????');
+        if (this.props.prijavljenKorisnik !== null && this.props.prijavljenKorisnik !== undefined)
+        {
+            if (this.props.prijavljenKorisnik.prvaPrijava === true)
+            {
+                return <Redirect to="/prvaPrijava" />
+            }
+        }
+       
+      }
 
     objectHandler = (event) => {
         event.preventDefault();
@@ -82,6 +98,7 @@ class Layout extends Component {
                 <button onClick={(event) => this.objectHandler(event)} className={classes.Button}>Apply</button> */}
 
                 <div className='ui three item menu'>
+                    {this.prvaPrijava()}
                     {!this.props.logged ? (<button className={classes.Button} onClick={this.registerHandler}>Register</button>) : null}
 
                     {!this.props.logged ? (<button className={classes.Button} onClick={this.loginHandler}>Login</button>) : null}
@@ -112,14 +129,14 @@ const mapStateToProps = (state) => {
     return {
         added: state.object.added,
         logged: state.auth.token !== null,
-        peijavljenKorisnik: state.auth.peijavljenKorisnik,
+        prijavljenKorisnik: state.auth.prijavljenKorisnik,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         onAddObject: (data) => dispatch(actions.addObject(data)),
-        prijavljenKorisnik: () => dispatch(actions.prijavljenKorisnik())
+        prijavljen_korisnik: () => dispatch(actions.prijavljenKorisnik())
     };
 };
 

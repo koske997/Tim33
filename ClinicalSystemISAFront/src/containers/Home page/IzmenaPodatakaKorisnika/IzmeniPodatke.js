@@ -31,7 +31,7 @@ class IzmeniPodatke extends React.Component{
         const novoIme = get(this.props, 'prijavljenKorisnik.firstName', '');
         const novoPrezime = get(this.props, 'prijavljenKorisnik.lastName', '');
         const noviEmail = get(this.props, 'prijavljenKorisnik.email', '');
-       // const novaSifra = get(this.props, 'prijavljenKorisnik.password', '');
+        const novaSifra = get(this.props, 'prijavljenKorisnik.password', '');
         const novaAdresa = get(this.props, 'prijavljenKorisnik.address', '');
         const noviGrad = get(this.props, 'prijavljenKorisnik.city', '');
         const novaDrzava = get(this.props, 'prijavljenKorisnik.country', '');
@@ -43,7 +43,7 @@ class IzmeniPodatke extends React.Component{
               firstName: novoIme,
               lastName: novoPrezime,
               email: noviEmail,
-              //password: novaSifra,
+              password: novaSifra,
               adress: novaAdresa,
               city: noviGrad,
               country: novaDrzava,
@@ -130,22 +130,7 @@ class IzmeniPodatke extends React.Component{
         
     }
   
-    handleBrisanje = () => {
-      const izmena = {
-          id: this.props.prijavljenKorisnik.id,
 
-          firstName: this.state.firstName,
-          lastName: this.state.lastName,
-          email: this.state.email,
-          password: this.state.password,
-          password2: this.state.password2,
-          adress: this.state.adress,
-          city: this.state.city,
-          country: this.state.country,
-          phoneNumber: this.state.phoneNumber,
-      };
-      //this.props.obrisi_prijavljenog_korisnika(izmena);
-  }
   
     render() {
         const { openModal, closeModal } = this.props;
@@ -185,7 +170,6 @@ class IzmeniPodatke extends React.Component{
   
               </Modal.Description>
               <Button onClick={() => this.handleIzmena()} >Izmeni</Button>
-              <Button onClick={() => this.handleBrisanje()}>Obrisi</Button>
               <Button onClick={() => closeModal()} >Izadji</Button>
   
             </Modal.Content>
@@ -206,7 +190,6 @@ class IzmeniPodatke extends React.Component{
   const mapDispatchToProps = dispatch => {
     return {
        izmeni_prijavljenog_korisnika: (izmena) => dispatch(actions.izmeniPrijavljenogKorisnika(izmena)),
-       obrisi_prijavljenog_korisnika: (izmena) => dispatch(actions.obrisiPrijavljenogKorisnika(izmena)),
 
     }
   }

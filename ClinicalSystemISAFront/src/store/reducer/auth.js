@@ -26,6 +26,7 @@ const initialState = {
     sveBolesti: null,
     sviLekovi: null,
     pregledKarton: null,
+    klinikaProfila: null,
 }
 
 const reducer = (state = initialState, action) => {
@@ -148,6 +149,11 @@ switch (action.type) {
         return {
              ...state,
             pregledKarton: action.pregledKarton
+        } 
+    case actionTypes.SACUVAJ_KLINIKU_PROFILA:
+        return {
+             ...state,
+            klinikaProfila: action.klinikaProfila
         } 
 
     case actionTypes.SIGN_UP:

@@ -870,3 +870,37 @@ export const unosOceneLekara = (podaci) => {
         });
     };
 };
+
+export const promeniLozinku = (podaci) => {
+    console.log(podaci);
+    console.log(podaci.id);
+    console.log(podaci.lozinka);
+
+    return dispatch => {
+        console.log('Udjjes li ovamo!>!>!>!?!??!?!')
+        const authData = {
+            id: podaci.id,
+            lozinka: podaci.lozinka,
+
+            returnSecureToken: true,
+            };
+        
+        const url = '/promenaLozinke';
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+
+            //dispatch(sacuvajSalu(response.data));
+        })
+        .catch(err => {
+             console.log(err);
+        }); 
+    };
+};
+
+export const sacuvajKlinikuProfila = (klinikaProfila) => {
+    return{
+        type: actionTypes.SACUVAJ_KLINIKU_PROFILA,
+        klinikaProfila: klinikaProfila,
+    }
+}

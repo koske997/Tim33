@@ -1,16 +1,14 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.*;
+import com.example.demo.repository.UserRepository;
 import com.example.demo.security.TokenUtils;
 import com.example.demo.service.ClinicService;
 import com.example.demo.service.CustomUserDetailsService;
 
 import com.example.demo.service.RoomService;
 import com.example.demo.service.UserService;
-import com.example.demo.view.CheckupDoctorView;
-import com.example.demo.view.OcenaKlinikeILekaraView;
-import com.example.demo.view.RoomView;
-import com.example.demo.view.UserViewRegister;
+import com.example.demo.view.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,6 +18,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -39,11 +38,16 @@ public class PacijentiController {
     @Autowired
     private CustomUserDetailsService userDetailsService;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     //@Autowired
     //private CustomClinicDetailsService clinicDetailsService;
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private ClinicService clinicService;
@@ -110,6 +114,7 @@ public class PacijentiController {
 
         System.out.println("AAAAAAAAAAAAAAAAA" + loggedUser.getEmail() + "BBBBBBBBBBBBBBBBBBBBBBB");
 
+
         return new ResponseEntity<User>(loggedUser, HttpStatus.OK);
     }
 
@@ -138,17 +143,21 @@ public class PacijentiController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping(value = "/unosOceneKlinike")
-    public ResponseEntity<?> unosOceneKlinike(@RequestBody OcenaKlinikeILekaraView podaci) {
+    @PostMapping(value = "/promenaLozinke")
+    public ResponseEntity<?> promenaLozinke(@RequestBody UserViewPromenaLozinke podaci) {
 
+        System.out.println("----------------------------------------------------------------------------");
         System.out.println(podaci.getId());
-        System.out.println(podaci.getOcena());
-        System.out.println(podaci.getIdPregleda());
+        System.out.println(podaci.getLozinka());
 
+        User u = this.userService.findOneById(podaci.getId());
+        System.out.println(u.getEmail());
 
-        Checkup c = this.clinicService.unosOcene(podaci);
+        u.setPassword(passwordEncoder.encode(podaci.getLozinka()));
+        u.setPrvaPrijava(false);
 
+        User saved = this.userRepository.save(u);
 
-        return new ResponseEntity<>(c, HttpStatus.CREATED);
+        return new ResponseEntity<>(saved, HttpStatus.OK);
     }
 }
