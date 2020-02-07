@@ -61,6 +61,8 @@ setRedirect2 = () => {
       this.props.prikazi_klinike();  
       this.props.tipovi_pregleda();
       this.props.svi_pregledi();      
+
+      this.props.sacuvaj_pacijenta(this.props.prijavljenKorisnik);
     }
 
     renderRedirect = () => {
@@ -90,7 +92,8 @@ setRedirect2 = () => {
   
     renderMeni(){
       if(this.state.odabir==='PROFIL'){
-        return <div className="ui link cards"><KarticaKorisnika slika={this.props.prijavljenKorisnik}/></div>;
+        this.props.sacuvaj_pacijenta(this.props.prijavljenKorisnik);
+        return <Redirect to="profilPacijenta" />
       }
 
       if(this.state.odabir==='KLINIKE'){
@@ -124,41 +127,6 @@ renderPrijavljenogPacijenta = () => {
                     {this.renderMeni()}
               </div>
               {this.renderRedirect()}
-     {/*   <div className="ui segment">
-            
-            <h2>Lista svih pacijenata </h2>
-                {this.renderKorisnika()}
-              <ListaPacijenata pacijenti={this.props.pacijenti}/>
-           
-  
-            <button className="Prikazi_pacijente" onClick={this.props.prikazi_pacijente} >Prikazi pacijente</button>
-            <hr/>
-          </div>
-  
-          <div className="ui segment">
-            <h2>Lista svih klinika</h2>  
-            
-            <div>
-              <ListaKlinika klinike={this.props.klinike} />
-            </div>
-              {this.renderRedirect()}
-
-            <button className="Prikazi_klinike" onClick={this.props.prikazi_klinike} >Prikazi klinike</button>
-            <button className="Filtriraj_klinike" onClick={(e) => { this.props.prikazi_klinike(e); this.setRedirect2(e); this.props.tipovi_pregleda(e); this.props.svi_pregledi(e);}} > Pretrazi klinike</button> 
-          </div>
-  
-          <div className="ui segment">
-            <h2>Medicinski karton</h2>      
-  
-               {this.renderRedirect()}
-            <button className="Prikazi_karton" onClick={this.setRedirect} >Prikazi karton</button>
-          </div>
-  
-          <div className="ui segment">
-            <h2>Izmeni svoje podatke</h2>      
-            <button className="Promeni_podatke" onClick={ (e) => { this.handleClick(e); this.props.prikazi_prijavljenKorisnik(e); }} >Promeni</button>
-          </div>
-  */}
       </div>
       );
   }
@@ -168,10 +136,6 @@ renderPrijavljenogPacijenta = () => {
   render(){
         return (
           <div>
-          {/*
-          <IzmenaPodataka prijavljenKorisnik={this.props.prijavljenKorisnik} openModal={this.state.openModal} closeModal={this.closeModal} />
-          
-          */} 
               {this.renderPrijavljenogPacijenta()}
           </div>
       );
@@ -202,6 +166,8 @@ const mapDispatchToProps = dispatch => {
      tipovi_pregleda: () => dispatch(actions.tipoviPregleda()),
 
      svi_pregledi: () => dispatch(actions.pregledi()),
+
+     sacuvaj_pacijenta: (pacijent) => dispatch(actions.sacuvajObelezenogPacijenta(pacijent)),
 
   }
 }

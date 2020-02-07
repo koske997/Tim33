@@ -20,11 +20,21 @@ public class UserViewRegister {
     private Integer phoneNumber;
     private Integer userId;
     private String role;
+    private boolean prvaPrijava;
 
     public UserViewRegister() {
     }
 
-    public UserViewRegister(String firstName, String lastName, String email, String password, String repeatPassword, String address, String city, String country, Integer phoneNumber, Integer userId, String role) {
+    public boolean isPrvaPrijava() {
+        return prvaPrijava;
+    }
+
+    public void setPrvaPrijava(boolean prvaPrijava) {
+        this.prvaPrijava = prvaPrijava;
+    }
+
+    public UserViewRegister(boolean prvaPrijava, String firstName, String lastName, String email, String password, String repeatPassword, String address, String city, String country, Integer phoneNumber, Integer userId, String role) {
+        this.prvaPrijava = prvaPrijava;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -39,7 +49,8 @@ public class UserViewRegister {
         this.address = address;
     }
 
-    public UserViewRegister(Long id, String firstName, String lastName, String email, String password, String repeatPassword, String address, String city, String country, Integer phoneNumber, Integer userId, String role) {
+    public UserViewRegister(boolean prvaPrijava, Long id, String firstName, String lastName, String email, String password, String repeatPassword, String address, String city, String country, Integer phoneNumber, Integer userId, String role) {
+        this.prvaPrijava = prvaPrijava;
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

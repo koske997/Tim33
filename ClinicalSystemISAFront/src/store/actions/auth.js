@@ -186,17 +186,19 @@ export const sacuvajPregled = (pregled) => {
     }
 }
 
-export const unosPregleda = (naziv, opis, tip, sala, lekar, cena, datumVreme, trajanje) => {
+export const unosPregleda = (podaci) => {
+    console.log(podaci);
     return dispatch => {
         const authData = {
-            naziv: naziv,
-            opis: opis,
-            tip: tip,
-            sala: sala,
-            lekar: lekar,
-            cena: cena,
-            datumVreme: datumVreme,
-            trajanje: trajanje,
+            naziv: podaci.naziv,
+            opis: podaci.opis,
+            tip: podaci.tip,
+            sala: podaci.sala,
+            lekar: podaci.lekar,
+            cena: podaci.cena,
+            datumVreme: podaci.datumVreme,
+            trajanje: podaci.trajanje,
+
             returnSecureToken: true
         };
 
@@ -860,8 +862,8 @@ export const lekovi = () => {
 
 
 export const unosPregledaDoktora = (pregled) => {
+    console.log(pregled);
     return dispatch => {
-        console.log(pregled);
         const authData = {
             bolest: pregled.bolest,
             lek: pregled.lek,
@@ -871,6 +873,7 @@ export const unosPregledaDoktora = (pregled) => {
             opis: pregled.opis,
             tip: pregled.tip,
             naziv: pregled.naziv,
+            datumVreme: pregled.datumVreme,
 
             returnSecureToken: true
         };
@@ -1003,3 +1006,37 @@ export const unosOceneLekara = (podaci) => {
         });
     };
 };
+
+export const promeniLozinku = (podaci) => {
+    console.log(podaci);
+    console.log(podaci.id);
+    console.log(podaci.lozinka);
+
+    return dispatch => {
+        console.log('Udjjes li ovamo!>!>!>!?!??!?!')
+        const authData = {
+            id: podaci.id,
+            lozinka: podaci.lozinka,
+
+            returnSecureToken: true,
+            };
+        
+        const url = '/promenaLozinke';
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+
+            //dispatch(sacuvajSalu(response.data));
+        })
+        .catch(err => {
+             console.log(err);
+        }); 
+    };
+};
+
+export const sacuvajKlinikuProfila = (klinikaProfila) => {
+    return{
+        type: actionTypes.SACUVAJ_KLINIKU_PROFILA,
+        klinikaProfila: klinikaProfila,
+    }
+}

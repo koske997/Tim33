@@ -228,6 +228,7 @@ const mapDispatchToProps = dispatch => {
         slanjeZahteva: (tip, datum, doktorId, adminId, posiljalacId) => dispatch(actions.slanjeZahteva(tip, datum, doktorId, adminId, posiljalacId)),
         vratiKorisnike: () => dispatch(actions.prijavljenKorisnik()),
         trazii: (id, naziv, grad, lajkovi, tip) => dispatch(actions.traziDoktore(id, naziv, grad, lajkovi, tip)),
+        vratiKorisnike: () => dispatch(actions.prijavljenKorisnik())
     }
 };
 

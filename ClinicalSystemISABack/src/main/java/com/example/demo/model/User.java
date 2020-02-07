@@ -41,6 +41,9 @@ public class User implements UserDetails {
     @Column(name = "br_puta_ocenjivanja")
     private int brPutaOcenjivanja;
 
+    @Column(name = "prva_prijava")
+    private boolean prvaPrijava;
+
     @Enumerated(EnumType.STRING)
     private UserRole role;
     private boolean enabled;

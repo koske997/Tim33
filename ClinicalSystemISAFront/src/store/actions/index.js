@@ -42,5 +42,7 @@ export {
     zakaziPregled,
     rezervisiSalu,
     zauzeceSale,
+    promeniLozinku,
+    sacuvajKlinikuProfila,
 
 } from './auth';

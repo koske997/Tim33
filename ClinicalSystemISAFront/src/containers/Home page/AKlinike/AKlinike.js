@@ -68,19 +68,6 @@ setRedirect_2 = (e) => {
         this.props.prikazi_sale();
     }
 
-renderRedirect = () => {
-    if (this.state.redirectPregled) {
-      return <Redirect to='/unosPregleda' />
-    }
-    else if(this.state.redirectSala)
-    {
-        return <Redirect to='/saleZaPregled' />
-    }
-    else if ( this.state.redirectTipoviPregleda)
-    {
-        return <Redirect to='/tipoviPregleda' />
-    }
-}
 
 
     obradiZahtev = (id, str, tip, datum) => {
@@ -151,6 +138,14 @@ renderRedirect = () => {
             return <Redirect to='/tipoviPregleda' />;
         }
 
+        if(this.state.po === 'SALE'){
+            return <Redirect to='/saleZaPregled' />
+        }
+
+        if(this.state.po === 'IZVESTAJ'){
+            return <Redirect to='/izvestajAdmina' />
+        }
+
         if(this.state.po==='NOVI'){
             return <Redirect to='/unosPregleda' />;
         }
@@ -169,9 +164,6 @@ renderRedirect = () => {
                 openModal: true,
             });
         }
-
-
-
     }
 
     renderComponent(){
@@ -181,10 +173,12 @@ renderRedirect = () => {
                     <div style={{ float: "left"}}>
                         <div className="ui secondary  menu">
                             <a className="item" onClick={(e)=>{ this.setState({po: 'NOVI'});}}> Unesi Novi pregled</a>
-                            <a className="item" > Sale za pregled i operacije</a>
+                            <a className="item" onClick={(e)=>{ this.setState({po: 'SALE'})}}> Sale za pregled i operacije</a>
                             <a className="item" onClick={(e)=>{ this.setState({po: 'TIPOVI'});}}>Tipovi pregleda</a>
                             <a className="item" onClick={(e)=>{ this.setState({po: 'ZAHTEV'});}}> Zahtevi</a>
-                            <a className="item" onClick={(e)=>{this.handleClick(e); this.props.vratiKorisnika(e);}}> Izmeni podatke</a>
+                            <a className="item" onClick={(e)=>{ this.setState({po: 'IZVESTAJ'});}}> Izvestaj o poslovanju klinike</a>
+                            <a className="item" onClick={(e)=>{this.handleClick(e); this.props.vratiKorisnika(e);}}> Izmeni svoje podatke</a>
+
                         </div>
                     </div>
                     <div style={{ float: "right"}}> 

@@ -75,6 +75,7 @@ public class CheckupDoctorService {
         System.out.println(checkup.getBolest());
         System.out.println(checkup.getIdLekara());
         System.out.println(checkup.getIdPacijenta());
+        System.out.println(checkup.getDatumVreme());
 
         User doktor = this.userRepository.findOneById(Long.valueOf(checkup.getIdLekara()));
         User pacijent = this.userRepository.findOneById(Long.valueOf(checkup.getIdPacijenta()));
@@ -92,8 +93,8 @@ public class CheckupDoctorService {
 
 
         //Calendar cal = Calendar.getInstance();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");
-        Date date = new Date();
+        //DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        //Date date = new Date();
 
 
 
@@ -105,15 +106,14 @@ public class CheckupDoctorService {
 
 
         Checkup c = Checkup.builder().name(checkup.getNaziv()).description(checkup.getOpis()).type(checkup.getTip())
-                .duration(2).price(Integer.parseInt(checkup.getCena())).dateTime(dateFormat.format(date)).ocenjenaKlinika(false).ocenjenLekar(false)
+                .duration(2).price(Integer.parseInt(checkup.getCena())).dateTime(checkup.getDatumVreme()).ocenjenaKlinika(false).ocenjenLekar(false)
                 .sicks(bolesti).unapred(false).idLekara(checkup.getIdLekara()).idPacijenta(checkup.getIdPacijenta()).build();
 
 
         //doktor.setCheckup(c);
         //pacijent.setCheckup(c);
 
-        if ( checkup.getBolest() != "Bez bolesti")
-            bolest.setCheckup(c);
+        bolest.setCheckup(c);
 
         //this.userRepository.save(doktor);
         //this.userRepository.save(pacijent);

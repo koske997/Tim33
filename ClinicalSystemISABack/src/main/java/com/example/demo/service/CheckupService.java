@@ -48,8 +48,19 @@ public class CheckupService {
     //}
 
 
-    public User save(CheckupView checkup)
+    public Checkup save(CheckupView checkup)
     {
+        System.out.println(checkup.getTip());
+        System.out.println(checkup.getTrajanje());
+        System.out.println(checkup.getLekar());
+        System.out.println(checkup.getCena());
+        System.out.println(checkup.getNaziv());
+        System.out.println(checkup.getOpis());
+        System.out.println(checkup.getSala());
+        System.out.println(checkup.getDatumVreme());
+
+
+
         User u = new User();
 
 
@@ -65,37 +76,25 @@ public class CheckupService {
 
         System.out.println(doctor);
 
-        int brojSobe = Integer.parseInt(checkup.getSala());
 
+        int brojSobe = Integer.parseInt(checkup.getSala());
         Room room = this.roomRepository.findOneByNumber(brojSobe);
 
-        System.out.println(checkup.getLekar());
-
-        System.out.println(checkup.getTrajanje() + "BBBBBBBBBBBBBBBBBBBBBBBBB");
 
         List<User> doc = new ArrayList<>();
         doc.add(doctor);
 
-
-
         Set<Room> ro = new HashSet<>();
         ro.add(room);
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Date date = new Date();
 
         Checkup c = Checkup.builder().name(checkup.getNaziv()).description(checkup.getOpis()).type(checkup.getTip()).
-                idLekara(Integer.parseInt(checkup.getLekar())).unapred(true).
-                rooms(ro).price(Integer.parseInt(checkup.getCena())).duration(Integer.parseInt(checkup.getTrajanje())).dateTime(dateFormat.format(date)).build();
+                idLekara((int) (long)doctor.getId()).unapred(true).
+                rooms(ro).price(Integer.parseInt(checkup.getCena())).duration(Integer.parseInt(checkup.getTrajanje())).dateTime(checkup.getDatumVreme())
+                .ocenjenaKlinika(false).ocenjenLekar(false).build();
 
-        //doctor.setCheckup(c);
-        //Cudno ali novi pregled ne moze da doda samo ako u bazu ubacimo ovaj gore pregled
-        //on doda sve ali na taj nacin ne moze da doda doktora
-        //tek kada doktoru dodamo neki pregled, pregled se doda, cudno ali radi
 
-        //this.userRepository.save(doctor);
-
-        return this.userRepository.save(doctor);
+        return this.checkupRepository.save(c);
     }
 
     public void saveCheckup(CheckupView checkup){

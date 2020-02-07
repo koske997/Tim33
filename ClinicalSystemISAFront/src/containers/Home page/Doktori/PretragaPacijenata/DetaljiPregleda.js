@@ -54,31 +54,6 @@ class DetaljiPregleda extends React.Component {
         })
     }
 
-     /*componentDidUpdate (prevProp) {
-         if (this.props.sviLekari !== null && this.props.pregledKarton !== null && this.state.ocenaLekara !== null)
-         {
-             console.log('Udjesl 31')
-             for (let i=0; i<this.props.sviLekari.length; i++)
-             {
-                 console.log('Udjesl 63')
-                 
-                 if( prevProp.pregledKarton !== this.props.pregledKarton)
-                 this.props.svi_doktori();
-            {
-                if (this.props.sviLekari[i].id === this.props.pregledKarton.idLekara)
-                {
-                    console.log('Udjesl 443')
-                    console.log(this.props.sviLekari[i].ocena)
-
-                    this.setState({
-                        ocenaLekara: this.props.sviLekari[i]
-                    })
-                }
-            }
-            }
-        }
-     }*/
-
     selectChangeHandler = (e) => {
 
         this.setState({
@@ -92,14 +67,6 @@ class DetaljiPregleda extends React.Component {
             ocenaLekara: e.target.value,
         });
     }
-
-    /*pronadjiLekPregleda() {
-        if (this.props.sveBolesti !== null && this.props.sveBolesti !== undefined &&
-            this.props.p)
-        {
-
-        }
-    }*/
 
     pripremiZaOcenjivanjeKlinike() {
         if (this.state.ocenaKlinike !== null && this.state.ocenaKlinike !== undefined)

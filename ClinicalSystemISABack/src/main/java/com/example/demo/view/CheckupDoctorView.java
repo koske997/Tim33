@@ -10,10 +10,12 @@ public class CheckupDoctorView { // Za unos pregleda kada doktor trenutno pregle
     private String tip;
     private String bolest;
     private String lek;
+    private String datumVreme;
 
     public CheckupDoctorView () {}
 
-    public CheckupDoctorView(String naziv, String opis, String cena, int idLekara, int idPacijenta, String tip, String bolest, String lek) {
+    public CheckupDoctorView(String datumVreme, String naziv, String opis, String cena, int idLekara, int idPacijenta, String tip, String bolest, String lek) {
+        this.datumVreme = datumVreme;
         this.naziv = naziv;
         this.opis = opis;
         this.cena = cena;
@@ -22,6 +24,14 @@ public class CheckupDoctorView { // Za unos pregleda kada doktor trenutno pregle
         this.tip = tip;
         this.bolest = bolest;
         this.lek = lek;
+    }
+
+    public String getDatumVreme() {
+        return datumVreme;
+    }
+
+    public void setDatumVreme(String datumVreme) {
+        this.datumVreme = datumVreme;
     }
 
     public String getNaziv() {

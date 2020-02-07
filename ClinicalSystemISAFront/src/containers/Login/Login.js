@@ -3,6 +3,9 @@ import {connect} from 'react-redux';
 import classes from './Login.css';
 import * as actions from '../../store/actions/index';
 import {updateObject} from '../../shared/utility';
+import {Redirect} from 'react-router-dom';
+
+
 
 class Login extends Component {
 
@@ -16,7 +19,8 @@ class Login extends Component {
     loginHandler = (event) => {
         event.preventDefault();
         this.props.onLogin(this.state.auth.email, this.state.auth.password);
-        this.props.history.push("/");
+        this.props.prijavljen_korisnik();
+        this.props.history.push("");
     }
 
     inputChangeHandler = (event, type) => {
@@ -59,8 +63,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        nesto: () => dispatch({type: "AGE_UP", value: 1}),
         onLogin: (email, password) => dispatch(actions.login(email, password)),
+        prijavljen_korisnik: () => dispatch(actions.prijavljenKorisnik()),
     }
 };
 

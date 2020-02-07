@@ -48,7 +48,7 @@ public class UserService {
                 .firstName(user.getFirstName()).lastName(user.getLastName())
                 .address(user.getAddress()).city(user.getCity()).country(user.getCountry())
                 .phoneNumber(user.getPhoneNumber()).userId(user.getUserId()).role(UserRole.valueOf(user.getRole()))
-                .enabled(true).build();
+                .enabled(true).prvaPrijava(true).build();
 
         List<Authority> auth = this.authorityService.findByName(user.getRole());
         u.setAuthorities(auth);
@@ -72,7 +72,7 @@ public class UserService {
                 us.setFirstName(u.getFirstName());
                 us.setLastName(u.getLastName());
                 us.setPhoneNumber(u.getPhoneNumber());
-                us.setPassword(u.getPassword());
+                us.setPassword(passwordEncoder.encode(u.getPassword()));
 
                 use = us;
             }
