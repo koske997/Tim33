@@ -21,7 +21,7 @@ insert into users (address, first_name, last_name, email, password, city, countr
 insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja) values ('Podbara 21', 'Vanja', 'Stanojevic', 'vaksicarina@gmail.com', '123456', 'Banjaluka', 'BIH', 0699, 011397, 'PATIENT', true, 1, 111, 6, 1);
 insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja) values ('Sajmise 33', 'Nikolina', 'Ivankovic', 'nikolinaiv07@gmail.com', '654321', 'Zvornik', 'ReoSrpsa', 0655, 022337, 'PATIENT', true, 2, 450, 6, 1);
 insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja) values ('Liman 33', 'Stefan', 'Pejakovic', 'pejak021@gmail.com', '22322', 'Mrkonjic', 'SrpskaRep', 0622, 121221, 'PATIENT', true, 1, 78, 6, 1);
-
+insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja) values ('Pavla Ivica 1', 'Aleksandra', 'Kosic', 'aleksandrakosic.kosic@gmail.com', '$2a$10$PckbyvdiGuU9H9HIzQT8nuMX/n30JwNMCmH/MbK6UWVQbggL55rnm', 'Novi Sad', 'Naselje', 0622, 121221, 'PATIENT', true, 1, 78, 6, 1);
 
 insert into medical_record (user_id) values (1);
 insert into medical_record (user_id) values (2);

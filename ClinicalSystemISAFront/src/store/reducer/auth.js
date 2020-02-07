@@ -28,6 +28,7 @@ const initialState = {
     pregledKarton: null,
     pretraga: null,
     potrebniDoktori: null,
+    moze: null,
 }
 
 const reducer = (state = initialState, action) => {
@@ -161,6 +162,11 @@ switch (action.type) {
             ...state,
             potrebniDoktori: action.potrebniDoktori
         }    
+    case actionTypes.SACUVAJ_MOGUCNOST_REZERVACIJE:
+        return {
+            ...state,
+            moze: action.moze
+        }
     case actionTypes.SIGN_UP:
         return userRegister(state, action);
     case actionTypes.LOG_IN:

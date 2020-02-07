@@ -39,5 +39,8 @@ export {
     unosOceneLekara,
     pretraziKlinike,
     traziDoktore,
+    zakaziPregled,
+    rezervisiSalu,
+    zauzeceSale,
 
 } from './auth';

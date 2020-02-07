@@ -25,6 +25,12 @@ public class RequestController {
     @PostMapping(value = "/zahtevSestre")
     public ResponseEntity<?> zahtevSestre(@RequestBody RequestView requestView){
 
+        String datum = requestView.getDatum();
+        datum = datum.replaceAll("-","/");
+        datum = datum.replaceAll("T"," ");
+        datum = datum.replaceAll("Z"," ");
+        datum = datum.substring(0, datum.length()-8);
+        requestView.setDatum(datum);
         Request r = this.requestService.save(requestView);
 
         return new ResponseEntity<Request>(r, HttpStatus.CREATED);

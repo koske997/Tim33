@@ -7,8 +7,9 @@ class KarticaZahteva extends React.Component {
 
 
     
-    funNazad(id, str, tip){
-        this.props.fun(id, str, tip);
+    funNazad(id, str, tip, datum){
+        this.props.fun(id, str, tip, datum);
+        console.log(this.props.ostalo);
     }
 
     
@@ -31,8 +32,8 @@ class KarticaZahteva extends React.Component {
                                 </div>
                                 <div className="extra content">
                                 <div className="ui two buttons">
-                                    <div className="ui basic green button" onClick={(e) => {this.funNazad(this.props.ostalo.id,'PRI',this.props.ostalo.tip);}}>Prihvati</div>
-                                    <div className="ui basic red button" onClick={(e) => {this.funNazad(this.props.ostalo.id,'ODB',this.props.ostalo.tip);}}>Odbij</div>
+                                    <div className="ui basic green button" onClick={(e) => {this.funNazad(this.props.ostalo.id,'PRI',this.props.ostalo.tip,this.props.ostalo.datum);}}>Prihvati</div>
+                                    <div className="ui basic red button" onClick={(e) => {this.funNazad(this.props.ostalo.id,'ODB',this.props.ostalo.tip,this.props.ostalo.datum);}}>Odbij</div>
                                 </div>
                                 </div>
                             </div>

@@ -22,7 +22,9 @@ state = {
     redirectSala: false,
     redirectTipoviPregleda: false, 
     po: '',
+    zapamcenitip: null,
     zapamcenid: null,
+    zapamcenidatum: null,
     prijavljenKorisnik: null,
     openModal: false,
 }
@@ -81,10 +83,12 @@ renderRedirect = () => {
 }
 
 
-    obradiZahtev = (id, str, tip) => {
+    obradiZahtev = (id, str, tip, datum) => {
         console.log(id);
         console.log(str);
-        console.log(tip)
+        console.log(tip);
+        console.log('DATUM PRVO VAMOOOO!!!!!!!!!!!!!!!');
+        console.log(datum);
         if(str==='ODB'){
             this.setState({po: 'FORMA', zapamcenid: id});
         }else{
@@ -94,8 +98,7 @@ renderRedirect = () => {
                 this.props.sviZahtevi();
                 this.setState({po: 'OSVEZI'});
             }else{
-                this.setState({po: 'FORMA2', zapamcenid: id});
-                console.log(this.props.sale);
+                this.setState({po: 'FORMA2', zapamcenid: id, zapamcenitip: tip, zapamcenidatum: datum});
             }
             {/* 
             this.props.slanjePotvrdnogMaila(this.props.prijavljenKorisnik.username,'Prihvati',id);
@@ -120,6 +123,16 @@ renderRedirect = () => {
         this.props.sviZahtevi();
         this.setState({po: 'OSVEZI'});
     }
+
+    renderSala = (idSale) => {
+            this.props.slanjePotvrdnogMaila(this.props.prijavljenKorisnik.username,'Prihvati',this.state.zapamcenid);
+            this.props.unesiPregled(`${this.state.zapamcenitip} pregled`, '', this.state.zapamcenitip, idSale, this.state.zapamcenid, '', '', '');
+            this.props.rezervisi(this.state.zapamcenid,idSale,'');  
+            this.props.brisiZahtev('', '', this.state.zapamcenid, '', '');
+            this.props.sviZahtevi();
+            this.setState({po: 'OSVEZI'});
+    }
+
 
     renderPac(){
         if(this.state.po==='ZAHTEV'){
@@ -147,7 +160,7 @@ renderRedirect = () => {
         }
 
         if(this.state.po==='FORMA2'){
-            return <Sala vraceno={this.renderSala} sale={this.props.sale}/>;
+            return <Sala vraceno={this.renderSala} sale={this.props.sale} datum={this.state.zapamcenidatum}/>;
         }
 
 
@@ -203,44 +216,7 @@ renderRedirect = () => {
             {this.renderComponent()}
                 
             <IzmenaPodataka prijavljenKorisnik={this.props.prijavljenKorisnik} openModal={this.state.openModal} closeModal={this.closeModal} /> 
-          {/*
-         
-
-            <h2>Administrator klinike </h2>
-
-        <div className="ui segment">
-            <h3>Pregled</h3>
-            {this.renderRedirect()}
-
-            <button className="Unesi_pregled" onClick={ (e) => {this.setRedirect(e); this.props.prikazi_sale(e); this.props.prikazi_doktore(e); this.props.prikazi_tipove_pregleda(e)}} >Unesi novi pregled</button>
-            <hr/>
-        </div>
-
-        <div className="ui segment">
-            <h3>Sale za pregled i operacije</h3>
-
-            {this.renderRedirect()}
-
-            <button className="Sale_za_pregled" onClick = { (e) => {this.setRedirect_1(e); this.props.prikazi_sale(e);}}>Sale za pregled i operacije</button> 
-            <hr/>
-        </div>
-
-        <div className="ui segment">
-            <h3>Tipovi pregleda</h3>
-
-            {this.renderRedirect()}
-
-            <button className="Tipovi_pregleda" onClick = { (e) => {this.setRedirect_2(e); this.props.prikazi_preglede(e)}}>Tipovi pregleda</button> 
-            <hr/>
-        </div>
-
-        <div className="ui segment">
-            <h3>Izmeni svoje podatke</h3>
-
-            <button className="Izmeni_svoje_podatke" onClick = { (e) => { this.handleClick(e); this.props.izmeni_priavljenog_korisnika(e); }}>Izmeni</button> 
-            <hr/>
-        </div>
-          */}
+          
    </div>
     );
   }
@@ -268,7 +244,9 @@ const mapDispatchToProps = dispatch => {
         prikazi_sale: () => dispatch(actions.sale()),
         prikazi_doktore: () => dispatch(actions.doktori()),
         prikazi_tipove_pregleda: () => dispatch(actions.tipoviPregleda()),
+        unesiPregled: (naziv, opis, tip, sala, lekar, cena, datumVreme, trajanje) => dispatch(actions.zakaziPregled(naziv, opis, tip, sala, lekar, cena, datumVreme, trajanje)),
 
+        rezervisi: (id, idSale, datum) => dispatch(actions.rezervisiSalu(id, idSale, datum)),
         prikazi_preglede: () => dispatch(actions.pregledi()),
         vratiKorisnika: () => dispatch(actions.prijavljenKorisnik()),
         sviZahtevi: () => dispatch(actions.vratiZahteve()),

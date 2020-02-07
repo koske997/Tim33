@@ -9,9 +9,9 @@ class ListaZahteva extends React.Component {
       }
 
 
-    funNazad2(id, str, tip){
+    funNazad2(id, str, tip, datum){
         console.log(id);
-        this.props.obrada(id, str, tip);
+        this.props.obrada(id, str, tip, datum);
     }
 
     renderDrugi(){

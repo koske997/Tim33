@@ -214,6 +214,84 @@ export const unosPregleda = (naziv, opis, tip, sala, lekar, cena, datumVreme, tr
     };
 };
 
+export const rezervisiSalu = (id, idSale, datum) => {
+    return dispatch => {
+        const authData = {
+            id: id,
+            idSale: idSale,
+            datum: datum
+        };
+
+        const url = '/rezervisi';
+
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+        }).catch(err => {
+            console.log(err);
+        });
+
+
+    };
+}; 
+
+
+
+
+export const zakaziPregled = (naziv, opis, tip, sala, lekar, cena, datumVreme, trajanje) => {
+    return dispatch => {
+        const authData = {
+            naziv: naziv,
+            opis: opis,
+            tip: tip,
+            sala: sala,
+            lekar: lekar,
+            cena: cena,
+            datumVreme: datumVreme,
+            trajanje: trajanje,
+            returnSecureToken: true
+        };
+        const url = '/zakaziPregled';        
+        
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+        })
+        .catch(err => {
+             console.log(err);
+        });
+    };
+};
+
+export const cuvajZauzece = (odg) => {
+    return {
+        type: actionTypes.SACUVAJ_MOGUCNOST_REZERVACIJE,
+        moze: odg
+    }
+}
+
+export const zauzeceSale = (idSale, datum) => {
+    return dispatch => {
+        const authData = {
+            idSale: idSale,
+            datum: datum
+        };
+        
+        const url = '/traziRezercavije';
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+            dispatch(cuvajZauzece(response.data));
+        }).catch(err => {
+            console.log(err);
+        });
+
+
+    };
+}; 
+
+
+
 export const sacuvajOdgovor = (odg) => {
     console.log(odg);
     return {

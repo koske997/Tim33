@@ -98,6 +98,24 @@ public class CheckupService {
         return this.userRepository.save(doctor);
     }
 
+    public void saveCheckup(CheckupView checkup){
+        Room sala = this.roomRepository.findOneByNumber(Integer.parseInt(checkup.getSala()));
+        Set<Room> lis = new HashSet<Room>();
+        lis.add(sala);
+        String datum = checkup.getDatumVreme();
+        datum = datum.replaceAll("-","/");
+        datum = datum.replaceAll("T"," ");
+        datum = datum.replaceAll("Z"," ");
+      //  datum = datum.substring(0, datum.length()-8);
+
+        Checkup c = Checkup.builder().name(checkup.getNaziv()).description(checkup.getOpis()).type(checkup.getTip()).
+                idLekara(Integer.parseInt(checkup.getLekar())).unapred(true).
+                rooms(lis).price(0).duration(2).dateTime(datum).idPacijenta(Integer.parseInt(checkup.getIdPac())).unapred(false).build();
+        this.checkupRepository.save(c);
+
+    }
+
+
     public void remove(Long id) {
         this.checkupRepository.deleteById(id);
     }
