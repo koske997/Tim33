@@ -57,8 +57,9 @@ class PrvaPrijava extends React.Component {
                     lozinka: this.state.password1
                 }
                 this.setState({red: true});
-                this.props.history.push("/");
                 this.props.promeni_lozinku(podaci);
+
+                this.props.history.push("/login");
 
             }
         }

@@ -11,7 +11,8 @@ import IzmenaPodataka from '../IzmenaPodatakaKorisnika/IzmeniPodatke';
 import Spinner from '../Spinner';
 import KarticaKorisnika from '../MedicinskaSestra/KarticaKorisnika';
 import ListaUnapredDefinisanihPregleda from './ListaUnapredDefinisanihPregleda';
-import PretragaLekaraKlinike from './PretragaLekaraKlinike.js'
+import PretragaLekaraKlinike from './PretragaLekaraKlinike.js';
+import GuglMap from './GoogleMap';
 
 
 const initialState = {
@@ -33,6 +34,8 @@ class ProfilKlinike extends React.Component {
 
     sviPregledi: null,
     noviPreglediKlinike: null,
+
+    mapRedirect: false,
 }
 
 handleClick = id => {
@@ -201,7 +204,23 @@ setRedirect2 = () => {
       {
         return <PretragaLekaraKlinike sviLekariKlinike={this.props.klinikaProfila.user} />
       }
+
+      if(this.state.odabir === 'LOKACIJA')
+      {
+        if (this.props.klinikaProfila !== null && this.props.klinikaProfila !== undefined)
+        {
+          console.log('ne udjes?');
+          return <GuglMap x={this.props.klinikaProfila.x} y={this.props.klinikaProfila.y} naziv={this.props.klinikaProfila.name}/>
+        }
+      }
       
+  }
+
+  redirectLokacija() {
+    if (this.state.mapRedirect)
+    {
+     return <Redirect to="/googleMap" />
+    }
   }
 
 
@@ -214,9 +233,12 @@ renderProfilaKlinike = () => {
                             <a className="item" onClick={(e) => {this.setState({odabir: 'LEKARI'});}}> Lekari klinike</a>
                             <a className="item" onClick={(e) => {this.setState({odabir: 'PREGLEDI'});}}> Pregledi klinike</a>
                             <a className="item" onClick={(e) => {this.setState({odabir: 'PRETRAGA LEKARA'});}}> Pretraga lekara</a>
+                            <a className="item" onClick={(e) => {this.setState({odabir: 'LOKACIJA'});}}> Lokacija</a>
+
                         </div>
                     </div>
               {this.renderKorisnika()}
+              {this.redirectLokacija()}
                 <br/>
                 <br/>
                 <br/>

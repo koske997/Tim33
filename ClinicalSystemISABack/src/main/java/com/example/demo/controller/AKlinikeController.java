@@ -2,13 +2,11 @@ package com.example.demo.controller;
 
 import com.example.demo.exception.ResourceConflictException;
 import com.example.demo.model.*;
+import com.example.demo.repository.UserRepository;
 import com.example.demo.security.TokenUtils;
 import com.example.demo.service.*;
 
-import com.example.demo.view.CheckupTypeView;
-import com.example.demo.view.CheckupView;
-import com.example.demo.view.RoomView;
-import com.example.demo.view.UserViewRegister;
+import com.example.demo.view.*;
 import org.hibernate.annotations.Check;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -53,6 +51,10 @@ public class AKlinikeController {
 
     @Autowired
     private RequestService requestService;
+
+    @Autowired
+    private UserRepository userRepository;
+
 
 
     @CrossOrigin(origins = "http://localhost:3000")
@@ -185,4 +187,38 @@ public class AKlinikeController {
         return new ResponseEntity<CheckupType>(saveCheckup, HttpStatus.CREATED);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(value = "/adminBriseLekara")
+    public ResponseEntity<?> adminBriseLekara(@RequestBody IdView id) {
+
+        System.out.println("--------------------------------------------------------------------");
+        System.out.println(id.getId());
+
+        this.userRepository.deleteRequest(Long.valueOf(id.getId()));
+        User u = new User();
+
+        return new ResponseEntity<User>(u, HttpStatus.CREATED);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(value = "/unosLekara")
+    public ResponseEntity<?> unosLekara(@RequestBody UserViewRegister user, UriComponentsBuilder ucBuilder) {
+
+        User userFind = this.userService.findOneByEmail(user.getEmail());
+
+        System.out.println("999999999999999999999999999");
+        System.out.println(user.getUserId());
+        System.out.println(user.getEmail());
+
+        User u = new User();
+        u.setFirstName("IMA");
+        if (userFind != null) {
+            return new ResponseEntity<User>(u, HttpStatus.OK);
+        }
+
+        User saveUser = this.userService.save(user);
+
+
+        return new ResponseEntity<User>(saveUser, HttpStatus.CREATED);
+    }
 }

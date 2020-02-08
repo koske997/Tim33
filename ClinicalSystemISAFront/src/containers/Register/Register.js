@@ -47,35 +47,77 @@ class Register extends Component {
 
     render() {
         return (
-            <div>
-                <input type="email" className={classes.Input} placeholder="Email"
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+
+            <form className="ui form">
+                <h2>Registracija </h2>
+                
+                <div className="field">
+                    <label>Email</label>
+                    <input type="email"  placeholder="Email"
                     onChange={(event) => this.inputChangeHandler(event, 'email')} />
-                <input type="password" className={classes.Input} placeholder="Password"
-                    onChange={(event) => this.inputChangeHandler(event, 'password')} />
-                <input type="password" className={classes.Input} placeholder="Repeat Password"
+                </div>
+
+                <div className="field">
+                    <label>Password</label>
+                    <input type="password"  placeholder="Password"
+                    onChange={(event) => this.inputChangeHandler(event, 'password')} />               
+                </div>
+
+                <div className="field">
+                    <label>Password</label>
+                    <input type="password" placeholder="Repeat Password"
                     onChange={(event) => this.inputChangeHandler(event, 'repeatPassword')} />
-                <input type="text" className={classes.Input} placeholder="First Name"
+                </div>
+
+                <div className="field">
+                    <label>First name</label>
+                    <input type="text"  placeholder="First Name"
                     onChange={(event) => this.inputChangeHandler(event, 'firstName')} />
-                <input type="text" className={classes.Input} placeholder="Last Name"
+                </div>
+
+                <div className="field">
+                    <label>Last name</label>
+                    <input type="text"  placeholder="Last Name"
                     onChange={(event) => this.inputChangeHandler(event, 'lastName')} />
-                <input type="text" className={classes.Input} placeholder="Address"
+                </div>
+
+                <div className="field">
+                    <label>Address</label>
+                    <input type="text"  placeholder="Address"
                     onChange={(event) => this.inputChangeHandler(event, 'address')} />
-                <input type="text" className={classes.Input} placeholder="City"
+                </div>
+
+                <div className="field">
+                    <label>City</label>
+                    <input type="text"  placeholder="City"
                     onChange={(event) => this.inputChangeHandler(event, 'city')} />
-                <input type="text" className={classes.Input} placeholder="Country"
+                </div>
+
+                <div className="field">
+                    <label>Country</label>
+                    <input type="text"  placeholder="Country"
                     onChange={(event) => this.inputChangeHandler(event, 'country')} />
-                <input type="number" className={classes.Input} placeholder="Phone Number"
+                </div>
+
+                <div className="field">
+                    <label>Phone number</label>
+                    <input type="number"  placeholder="Phone Number"
                     onChange={(event) => this.inputChangeHandler(event, 'phoneNumber')} />
-                <input type="number" className={classes.Input} placeholder="ID"
-                    onChange={(event) => this.inputChangeHandler(event, 'id')} />
-                <select className={classes.Input} onChange={(event) => this.selectChangeHandler(event)}>
-                    <option> Doctor </option>
-                    <option> Patient </option>
-                    <option> Nurse </option>
-                </select>
-                <button className={classes.Button} 
-                    onClick={(event) => this.registerHandler(event)}>Register</button>
+                </div>
+
+                <div>
+                    <select className={classes.Input} onChange={(event) => this.selectChangeHandler(event)}>
+                        <option> Doctor </option>
+                        <option> Patient </option>
+                        <option> Nurse </option>
+                    </select>
+                </div>
+
+                <button class="ui button" type="submit" onClick={ (e) => { this.registerHandler(e); }}>Unesi</button>
+            </form>
             </div>
+            
         );
     }
 }

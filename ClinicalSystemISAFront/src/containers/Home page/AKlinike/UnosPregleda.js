@@ -24,8 +24,11 @@ class UnosPregleda extends React.Component {
 
             sale: null,
             doktori: null,
-            tipoviPregleda: null
-            
+            tipoviPregleda: null,
+
+            sveKlinike: [],
+            doktoriKlinike: [],
+            prijavljenKorisnik: null,
         }
     }
 
@@ -34,6 +37,10 @@ class UnosPregleda extends React.Component {
         this.props.svi_lekari();
         this.props.sve_sale();
         this.props.svi_tipovi_regleda();
+
+        this.props.sve_klinike();
+        this.props.prijavljen_korisnik();
+        this.pronadjiDoktoreKlinike();
     }
 
     pregledHandler = (event) => {
@@ -86,6 +93,38 @@ class UnosPregleda extends React.Component {
         });
 
         this.setState({auth: updatedObject});
+    }
+        
+    pronadjiDoktoreKlinike() {
+        let lekari = [];
+        console.log('1111111111111111')
+        if (this.props.prijavljenKorisnik !== null && this.props.prijavljenKorisnik !== undefined &&
+            this.props.sveKlinike !== null && this.props.sveKlinike !== undefined)
+        {
+            console.log('222222222222222')
+
+            for (let i=0; i<this.props.sveKlinike.length; i++)
+            {
+                for (let j=0; j<this.props.sveKlinike[i].user.length; j++)
+                {
+                    if (this.props.sveKlinike[i].user[j].id === this.props.prijavljenKorisnik.id)
+                    {
+                        console.log('333112')
+
+                        lekari = this.props.sveKlinike[i].user;
+                    }
+                }
+            }
+        }
+        let pom = [];
+        for (let k=0; k<lekari.length; k++)
+        {
+            if (lekari[k].role === 'DOCTOR')
+            {
+                pom.push(lekari[k])
+            }
+        }
+        this.setState({doktoriKlinike: pom});
     }
 
     promeni(date){
@@ -154,7 +193,7 @@ class UnosPregleda extends React.Component {
                     <label>Lekar</label>
                     <div className="ui select">
                     <select onChange={(event) => this.selectChangeHandler(event, 'lekar')}>
-                        <ListaDoktora  doktori={this.props.doktori}/> 
+                        <ListaDoktora  doktori={this.state.doktoriKlinike}/> 
                     </select>
                     </div>
                 </div>
@@ -171,7 +210,10 @@ const mapStateToProps = state => {
     return {
         sale: state.auth.sale,
         doktori: state.auth.doktori,
-        tipoviPregleda: state.auth.tipoviPregleda
+        tipoviPregleda: state.auth.tipoviPregleda,
+
+        sveKlinike: state.auth.klinike,
+        prijavljenKorisnik: state.auth.prijavljenKorisnik,
     }
 }
 
@@ -185,7 +227,8 @@ const mapDispatchToProps = dispatch => {
         svi_tipovi_regleda: () => dispatch(actions.tipoviPregleda()),
         rezervisi: (id, idSale, datum) => dispatch(actions.rezervisiSalu2(id, idSale, datum)),
 
-
+        sve_klinike: () => dispatch(actions.klinike()),
+        prijavljen_korisnik: () => dispatch(actions.prijavljenKorisnik()),
     }
 };
 

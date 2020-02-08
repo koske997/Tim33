@@ -12,7 +12,7 @@ import Spinner from '../Spinner';
 
 
 const initialState = {
-  pacijenti: null
+  pacijenti: null,
 }
 
 

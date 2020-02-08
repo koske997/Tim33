@@ -4,6 +4,8 @@ import classes from './Login.css';
 import * as actions from '../../store/actions/index';
 import {updateObject} from '../../shared/utility';
 import {Redirect} from 'react-router-dom';
+import { Button, Header, Image, Modal } from 'semantic-ui-react';
+
 
 
 
@@ -38,24 +40,26 @@ class Login extends Component {
 
     render() {
         return (
-            <div>
-                
-                <label className="ui input">Email:</label>
-                <br/>
-                <input type="email" className="ui input" onChange={(event) => this.inputChangeHandler(event, 'email')} />
-                   
-                <br/>
-                
-                <label className="ui input">Sifra:</label>
-                <br/>
-                <input type="password" className="ui input" onChange={(event) => this.inputChangeHandler(event, 'password')} />
-                                   
-                 <br/>
-                 
-                <button className="ui button" 
+
+            <div  style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <div className="ui form">
+                <h2>Logovanje</h2>
+                <div className="field">
+                    <label>Email</label>
+                    <input type="email" className="ui input"
+                    onChange={(event) => this.inputChangeHandler(event, 'email')} />
+                </div>
+
+                <div className="field">
+                    <label>Password</label>
+                    <input type="password" className="ui input" 
+                    onChange={(event) => this.inputChangeHandler(event, 'password')} />            
+                </div>
+
+                <Button className="ui button" 
                     onClick={(event) => {this.loginHandler(event)}}
-                >Log in</button>
-                
+                >Log in</Button>
+            </div>
             </div>
         );
     }

@@ -31,16 +31,13 @@ class DetaljiPregleda extends React.Component {
 
        sveBolesti: [],
 
+       prijavljenKorisnik: null,
+
 
     }
 
     componentDidMount() {
-        /*this.props.lista_tipova_pregleda();
-        this.props.bolestii();
-        this.props.lekovii();
         this.props.prijavljen_korisnik();
-
-        this.props.svi_pregledi();*/
 
         this.props.svi_doktori();
         this.props.sve_klinike();
@@ -160,10 +157,24 @@ class DetaljiPregleda extends React.Component {
             return this.renderDetaljiPregleda();
         }
         if (this.state.po==='OCENI KLINIKU'){
-            return this.renderOceneKlinike();
+            if (this.props.prijavljenKorisnik.role === 'DOCTOR')
+            {
+                alert('Samo pacijent moze da oceni kliniku.')
+                this.setState({po: 'DETALJI PREGLEDA'})
+                return this.renderDetaljiPregleda();
+            }
+            else
+                return this.renderOceneKlinike();
         }
         if (this.state.po==='OCENI LEKARA'){
-            return this.renderOceneLekara();
+            if (this.props.prijavljenKorisnik.role === 'DOCTOR')
+            {
+                alert('Samo pacijent moze da oceni kliniku.')
+                this.setState({po: 'DETALJI PREGLEDA'})
+                return this.renderDetaljiPregleda();
+            }
+            else
+                return this.renderOceneLekara();
         }
     }
 
@@ -297,9 +308,14 @@ class DetaljiPregleda extends React.Component {
     handleClick(e) {
         e.preventDefault();
 
-        this.setState({
-            openModal: true,
-        });
+        if (this.props.prijavljenKorisnik.role !== 'DOCTOR')
+            alert('Nema te prava pristupa ovom polju.');
+        else
+        {
+            this.setState({
+                openModal: true,
+            });
+        }
       }
       
       closeModal = () => {
@@ -333,38 +349,18 @@ class DetaljiPregleda extends React.Component {
 const mapStateToProps = state => {
     console.log(state.auth);
     return {
-        /*sale: state.auth.sale,
-        doktori: state.auth.doktori,
-        tipoviPregleda: state.auth.tipoviPregleda,
-
-        klinikee: state.auth.klinike,
-
-        sviPregledi: state.auth.sviPregledii,
-
-        bolesti: state.auth.sveBolesti,
-        lekovi: state.auth.sviLekovi,
-
-        prijavljenKorisnik: state.auth.prijavljenKorisnik,*/
 
         pregledKarton: state.auth.pregledKarton,
         sviLekari: state.auth.doktori,
         sveKlinike: state.auth.klinike,
 
         sveBolesti: state.auth.sveBolesti,
+        prijavljenKorisnik: state.auth.prijavljenKorisnik,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-         /*prikazi_klinike: () => dispatch(actions.klinike()),
-
-         lista_tipova_pregleda: () => dispatch(actions.tipoviPregleda()),
-         bolestii: () => dispatch(actions.bolesti()),
-         lekovii: () => dispatch(actions.lekovi()),
-
-        prijavljen_korisnik: () => dispatch(actions.prijavljenKorisnik()),
-        svi_pregledi: () => dispatch(actions.pregledi())*/
-
         bolestii: () => dispatch(actions.bolesti()),
 
         svi_doktori: () => dispatch(actions.doktori()),
@@ -372,6 +368,8 @@ const mapDispatchToProps = dispatch => {
 
         posalji_ocenu_klinike: (podaci) => dispatch(actions.unosOceneKlinike(podaci)),
         posalji_ocenu_lekara: (podaci) => dispatch(actions.unosOceneLekara(podaci)),
+
+        prijavljen_korisnik: () => dispatch(actions.prijavljenKorisnik()),
 
     }
 };

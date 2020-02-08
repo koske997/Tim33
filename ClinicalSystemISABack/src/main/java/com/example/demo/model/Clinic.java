@@ -34,6 +34,9 @@ public class Clinic {
 
     private String picture;
 
+    private float x;
+    private float y;
+
 
     @ManyToOne(fetch = FetchType.EAGER)
     private ClinicCenter clinicCenter;

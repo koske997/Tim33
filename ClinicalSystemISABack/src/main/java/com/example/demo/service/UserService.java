@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.model.*;
 import com.example.demo.repository.CheckupRepository;
+import com.example.demo.repository.ClinicRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.view.OcenaKlinikeILekaraView;
 import com.example.demo.view.RoomView;
@@ -12,7 +13,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserService {
@@ -22,6 +25,9 @@ public class UserService {
 
     @Autowired
     private CheckupRepository checkupRepository;
+
+    @Autowired
+    private ClinicRepository clinicRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -50,8 +56,23 @@ public class UserService {
                 .phoneNumber(user.getPhoneNumber()).userId(user.getUserId()).role(UserRole.valueOf(user.getRole()))
                 .enabled(true).prvaPrijava(true).build();
 
-        List<Authority> auth = this.authorityService.findByName(user.getRole());
-        u.setAuthorities(auth);
+        u.setPrvaPrijava(true);
+        u.setBrPutaOcenjivanja(0);
+        u.setLikes(0);
+
+        Clinic c = this.clinicRepository.findOneById(Long.valueOf(user.getUserId()));
+
+        System.out.println("22222222222222222222222222222222222222222222222222222222222");
+        System.out.println(c.getName());
+        u.setClinic(c);
+
+        Set<User> us = new HashSet<>();
+        us = c.getUser();
+        us.add(u);
+        c.setUser(us);
+
+
+
 
         return this.userRepository.save(u);
     }

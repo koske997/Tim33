@@ -47,6 +47,8 @@ export {
     slanjeDoktorovogMaila,
     podesiPregled,
     rezervisiSalu2,
-
+    izmeniPregledDoktora,
+    adminBriseLekara,
+    unosLekara,
 
 } from './auth';
