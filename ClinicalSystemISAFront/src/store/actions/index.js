@@ -44,5 +44,9 @@ export {
     zauzeceSale,
     promeniLozinku,
     sacuvajKlinikuProfila,
+    slanjeDoktorovogMaila,
+    podesiPregled,
+    rezervisiSalu2,
+
 
 } from './auth';

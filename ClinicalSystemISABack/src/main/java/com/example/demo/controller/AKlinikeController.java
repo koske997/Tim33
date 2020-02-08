@@ -79,6 +79,20 @@ public class AKlinikeController {
             return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(value = "/podesiPregled")
+    public ResponseEntity<?> podesiPregled(@RequestBody CheckupView checkupView) {
+        Checkup pregled = this.checkupService.findOne(Long.parseLong(checkupView.getTip()));
+
+        pregled.setUnapred(false);
+        pregled.setIdPacijenta(Integer.parseInt(checkupView.getSala()));
+
+        this.checkupService.modifikuj(pregled);
+
+        return  new ResponseEntity<>(null,HttpStatus.OK);
+    }
+
+
 
 
     @CrossOrigin(origins = "http://localhost:3000")

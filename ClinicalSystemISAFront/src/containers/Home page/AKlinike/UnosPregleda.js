@@ -63,8 +63,11 @@ class UnosPregleda extends React.Component {
         {
             alert('Neispravno uneti podaci.');
         }
-        else
+        else{
             this.props.unesiPregled(podaci);
+            this.props.rezervisi('', podaci.sala, podaci.datumVreme);  
+        }
+            
     };
 
     inputChangeHandler = (event, type) => {
@@ -84,14 +87,6 @@ class UnosPregleda extends React.Component {
 
         this.setState({auth: updatedObject});
     }
-
-          
-
-        
-    
-
-
-
 
     promeni(date){
         const sada = new Date();
@@ -188,6 +183,7 @@ const mapDispatchToProps = dispatch => {
         svi_lekari: () => dispatch(actions.doktori()),
         sve_sale: () => dispatch(actions.sale()),
         svi_tipovi_regleda: () => dispatch(actions.tipoviPregleda()),
+        rezervisi: (id, idSale, datum) => dispatch(actions.rezervisiSalu2(id, idSale, datum)),
 
 
     }

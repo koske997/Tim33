@@ -18,6 +18,10 @@
   font-size: 1.5em;
 }
 
+.slika {
+  background: url(./pozadinaa.jpg) no-repeat center center;
+}
+
 .App-intro {
   font-size: large;
 }

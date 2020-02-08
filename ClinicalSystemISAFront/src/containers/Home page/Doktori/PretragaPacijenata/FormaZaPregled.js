@@ -36,6 +36,7 @@ class FormaZaPregled extends React.Component {
 
         pronadjeniDoktori: null,
         pronadjenPregled: null,
+        datum: null
 
     }
 
@@ -44,7 +45,7 @@ class FormaZaPregled extends React.Component {
         this.props.bolestii();
         this.props.lekovii();
         this.props.prijavljen_korisnik();
-
+        this.state.datum = new Date();
     }
 
 
@@ -96,6 +97,13 @@ class FormaZaPregled extends React.Component {
         });
     };
 
+    promeni(date){
+        const sada = new Date();
+        if(moment(sada).isBefore(date)){
+            this.setState({datum: date});
+        }
+    }
+
     pripremiZaUnos = (e) => {
         e.preventDefault();
         let dv = new Date();
@@ -124,12 +132,16 @@ class FormaZaPregled extends React.Component {
             this.props.unesiPregled(pregled);
     }
 
-
+    srediPregled = () => {
+        this.props.posalji(this.state.tip, this.state.datum, this.props.prijavljenKorisnik.id, '', this.props.obelezenPacijent.id);
+        this.props.posaljiMail(this.props.prijavljenKorisnik.username, this.state.tip, this.state.datum);
+    }
 
     render() {
         return (
             <div>
             <h2>Trenutni pregled </h2>
+            <div>
             <form className="ui form">
                 <div className="field">
                     <label>Naziv</label>
@@ -178,6 +190,25 @@ class FormaZaPregled extends React.Component {
                 <Button class="ui button" type="submit" onClick={ (e) => {this.props.prikazi_klinike(e); }}>Odbaci</Button>
 
             </form>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                <br/>
+                <br/>
+                <DatePicker 
+                onChange={date => this.promeni(date)}
+                selected={this.state.datum}
+                showTimeSelect
+                timeFormat="HH:mm"
+                timeIntervals={30}
+                timeCaption="time"
+                dateFormat="MMMM d, yyyy h:mm aa"/>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <Button class="ui button" type="submit" onClick={ (e) => {this.srediPregled(); }}>Zakazi novi pregled</Button>
+            </div>
+
 
             </div>
            
@@ -191,7 +222,7 @@ const mapStateToProps = state => {
         sale: state.auth.sale,
         doktori: state.auth.doktori,
         tipoviPregleda: state.auth.tipoviPregleda,
-
+        odgovor: state.auth.odgovor3,
         klinikee: state.auth.klinike,
 
         sviPregledi: state.auth.sviPregledii,
@@ -214,7 +245,8 @@ const mapDispatchToProps = dispatch => {
          lista_tipova_pregleda: () => dispatch(actions.tipoviPregleda()),
          bolestii: () => dispatch(actions.bolesti()),
          lekovii: () => dispatch(actions.lekovi()),
-
+         posaljiMail: (mailFrom, mailTo, dodatak) => dispatch(actions.slanjeDoktorovogMaila(mailFrom, mailTo, dodatak)),
+        posalji: (tip, datum, doktorId, adminId, posiljalacId) => dispatch(actions.slanjeZahteva(tip, datum, doktorId, adminId, posiljalacId)),
         prijavljen_korisnik: () => dispatch(actions.prijavljenKorisnik())
     }
 };
