@@ -44,5 +44,8 @@ export {
     zauzeceSale,
     promeniLozinku,
     sacuvajKlinikuProfila,
+    izmeniPregledDoktora,
+    adminBriseLekara,
+    unosLekara,
 
 } from './auth';

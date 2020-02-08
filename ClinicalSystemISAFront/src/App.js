@@ -21,6 +21,8 @@ import ZakazivanjePregleda from './containers/Home page/Pacijenti/ZakazivanjePre
 import IzvestajAdmina from './containers/Home page/AKlinike/IzvestajAdmina';
 import PrvaPrijava from './containers/Home page/PrvaPrijava/PrvaPrijava';
 import ProfilKlinike from './containers/Home page/Pacijenti/ProfilKlinike';
+import GoogleMap from './containers/Home page/Pacijenti/GoogleMap';
+import Lekari from './containers/Home page/AKlinike/DodavanjeBrisanjeLekara/Lekari';
 
 
 
@@ -64,6 +66,8 @@ class App extends Component {
           <Route path="/prvaPrijava" component={PrvaPrijava} />
           <Route path="/profilKlinike" component={ProfilKlinike} />
           <Route path="/pretragaLekaraKlinike" component={PretragaLekaraKlinike} />
+          <Route path="/googleMap" component={GoogleMap} />
+          <Route path="/lekari" component={Lekari} />
 
           
 

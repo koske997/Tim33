@@ -30,27 +30,34 @@ export const register = (email, password, repeatPassword, firstName, lastName, a
             city: city,
             country: country,
             phoneNumber: phoneNumber, 
-            userId: id,
+            userId: 1,
             role: role.toUpperCase(),
             returnSecureToken: true
         };
+        console.log(authData);
         //const url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyC93NeXpBVN_En7EAvqghEZU63moggPykU';
         const url = '/register';        
         
-        if (password === repeatPassword) {
             axios.post(url, authData)
             .then(response => {
-                console.log(response);
-                const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
-                sessionStorage.setItem('token', response.data.idToken);
-                sessionStorage.setItem('expirationDate', expirationDate);
-                sessionStorage.setItem('userId', response.data.localId);
-                dispatch(registerSuccess(response.data.idToken, response.data.localId));
+                if( response.data.firstName === 'IMA')
+                {
+                    alert('Korisnik vec postoji.')
+                }
+                else
+                {
+                    console.log(response);
+                    const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+                    sessionStorage.setItem('token', response.data.idToken);
+                    sessionStorage.setItem('expirationDate', expirationDate);
+                    sessionStorage.setItem('userId', response.data.localId);
+                    dispatch(registerSuccess(response.data.idToken, response.data.localId));
+                }
             })
             .catch(err => {
                 console.log(err);
             });
-        }
+        
     };
 };
 
@@ -1040,3 +1047,89 @@ export const sacuvajKlinikuProfila = (klinikaProfila) => {
         klinikaProfila: klinikaProfila,
     }
 }
+
+export const izmeniPregledDoktora = (podaci) => {
+    console.log(podaci);
+
+
+    return dispatch => {
+        console.log('Udjjes li ovamo!>!>!>!?!??!?!')
+        const authData = {
+            id: podaci.id,
+            name: podaci.ime,
+            opis: podaci.opis,
+            trajanje: podaci.trajanje,
+            tip: podaci.tip,
+            cena: podaci.cena
+            };
+        
+        const url = '/izmenaPregledaLekara';
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+
+            //dispatch(sacuvajSalu(response.data));
+        })
+        .catch(err => {
+             console.log(err);
+        }); 
+    };
+};
+
+export const adminBriseLekara = (podaci) => {
+    console.log(podaci);
+
+    return dispatch => {
+        const authData = {
+            id: podaci,
+
+            returnSecureToken: true,
+            };
+        
+        const url = '/adminBriseLekara';
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+
+            //dispatch(sacuvajSalu(response.data));
+        })
+        .catch(err => {
+             console.log(err);
+        }); 
+    };
+};
+
+export const unosLekara = (email, password, repeatPassword, firstName, lastName, address, city, country, phoneNumber, id, role) => {
+    return dispatch => {
+        const authData = {
+            email: email,
+            password: password,
+            repeatPassword: repeatPassword,
+            firstName: firstName,
+            lastName: lastName,
+            address: address,
+            city: city,
+            country: country,
+            phoneNumber: phoneNumber, 
+            userId: id,
+            role: 'DOCTOR',
+
+            returnSecureToken: true
+        };
+        console.log(authData);
+        //const url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyC93NeXpBVN_En7EAvqghEZU63moggPykU';
+        const url = '/unosLekara';        
+            axios.post(url, authData)
+            .then(response => {
+                console.log(response);
+                if (response.data.firstName === 'IMA')
+                {
+                    alert('Korisnik vec postoji.')
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
+        
+    };
+};

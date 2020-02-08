@@ -1,13 +1,11 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.*;
+import com.example.demo.repository.CheckupRepository;
 import com.example.demo.security.TokenUtils;
 import com.example.demo.service.*;
 
-import com.example.demo.view.CheckupDoctorView;
-import com.example.demo.view.CheckupTypeView;
-import com.example.demo.view.RoomView;
-import com.example.demo.view.UserViewRegister;
+import com.example.demo.view.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -42,6 +40,9 @@ public class DoktorController {
     @Autowired
     private CheckupDoctorService checkupDoctorService;
 
+    @Autowired
+    private CheckupRepository checkupRepository;
+
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/sveBolesti")
@@ -74,6 +75,34 @@ public class DoktorController {
 
 
         return new ResponseEntity<Checkup>(saveCheckup, HttpStatus.CREATED);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(value = "/izmenaPregledaLekara")
+    public ResponseEntity<?> izmenaPregledaLekara(@RequestBody CheckupViewIzmena checkup) {
+
+        System.out.println(checkup.getName());
+        System.out.println(checkup.getId());
+        System.out.println(checkup.getOpis());
+        System.out.println(checkup.getTrajanje());
+        System.out.println(checkup.getTip());
+        System.out.println(checkup.getCena());
+
+
+
+        Checkup ch = this.checkupRepository.findOneById(Long.valueOf(checkup.getId()));
+
+        System.out.println(ch.getType());
+
+        ch.setName(checkup.getName());
+        ch.setDescription(checkup.getOpis());
+        ch.setDuration(checkup.getTrajanje());
+        ch.setType(checkup.getTip());
+        ch.setPrice(checkup.getCena());
+
+        Checkup savedCheckup = this.checkupRepository.save(ch);
+
+        return new ResponseEntity<Checkup>(savedCheckup, HttpStatus.CREATED);
     }
 
 }

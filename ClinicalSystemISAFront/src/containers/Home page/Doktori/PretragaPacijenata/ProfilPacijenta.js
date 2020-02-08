@@ -14,6 +14,7 @@ class ProfilPacijenta extends React.Component {
     state = { 
         po: 'PROFIL',
         obelezenPacijent: null,
+        prijavljenKorisnik: null,
     };
 
     componentDidMount(){
@@ -21,6 +22,7 @@ class ProfilPacijenta extends React.Component {
         this.props.vratiKorisnike();
         this.props.sviPacijenti();
         this.props.svi_pregledi();
+        this.props.prijavljen_korisnik();
     }
 
 
@@ -37,7 +39,13 @@ class ProfilPacijenta extends React.Component {
 
         if (this.state.po === 'ZAPOCNI PREGLED')
         {
-            return <FormaZaPregled />
+            if(this.props.prijavljenKorisnik.role === 'PATIENT')
+            {
+                alert('Samo doktori mogu da zapocnu pregled')
+                return  <KarticaProfilaPacijenta pacijent={this.props.obelezenPacijent} />;
+            }
+            else
+                return <FormaZaPregled />
         }
     }
 
@@ -84,6 +92,7 @@ const mapStateToProps = state => {
        odgovor: state.auth.odgovor,
 
        obelezenPacijent: state.auth.obelezenPacijent,
+       prijavljenKorisnik: state.auth.prijavljenKorisnik,
     }
 };
 
@@ -97,7 +106,8 @@ const mapDispatchToProps = dispatch => {
 
         bolesti: () => dispatch(actions.bolesti()),
         lekovi: () => dispatch(actions.lekovi()),
-        svi_pregledi: () => dispatch(actions.pregledi())
+        svi_pregledi: () => dispatch(actions.pregledi()),
+        prijavljen_korisnik:() => dispatch(actions.prijavljenKorisnik()),
 
     }
 };

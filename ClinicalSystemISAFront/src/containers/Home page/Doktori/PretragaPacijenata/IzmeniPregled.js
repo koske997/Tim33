@@ -18,8 +18,13 @@ class IzmeniPregled extends React.Component{
 
 
         //u mapStateToPRops u ovo stanje kupim stalno novog korisnika prijavljenog
-        prijavljenKorisnikk: null,
+        prijavljenKorisnik: null,
     };
+
+    componentDidMount()
+    {
+      this.props.prijavljen_korisnik();
+    }
   
     componentDidUpdate(prevProps) {
   
@@ -33,7 +38,7 @@ class IzmeniPregled extends React.Component{
         const novaCena = get(this.props, 'trenutniPregled.price', '');
 
       
-        if(this.props.trenutniPregled !== prevProps.trenutniPregled) {
+        if(this.props.trenutniPregled.name !== this.state.ime) {
             this.setState({
               ime: novoIme,
               opis: noviOpis,
@@ -62,9 +67,9 @@ class IzmeniPregled extends React.Component{
       })
     };
     
-    handlTrajanje = (e) => {
+    handleTrajanje = (e) => {
       this.setState({
-        email: e.target.value,
+        trajanje: e.target.value,
       })
     }; 
 
@@ -77,20 +82,33 @@ class IzmeniPregled extends React.Component{
   
     handleIzmena = () => {
         const izmena = {
-            id: this.props.prijavljenKorisnik.id,
+            id: this.props.trenutniPregled.id,
 
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            email: this.state.email,
-            password: this.state.password,
-            password2: this.state.password2,
+            ime: this.state.ime,
+            opis: this.state.opis,
+            tip: this.state.tip,
+            trajanje: this.state.trajanje,
+            cena: this.state.cena,
             
         };
         
-        if (this.state.password === this.state.password2)
-          this.props.izmeni_prijavljenog_korisnika(izmena);
+        if (this.state.ime !== null && this.state.ime !== undefined && this.state.ime !== '' &&
+        this.state.opis !== null && this.state.opis !== undefined && this.state.opis !== '' &&
+        this.state.tip !== null && this.state.tip !== undefined && this.state.tip !== '' &&
+        this.state.trajanje !== null && this.state.trajanje !== undefined && this.state.trajanje !== '' &&
+        this.state.cena !== null && this.state.cena !== undefined && this.state.cena !== '')
+        {
+          if (this.props.prijavljenKorisnik.id === this.props.trenutniPregled.idLekara)
+          {
+            this.props.izmeni_pregled_doktora(izmena);
+          }
+          else
+          {
+            alert('Ovaj pregled niste vi radili pa da mozete menjati!!');
+          }
+        }
         else
-          alert('Sifre se ne poklapaju.');
+          alert('Neispravno uneti podaci.');
         
     }
   
@@ -113,7 +131,7 @@ class IzmeniPregled extends React.Component{
                 <input type="text" value={this.state.tip} onChange={this.handleTip} ></input>
 
                 <p> Trajanje: </p>
-                <input type="number" value={this.state.trajanje} onChange={this.handlTrajanje} ></input>
+                <input type="number" value={this.state.trajanje} onChange={this.handleTrajanje} ></input>
 
                 <p> Cena: </p>
                 <input type="number" value={this.state.cena} onChange={this.handleCena} ></input>
@@ -134,13 +152,14 @@ class IzmeniPregled extends React.Component{
     console.log(state.auth);
     return {
 
-        prijavljenKorisnikk: state.auth.prijavljenKorisnik,
+        prijavljenKorisnik: state.auth.prijavljenKorisnik,
     }
   }
   
   const mapDispatchToProps = dispatch => {
     return {
-       izmeni_prijavljenog_korisnika: (izmena) => dispatch(actions.izmeniPrijavljenogKorisnika(izmena)),
+       izmeni_pregled_doktora: (izmena) => dispatch(actions.izmeniPregledDoktora(izmena)),
+       prijavljen_korisnik: () => dispatch(actions.prijavljenKorisnik()),
 
     }
   }

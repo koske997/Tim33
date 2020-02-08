@@ -14,6 +14,7 @@ public interface CheckupRepository extends JpaRepository<Checkup, Long> {
     //List<User> findAllByRole(UserRole role);
 
     Checkup findOneByNameAndType (String naziv, String tip);
+    Checkup findOneById(Long id);
     List<Checkup> findAll();
 
 }

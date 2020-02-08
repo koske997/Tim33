@@ -62,15 +62,11 @@ public class LoginController {
     @PostMapping(value = "/register")
     public ResponseEntity<?> register(@RequestBody UserViewRegister user, UriComponentsBuilder ucBuilder) {
 
-        //User loggedUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        //Dobijamo trenutno ulogovanog korisnika
-
-        if (!user.getRepeatPassword().equals(user.getPassword()))
-            return null;
-
         User userFind = this.userService.findOneByEmail(user.getEmail());
+        User u = new User();
+        u.setFirstName("IMA");
         if (userFind != null) {
-            throw new ResourceConflictException(user.getId(), "User with that email already exists");
+            return new ResponseEntity<User>(u, HttpStatus.OK);
         }
 
         User saveUser = this.userService.save(user);

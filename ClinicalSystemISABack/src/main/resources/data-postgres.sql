@@ -1,8 +1,8 @@
 insert into clinic_center (name) values ('Klinicki Centar VNS');
 
-insert into clinic (name, clinic_center_id, city, picture, likes, ocena, br_puta_ocenjivanja) values ('Klinika 1', 1, 'Novi Sad', '/images/kc1.jpg', 32, 5, 1);
-insert into clinic (name, clinic_center_id, city, picture, likes, ocena, br_puta_ocenjivanja) values ('Klinika 2', 1, 'Beograd', '/images/kc2.jpg', 79, 7, 1);
-insert into clinic (name, clinic_center_id, city, picture, likes, ocena, br_puta_ocenjivanja) values ('Klinika 3', 1, 'Nis', '/images/kc3.jpg', 121, 9, 1);
+insert into clinic (name, clinic_center_id, city, picture, likes, ocena, br_puta_ocenjivanja, x, y) values ('dr Jovan Jovanovic Zmaj', 1, 'Novi Sad', '/images/kc1.jpg', 32, 5, 1, 45.26, 19.87);
+insert into clinic (name, clinic_center_id, city, picture, likes, ocena, br_puta_ocenjivanja, x, y) values ('Dragisa Misovic', 1, 'Beograd', '/images/kc2.jpg', 79, 7, 1, 45.25, 19.82);
+insert into clinic (name, clinic_center_id, city, picture, likes, ocena, br_puta_ocenjivanja, x, y) values ('Milutin Milankovic', 1, 'Nis', '/images/kc3.jpg', 121, 9, 1, 45.27, 19.9);
 
 
 
@@ -26,7 +26,7 @@ insert into checkup(name, description, type, duration, price, unapred_definisan,
 insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja, prva_prijava) values ('Sajlovo1', 'Aleksandar', 'Kosic', 'sickokralj4@gmail.com', '$2a$10$PckbyvdiGuU9H9HIzQT8nuMX/n30JwNMCmH/MbK6UWVQbggL55rnm', 'Kula', 'Srbija', 06139356, 0297, 'ADMINCC', true, 1, 43, 6, 1, false);
 insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja, prva_prijava) values ('detelinara1', 'Jovan', 'Jenjic', 'jovan.jenjic@gmail.com', '$2a$10$PckbyvdiGuU9H9HIzQT8nuMX/n30JwNMCmH/MbK6UWVQbggL55rnm', 'Srbija', 'Srbijaa', 069356, 02997, 'DOCTOR', true, 1,  222, 6, 1, false);
 insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja, prva_prijava) values ('naselje1', 'Aeesfleksandar', 'Kosdfsic', 'dsidsdsffckokralj4@gmail.com', '$2a$10$PckbyvdiGuU9H9HIzQT8nuMX/n30JwNMCmH/MbK6UWVQbggL55rnm', 'Kula', 'Srbija', 06, 022397, 'DOCTOR', true, 2,  279, 6, 1, false);
-insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja, prva_prijava) values ('Podbara 21', 'Vanja', 'Stanojevic', 'vaksicarina@gmail.com', '123456', 'Banjaluka', 'BIH', 0699, 011397, 'PATIENT', true, 1, 111, 6, 1, false);
+insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja, prva_prijava) values ('Podbara 21', 'Vanja', 'Stanojevic', 'vaksicarina@gmail.com', '$2a$10$PckbyvdiGuU9H9HIzQT8nuMX/n30JwNMCmH/MbK6UWVQbggL55rnm', 'Banjaluka', 'BIH', 0699, 011397, 'PATIENT', true, 1, 111, 6, 1, false);
 insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja, prva_prijava) values ('Sajmise 33', 'Nikolina', 'Ivankovic', 'nikolinaiv07@gmail.com', '654321', 'Zvornik', 'ReoSrpsa', 0655, 022337, 'PATIENT', true, 2, 450, 6, 1, false);
 insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja, prva_prijava) values ('Liman 33', 'Stefan', 'Pejakovic', 'pejak021@gmail.com', '22322', 'Mrkonjic', 'SrpskaRep', 0622, 121221, 'PATIENT', true, 3, 78, 6, 1, false);
 insert into users (address, first_name, last_name, email, password, city, country, phone_number, user_id, role, enabled, clinic_id, likes, ocena, br_puta_ocenjivanja, prva_prijava) values ('Ruma', 'MMilos', 'Milos', 'milos@gmail.com', '$2a$10$PckbyvdiGuU9H9HIzQT8nuMX/n30JwNMCmH/MbK6UWVQbggL55rnm', 'Srbija', 'Srbijaa', 111, 22, 'DOCTOR', true, 1,  12, 9, 1, false);
@@ -55,7 +55,11 @@ insert into sick (name, description, sick_number, checkup_id) values ('', '', 0,
 insert into sick (name, description, sick_number, checkup_id) values ('Prehlada', 'Obicna', 1818, 1);
 insert into sick (name, description, sick_number, checkup_id) values ('Dijabetes', 'Nizak rizik', 2929, 2);
 insert into sick (name, description, sick_number, checkup_id) values ('Visok pritisak', '140/80', 3737, 3);
-insert into sick (name, description, sick_number, checkup_id) values ('Uvecanje prostate', 'ses', 4646, 4);
+insert into sick (name, description, sick_number, checkup_id) values ('Upala grla', 'ses', 5555, 4);
+insert into sick (name, description, sick_number, checkup_id) values ('Uapala uva', 'Upala srednjeg uva', 6565, 5);
+insert into sick (name, description, sick_number, checkup_id) values ('Glavobolja', 'Migrena na promenu vremena', 8298, 6);
+insert into sick (name, description, sick_number, checkup_id) values ('Posekotina', 'Mala posekotina', 7198, 7);
+
 
 insert into visit (name, description, date_time) values ('Poseta1', 'Poslovna poseta', '2019-5-16');
 insert into visit (name, description, date_time) values ('Poseta2', 'Porodicna poseta', '2019-3-15');
@@ -66,7 +70,7 @@ insert into recipe (name) values ('Recept2');
 
 insert into medicine (name, recipe_id) values ('', 1);
 insert into medicine (name, recipe_id) values ('Defrinol', 1);
-insert into medicine (name, recipe_id) values ('Promazepan', 1);
+insert into medicine (name, recipe_id) values ('Bromazepan', 1);
 insert into medicine (name, recipe_id) values ('Amoksicilin', 1);
 
 
@@ -78,7 +82,7 @@ DROP TABLE IF EXISTS admin_clinic_center CASCADE;
 DROP TABLE IF EXISTS doctor CASCADE;
 DROP TABLE IF EXISTS medical_sister CASCADE;
 
-alter sequence users_id_seq restart with 7;
+alter sequence users_id_seq restart with 8;
 alter sequence clinic_center_id_seq restart with 2;
 alter sequence clinic_id_seq restart with 3;
 alter sequence operation_id_seq restart with 3;

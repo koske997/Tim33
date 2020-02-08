@@ -11,7 +11,7 @@ import IzmenaPodataka from '../IzmenaPodatakaKorisnika/IzmeniPodatke';
 
 
 const initialState = {
-  pacijenti: null
+  pacijenti: null,
 }
 
 

@@ -146,6 +146,11 @@ setRedirect_2 = (e) => {
             return <Redirect to='/izvestajAdmina' />
         }
 
+        if(this.state.po === 'LEKARI')
+        {
+            return <Redirect to='/lekari' />
+        }
+
         if(this.state.po==='NOVI'){
             return <Redirect to='/unosPregleda' />;
         }
@@ -177,6 +182,7 @@ setRedirect_2 = (e) => {
                             <a className="item" onClick={(e)=>{ this.setState({po: 'TIPOVI'});}}>Tipovi pregleda</a>
                             <a className="item" onClick={(e)=>{ this.setState({po: 'ZAHTEV'});}}> Zahtevi</a>
                             <a className="item" onClick={(e)=>{ this.setState({po: 'IZVESTAJ'});}}> Izvestaj o poslovanju klinike</a>
+                            <a className="item" onClick={(e)=>{ this.setState({po: 'LEKARI'});}}> Lekari</a>
                             <a className="item" onClick={(e)=>{this.handleClick(e); this.props.vratiKorisnika(e);}}> Izmeni svoje podatke</a>
 
                         </div>
