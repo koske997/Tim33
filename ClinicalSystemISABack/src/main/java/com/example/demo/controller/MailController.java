@@ -75,7 +75,28 @@ public class MailController {
     }
 
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(value = "/mailDoktora")
+    public ResponseEntity<?> mailDoktora(@RequestBody MailView mailView){
 
+        Mail mail = new Mail();
+        mail.setMailFrom(mailView.getMailFrom());
+
+        String datum = mailView.getDodatak();
+        datum = datum.replaceAll("-","/");
+        datum = datum.replaceAll("T"," ");
+        datum = datum.replaceAll("Z"," ");
+        datum = datum.substring(0, datum.length()-8);
+
+        mail.setMailTo("koske.koske035@gmail.com");
+        mail.setMailSubject("Zahtev za "+mailView.getMailTo()+" od "+mailView.getMailFrom());
+        mail.setMailContent("Zelelo bih da zakazem "+mailView.getMailTo()+" pregled. Za datum: "+datum);
+        MailService mailService = DemoApplication.getCtx();
+        mailService.sendMail(mail);
+
+        return  new ResponseEntity<>(HttpStatus.CREATED);
+
+    }
 
 
 

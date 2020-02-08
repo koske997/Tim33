@@ -103,6 +103,11 @@ setRedirect2 = () => {
       if(this.state.odabir==='PRETRAGA'){
         return <Redirect to='/pretragaKlinika' /> 
       }
+
+      if(this.state.odabir==='IZLOGUJ'){
+        sessionStorage.clear();
+        return <Redirect to='/login'/>
+    }
       
   }
 
@@ -116,6 +121,7 @@ renderPrijavljenogPacijenta = () => {
                             <a className="item" onClick={(e) => {this.setState({odabir: 'KLINIKE'});}}> Klinike</a>
                             <a className="item" onClick={(e) => {this.setState({ odabir: 'PROFIL'});}}>Profil</a>
                             <a className="item" onClick={(e) => {this.setState({odabir: 'PRETRAGA'});}}> Pretrazi klinike</a>
+                            <a className="item" onClick={(e) => {this.setState({odabir: 'IZLOGUJ'});}}>Izloguj se</a>
                         </div>
                     </div>
               {this.renderKorisnika()}

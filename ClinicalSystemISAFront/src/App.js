@@ -21,15 +21,11 @@ import ZakazivanjePregleda from './containers/Home page/Pacijenti/ZakazivanjePre
 import IzvestajAdmina from './containers/Home page/AKlinike/IzvestajAdmina';
 import PrvaPrijava from './containers/Home page/PrvaPrijava/PrvaPrijava';
 import ProfilKlinike from './containers/Home page/Pacijenti/ProfilKlinike';
-
-
-
-
 import PretragaPacijenata from './containers/Home page/Doktori/PretragaPacijenata/PretragaPacijenata';
 import ProfilPacijenta from './containers/Home page/Doktori/PretragaPacijenata/ProfilPacijenta';
 import DetaljiPregleda from './containers/Home page/Doktori/PretragaPacijenata/DetaljiPregleda';
 import PretragaLekaraKlinike from './containers/Home page/Pacijenti/PretragaLekaraKlinike';
-
+import './App.css';
 
 
 
@@ -37,7 +33,7 @@ import PretragaLekaraKlinike from './containers/Home page/Pacijenti/PretragaLeka
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="slika">
         <Switch>
           <Route path="/" exact component={Layout} />
           <Route path="/orders" component={Orders} />

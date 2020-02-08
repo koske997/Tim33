@@ -216,6 +216,28 @@ export const unosPregleda = (podaci) => {
     };
 };
 
+export const rezervisiSalu2 = (id, idSale, datum) =>{
+    return dispatch => {
+        const authData = {
+            id: id,
+            idSale: idSale,
+            datum: datum
+        };
+
+        const url = '/rezervisiSalu';
+
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+        }).catch(err => {
+            console.log(err);
+        });
+
+
+    };
+};
+
+
 export const rezervisiSalu = (id, idSale, datum) => {
     return dispatch => {
         const authData = {
@@ -238,6 +260,32 @@ export const rezervisiSalu = (id, idSale, datum) => {
 }; 
 
 
+export const podesiPregled = (naziv, opis, tip, sala, lekar, cena, datumVreme, trajanje) => {
+    return dispatch => {
+        const authData = {
+            naziv: naziv,
+            opis: opis,
+            tip: tip,
+            sala: sala,
+            lekar: lekar,
+            cena: cena,
+            datumVreme: datumVreme,
+            trajanje: trajanje,
+            returnSecureToken: true
+        };
+        const url = '/podesiPregled';
+
+         axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+        })
+        .catch(err => {
+             console.log(err);
+        });
+
+    };
+
+}; 
 
 
 export const zakaziPregled = (naziv, opis, tip, sala, lekar, cena, datumVreme, trajanje) => {
@@ -344,6 +392,33 @@ export const slanjePotvrdnogMaila = (mailFrom, mailTo, dodatak) => {
         .then(response => {
             console.log(response);
             dispatch(sacuvajOdgovorPotvrde(response.status));
+        }).catch(err => {
+                console.log(err);
+        });
+
+    };
+};
+
+export const sacuvajDoktorovMail = (odg) => {
+    return {
+        type: actionTypes.SACUVAJ_ODGOVOR_DOKTORA,
+        odgovor3: odg
+    }
+}
+
+export const slanjeDoktorovogMaila = (mailFrom, mailTo, dodatak) => {
+    return dispatch => {
+        const authData = {
+            mailFrom: mailFrom,
+            mailTo: mailTo,
+            dodatak: dodatak
+        };
+        const url = '/mailDoktora';
+
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+            dispatch(sacuvajDoktorovMail(response.status));
         }).catch(err => {
                 console.log(err);
         });

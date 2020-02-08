@@ -17,9 +17,7 @@ class Layout extends Component {
         }
     }
     
-      componentDidMount() {
-        this.props.prijavljen_korisnik();
-      }
+     
     
       prvaPrijava(){
         console.log('???????');
@@ -78,6 +76,38 @@ class Layout extends Component {
         this.props.history.push("/medSestra");
     }
 
+    componentDidMount(){
+        this.props.prijavljen_korisnik();
+    }
+
+    
+
+
+    proveriRedirect(){
+        if(this.props.prijavljenKorisnik!=null){
+            console.log('LOGOVAN JEEE');
+            console.log(this.props.prijavljenKorisnik.role);
+            if(this.props.prijavljenKorisnik.role==='ADMINCC'){
+                return <Redirect to='/adminKlinike' />;
+            }
+
+            if(this.props.prijavljenKorisnik.role==='DOCTOR'){
+                return <Redirect to='/doktor' />;
+            }
+
+            if(this.props.prijavljenKorisnik.role==='PATIENT'){
+                return <Redirect to='/pacijenti' />;
+            }
+            
+            if(this.props.prijavljenKorisnik.role==='NURSE'){
+                return <Redirect to='/medSestra' />;
+            }
+
+
+
+        }
+    }
+
     render() {
         let redirect = null;
         if (this.props.added) {
@@ -96,14 +126,15 @@ class Layout extends Component {
                 <input className={classes.Input}
                     onChange={(event) => this.inputChangehandler(event, 'title')}/>
                 <button onClick={(event) => this.objectHandler(event)} className={classes.Button}>Apply</button> */}
-
+               
                 <div className='ui three item menu'>
                     {this.prvaPrijava()}
-                    {!this.props.logged ? (<button className={classes.Button} onClick={this.registerHandler}>Register</button>) : null}
+                    {this.proveriRedirect()}
+                    {!this.props.logged ? (<button className="ui primary button" onClick={this.registerHandler}>Register</button>) : null}
 
-                    {!this.props.logged ? (<button className={classes.Button} onClick={this.loginHandler}>Login</button>) : null}
+                    {!this.props.logged ? (<button className="ui primary button" onClick={this.loginHandler}>Login</button>) : null}
                     
-                    {!this.props.logged ? (<button className={classes.Button} onClick={this.homepage}>Home page</button>) : null}
+                 {/* {!this.props.logged ? (<button className={classes.Button} onClick={this.homepage}>Home page</button>) : null}
 
                     {!this.props.logged ? (<button className={classes.Button} onClick={this.pacijenti}>Pacijenti</button>) : null}
 
@@ -112,10 +143,10 @@ class Layout extends Component {
                     {!this.props.logged ? (<button className={classes.Button} onClick={this.adminKlinike}>Admin klinike</button>) : null}
 
                     {!this.props.logged ? (<button className={classes.Button} onClick={this.medSestra}>Medicinska Sestra</button>) : null}
-
+ */}   
 
                 </div>
-
+               
                 
 
                 {redirect}

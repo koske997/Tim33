@@ -16,10 +16,15 @@ class Login extends Component {
         },
     }
 
+    componentDidMount(){
+        sessionStorage.clear();
+    }
+
     loginHandler = (event) => {
         event.preventDefault();
         this.props.onLogin(this.state.auth.email, this.state.auth.password);
         this.props.prijavljen_korisnik();
+
         this.props.history.push("");
     }
 
@@ -34,21 +39,23 @@ class Login extends Component {
     render() {
         return (
             <div>
+                
                 <label className="ui input">Email:</label>
-                <br />
-                <input type="email" className="ui input"
-                    onChange={(event) => this.inputChangeHandler(event, 'email')} />
-                    <br />
+                <br/>
+                <input type="email" className="ui input" onChange={(event) => this.inputChangeHandler(event, 'email')} />
+                   
+                <br/>
+                
                 <label className="ui input">Sifra:</label>
-                <br />
-
-                <input type="password" className="ui input" 
-                    onChange={(event) => this.inputChangeHandler(event, 'password')} />
-                                    <br />
-
+                <br/>
+                <input type="password" className="ui input" onChange={(event) => this.inputChangeHandler(event, 'password')} />
+                                   
+                 <br/>
+                 
                 <button className="ui button" 
                     onClick={(event) => {this.loginHandler(event)}}
                 >Log in</button>
+                
             </div>
         );
     }

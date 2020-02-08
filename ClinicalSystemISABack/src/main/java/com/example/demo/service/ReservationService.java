@@ -35,6 +35,21 @@ public class ReservationService {
         return  r;
     }
 
+    public Reservation save2(ReservationView reservationView){
+
+        String datum = reservationView.getDatum();
+        datum = datum.replaceAll("-","/");
+        datum = datum.replaceAll("T"," ");
+        datum = datum.replaceAll("Z"," ");
+        datum = datum.substring(0, datum.length()-8);
+
+        Reservation r = Reservation.builder().idSale(reservationView.getIdSale()).datum(datum).build();
+        this.reservationRepository.save(r);
+
+        return  r;
+    }
+
+
 
 
 }

@@ -70,6 +70,11 @@ class MedicinskaSestra extends React.Component {
             return <div className="ui success message"><div className="header">Zahtev poslat!</div><p>Vas zahtev je uspesno poslat administratoru klinike.</p></div>
         }
 
+        if(this.state.po==='IZLOGUJ'){
+            sessionStorage.clear();
+            return <Redirect to='/login'/>
+        }
+
     }
 
     funZaMail = (podaci) => {
@@ -100,6 +105,7 @@ class MedicinskaSestra extends React.Component {
                             <a className="item" onClick={(e)=>{ this.setState({po: 'SESTRA'});}}>Profil</a>
                             <a className="item"> Overa recepta</a>
                             <a className="item" onClick={(e)=>{this.setState({po: 'KALENDAR'});}}> Radni Kalendar</a>
+                            <a className="item" onClick={(e)=>{this.setState({po: 'IZLOGUJ'});}}>Izloguj se</a>
                         </div>
                     </div>
                     <div style={{ float: "right"}}> 

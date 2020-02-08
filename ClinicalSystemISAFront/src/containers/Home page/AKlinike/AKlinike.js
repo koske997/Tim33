@@ -127,7 +127,7 @@ setRedirect_2 = (e) => {
         }
 
         if(this.state.po==='OSVEZI' && this.props.odgovor2==201){
-            return <div>{this.renderZahteva()}</div>
+            return <div className="ui success message"><div className="header">Odgovor poslat!</div><p>Vas odgovor je uspesno poslat na odrediste.</p></div>
         }
 
         if(this.state.po==='OSVEZI' && this.props.odgovor2!=201){
@@ -158,6 +158,10 @@ setRedirect_2 = (e) => {
             return <Sala vraceno={this.renderSala} sale={this.props.sale} datum={this.state.zapamcenidatum}/>;
         }
 
+        if(this.state.po==='IZLOGUJ'){
+            sessionStorage.clear();
+            return <Redirect to='/login'/>
+        }
 
         if(this.state.po==='IZMENA'){
             this.setState({
@@ -178,7 +182,7 @@ setRedirect_2 = (e) => {
                             <a className="item" onClick={(e)=>{ this.setState({po: 'ZAHTEV'});}}> Zahtevi</a>
                             <a className="item" onClick={(e)=>{ this.setState({po: 'IZVESTAJ'});}}> Izvestaj o poslovanju klinike</a>
                             <a className="item" onClick={(e)=>{this.handleClick(e); this.props.vratiKorisnika(e);}}> Izmeni svoje podatke</a>
-
+                            <a className="item" onClick={(e)=>{ this.setState({po: 'IZLOGUJ'});}}> Izloguj se</a>
                         </div>
                     </div>
                     <div style={{ float: "right"}}> 

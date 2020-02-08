@@ -3,6 +3,8 @@ import * as actions from '../../../store/actions/index';
 import {connect} from 'react-redux';
 import PretragaKlinika from './PretragaKlinika/PretragaKlinika';
 import {Redirect} from 'react-router-dom';
+import { Button, Header, Image, Modal } from 'semantic-ui-react';
+import Zakazivanje from './Zakazivanje';
 
 
 
@@ -10,7 +12,10 @@ class ListaUnapredDefinisanihLekova extends React.Component {
 
     state ={
         selectedKlinika: [],
+        po: '',
         redirectProfilKlinike: false,
+        openModal: false,
+        zapamceniId: null
     };
 
     handleClick = id => {
@@ -26,8 +31,24 @@ class ListaUnapredDefinisanihLekova extends React.Component {
         this.setState({redirectProfilKlinike: true});
     }
 
+    componentDidMount(){
+        this.props.prikazi_prijavljenKorisnik();
+    }
 
-   
+    zakazi(id){
+        this.setState({openModal: true, zapamceniId: id});
+    }
+
+    konacno = () => {
+        this.setState({openModal: false});
+        console.log('HOCE DA ZAKAZE!!');
+        this.props.podesi('', '', this.state.zapamceniId, this.props.prijavljenKorisnik.id, '', '', '', '');
+    }
+
+    closeModal = () => {
+        console.log('USO U FJU');
+        this.setState({openModal: false});
+    }
     
     renderUnapredPregleda = () => {
         
@@ -40,8 +61,9 @@ class ListaUnapredDefinisanihLekova extends React.Component {
         return pregledi.map((pregled) => {    
             if (pregled.unapred === true)
             {
-            return (          
-                <div className="ui link cards">
+            return (       
+                   
+                <div className="ui link cards" onClick={e =>{this.zakazi(pregled.id);}}>
                     <div className="card" >
                         
                     <div className="content">
@@ -61,7 +83,9 @@ class ListaUnapredDefinisanihLekova extends React.Component {
                         </span>
                     </div>
                     </div>
+                    
                 </div>
+                
             ); 
             }
         });
@@ -71,18 +95,27 @@ class ListaUnapredDefinisanihLekova extends React.Component {
     render() {
         return (
             <div>
+                <Zakazivanje openModal={this.state.openModal}  closeModall={this.closeModal} hoce={this.konacno}/>
                 {this.renderUnapredPregleda()}
             </div>
         );
     }
 
 }
-  
-  const mapDispatchToProps = dispatch => {
+const mapStateToProps = state => {
+    console.log(state.auth);
     return {
-       sacuvaj_kliniku_profila: (klinikaProfila) => dispatch(actions.sacuvajKlinikuProfila(klinikaProfila)),
-
+        prijavljenKorisnik: state.auth.prijavljenKorisnik
     }
   }
   
-  export default connect(null, mapDispatchToProps)(ListaUnapredDefinisanihLekova);
+
+  const mapDispatchToProps = dispatch => {
+    return {
+       sacuvaj_kliniku_profila: (klinikaProfila) => dispatch(actions.sacuvajKlinikuProfila(klinikaProfila)),
+       podesi: (naziv, opis, tip, sala, lekar, cena, datumVreme, trajanje) => dispatch(actions.podesiPregled(naziv, opis, tip, sala, lekar, cena, datumVreme, trajanje)),
+       prikazi_prijavljenKorisnik: () => dispatch(actions.prijavljenKorisnik())
+    }
+  }
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(ListaUnapredDefinisanihLekova);

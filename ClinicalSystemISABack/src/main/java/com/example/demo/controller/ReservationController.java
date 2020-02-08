@@ -3,8 +3,10 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Request;
 import com.example.demo.model.Reservation;
+import com.example.demo.model.Room;
 import com.example.demo.service.RequestService;
 import com.example.demo.service.ReservationService;
+import com.example.demo.service.RoomService;
 import com.example.demo.view.ReservationView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +27,9 @@ public class ReservationController {
     @Autowired
     private RequestService requestService;
 
+    @Autowired
+    private RoomService roomService;
+
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/rezervisi")
     public ResponseEntity<?> rezervisi(@RequestBody ReservationView reservationView){
@@ -38,18 +43,27 @@ public class ReservationController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(value = "/rezervisiSalu")
+    public ResponseEntity<?> rezervisiSalu(@RequestBody ReservationView reservationView){
+
+        Room sala = this.roomService.findOneByENumber(Integer.parseInt(reservationView.getIdSale()));
+        reservationView.setIdSale(""+sala.getId());
+
+       this.reservationService.save2(reservationView);
+
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/traziRezercavije")
     public ResponseEntity<?> traziRezercavije(@RequestBody ReservationView reservationView){
         //SAMO PO DATUMU CU
         //AKO NADJE BAR JEDAN, TO JE TO NEMERE
         Boolean moze = true;
         List<Reservation> rez = this.reservationService.findAll();
-        System.out.println("SICKOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
         for(Reservation r: rez){
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!OVDJEEEE VAKOOOOO DATUM "+r.getDatum()+" je poredio sa "+reservationView.getDatum());
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!OVDJEEEE VAKOOOOO IDJEVI "+r.getIdSale()+" je poredio sa "+reservationView.getIdSale());
             if(r.getDatum().equals(reservationView.getDatum()) && r.getIdSale().equals(reservationView.getIdSale())){
-                System.out.println("FOLSUJE GAAA");
                 moze=false;
                 break;
             }

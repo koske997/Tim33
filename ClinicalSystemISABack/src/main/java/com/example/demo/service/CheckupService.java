@@ -115,6 +115,10 @@ public class CheckupService {
     }
 
 
+    public void modifikuj(Checkup checkup){
+        this.checkupRepository.save(checkup);
+    }
+
     public void remove(Long id) {
         this.checkupRepository.deleteById(id);
     }
