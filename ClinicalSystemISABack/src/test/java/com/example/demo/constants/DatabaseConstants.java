@@ -17,8 +17,15 @@ public class DatabaseConstants {
     public static final int LAJKOVI_KLINIKE = 78;
     public static final String TIP_PREGLEDA = "Sistematski";
 
+
     public static final int ID_SALE = 1;
 
+    public static final int ID_UNAPRED_DEF = 8;
 
+
+    public static final String  DB_DATUM_SKRACEN = "2020/2/";
+    public static final String GRAD_KLINIKE2 = "nov";
+    public static final String NAZIV_KLINIKE2 = "";
+    public static final String GRAD_PRETRAGA = "Novi Sad";
 
 }
