@@ -42,7 +42,6 @@ insert into medical_record (user_id) values (6);
 
 
 
-
 insert into operation (description, date_time, duration_hours) values ('Transplatacija bubrega', '2019-9-8', 7);
 insert into operation (description, date_time, duration_hours) values ('Transplatacija srca', '2019-3-25', 12);
 
