@@ -18,7 +18,7 @@ insert into checkup(name, description, type, duration, price, unapred_definisan,
 insert into checkup(name, description, type, duration, price, unapred_definisan, id_lekara, id_pacijenta, ocenjena_klinika, ocenjen_lekar, date_time) values ('Pregled 5', 'A', 'Stomatoloski', 1, 1000, false, 3, 4, false, false, '2020-02-10T16:25:52.000Z');
 insert into checkup(name, description, type, duration, price, unapred_definisan, id_lekara, id_pacijenta, ocenjena_klinika, ocenjen_lekar, date_time) values ('Pregled 6', 'B', 'Stomatoloski', 2, 0, false, 2, 4, false, false, '2020-02-11T16:25:52.000Z');
 insert into checkup(name, description, type, duration, price, unapred_definisan, id_lekara, id_pacijenta, ocenjena_klinika, ocenjen_lekar, date_time) values ('Pregled 7', 'C', 'Stomatoloski', 1, 1200, false, 2, 4, false, false, '2020-02-20T16:25:52.000Z');
-insert into checkup(name, description, type, duration, price, unapred_definisan, id_lekara, id_pacijenta, ocenjena_klinika, ocenjen_lekar, date_time) values ('Pregled 8', 'D', 'Stomatoloski', 2, 1000, false, 2, 4, false, false, '2020-02-06T16:25:52.000Z');
+insert into checkup(name, description, type, duration, price, unapred_definisan, id_lekara, id_pacijenta, ocenjena_klinika, ocenjen_lekar, date_time) values ('Pregled 8', 'D', 'Stomatoloski', 2, 1000, true, 2, 0, false, false, '2020-02-06T16:25:52.000Z');
 
 
 

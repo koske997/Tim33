@@ -1,6 +1,5 @@
 insert into clinic_center (name) values ('Klinicki Centar VNS');
 
-
 insert into clinic (name, clinic_center_id, city, picture, likes, ocena, br_puta_ocenjivanja, x, y, address) values ('dr Jovan Jovanovic Zmaj', 1, 'Novi Sad', '/images/kc1.jpg', 32, 5, 1, 45.26, 19.87, 'Puskinova 32');
 insert into clinic (name, clinic_center_id, city, picture, likes, ocena, br_puta_ocenjivanja, x, y, address) values ('Dragisa Misovic', 1, 'Beograd', '/images/kc2.jpg', 79, 7, 1, 45.25, 19.82, 'Tolstojeva 21');
 insert into clinic (name, clinic_center_id, city, picture, likes, ocena, br_puta_ocenjivanja, x, y, address) values ('Milutin Milankovic', 1, 'Nis', '/images/kc3.jpg', 121, 9, 1, 45.27, 19.9, 'Ilije Ognjanovica 34');
@@ -19,7 +18,7 @@ insert into checkup(name, description, type, duration, price, unapred_definisan,
 insert into checkup(name, description, type, duration, price, unapred_definisan, id_lekara, id_pacijenta, ocenjena_klinika, ocenjen_lekar, date_time) values ('Pregled 5', 'A', 'Stomatoloski', 1, 1000, false, 3, 4, false, false, '2020-02-10T16:25:52.000Z');
 insert into checkup(name, description, type, duration, price, unapred_definisan, id_lekara, id_pacijenta, ocenjena_klinika, ocenjen_lekar, date_time) values ('Pregled 6', 'B', 'Stomatoloski', 2, 0, false, 2, 4, false, false, '2020-02-11T16:25:52.000Z');
 insert into checkup(name, description, type, duration, price, unapred_definisan, id_lekara, id_pacijenta, ocenjena_klinika, ocenjen_lekar, date_time) values ('Pregled 7', 'C', 'Stomatoloski', 1, 1200, false, 2, 4, false, false, '2020-02-20T16:25:52.000Z');
-insert into checkup(name, description, type, duration, price, unapred_definisan, id_lekara, id_pacijenta, ocenjena_klinika, ocenjen_lekar, date_time) values ('Pregled 8', 'D', 'Stomatoloski', 2, 1000, false, 2, 4, false, false, '2020-02-06T16:25:52.000Z');
+insert into checkup(name, description, type, duration, price, unapred_definisan, id_lekara, id_pacijenta, ocenjena_klinika, ocenjen_lekar, date_time) values ('Pregled 8', 'D', 'Stomatoloski', 2, 1000, true, 2, 0, false, false, '2020-02-06T16:25:52.000Z');
 
 
 

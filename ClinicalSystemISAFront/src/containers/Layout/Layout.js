@@ -90,6 +90,11 @@ class Layout extends Component {
         if(this.props.prijavljenKorisnik  !== null && this.props.prijavljenKorisnik !== undefined){
             console.log('LOGOVAN JEEE');
             console.log(this.props.prijavljenKorisnik.role);
+
+            if(this.props.prijavljenKorisnik.prvaPrijava === true){
+                return <Redirect to='/prvaPrijava'/>;
+            }
+
             if(this.props.prijavljenKorisnik.role==='ADMINCC'){
                 return <Redirect to='/adminKlinike' />;
 
@@ -112,7 +117,6 @@ class Layout extends Component {
     render() { 
         return (         
                 <div className='ui three item menu'>
-                    {this.prvaPrijava()}
                     {this.proveriRedirect()}
                     <button className="ui primary button" onClick={this.registerHandler}>Register</button>
 
