@@ -56,29 +56,32 @@ import ListaPacijenata from '../ListaPacijenata';class ListaPacijenata_Pretraga 
             //const slobodna = sala.free ? 'Slobodna' : 'Zauzeta';
     
             return (
-                <div class="ui three column grid">
-                    <div className="column">
-                        <div className="ui fluid card" key={pacijent.id} id={pacijent.id} onClick={(e) => {this.handleClick(pacijent.id)}}> 
-                            <div className="image">
-                                <Image
-                                    src='https://react.semantic-ui.com/images/avatar/large/steve.jpg'
-                                />
-                            </div>
-                            <div className="content">
-                                <a className="header">{pacijent.firstName} {pacijent.lastName}</a>
-                            </div>
-                            <div class="meta">
-                                <span class="date">{pacijent.role}</span>
-                            </div>
-                            <div class="extra content">
-                                <a>
-                                <i class="user icon"></i>
-                                ID Patient : {parseInt(pacijent.id)}
-                                </a>
-                            </div>
-                        </div>
+                <div className="ui link cards">
+                <div className="card" key={pacijent.id} id={pacijent.id} onClick={(e) => {this.handleClick(pacijent.id)}}>
+                    <div className="image">
+                        <img alt="da" src="https://react.semantic-ui.com/images/avatar/large/matthew.png"/>
+                    </div>
+                <div className="content">
+                    <div className="header">{pacijent.firstName} {pacijent.lastName}</div>
+                    <div className="meta">
+                        <a>{pacijent.role}</a>
+                    </div>
+                    <div className="description">
+                        {pacijent.address}, {pacijent.city}, {pacijent.country} 
                     </div>
                 </div>
+                <div className="extra content">
+                    <span className="right floated">
+                    {pacijent.phoneNumber}
+                    </span>
+                    <span>
+                        <i className="user icon"></i>
+                        {pacijent.username}
+                    </span>
+                </div>
+                </div>
+            </div>
+                  
             );
             
         });

@@ -94,6 +94,22 @@ class MedicinskaSestra extends React.Component {
       this.setState({po: pod});
     }
 
+
+    prijavljenJeKo() {
+        if (this.props.prijavljenKorisnik !== null && this.props.prijavljenKorisnik !== undefined)
+        {
+          console.log('AAAAAAAAAAAAAAA')
+          if ( this.props.prijavljenKorisnik.role === 'DOCTOR')
+            return <Redirect to="/doktor" />;
+  
+          if( this.props.prijavljenKorisnik.role === 'PATIENT')
+            return <Redirect to="/pacijenti" />
+  
+          if( this.props.prijavljenKorisnik.role === 'ADMINC')
+            return <Redirect to="/adminKlinike" />
+        }
+    }
+
     renderComponent(){
         if(this.props.korisnik!=null){
             return (
@@ -130,12 +146,11 @@ class MedicinskaSestra extends React.Component {
     }
 
     render(){
-        console.log('RENDER');
-        console.log(this.props.korisnik);
-        console.log(this.props.pacijenti);
-        console.log(this.props.pacijentisort);
         return (
-            <div> {this.renderComponent()}</div>
+            <div> 
+                {this.renderComponent()}
+                {this.prijavljenJeKo()}
+            </div>
         );
     }
 

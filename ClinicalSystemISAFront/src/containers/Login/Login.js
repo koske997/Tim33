@@ -16,18 +16,20 @@ class Login extends Component {
             email: '',
             password: ''
         },
+        moze: false,
     }
 
     componentDidMount(){
         sessionStorage.clear();
+
+        this.props.obrisi_prijavljenog();
     }
 
     loginHandler = (event) => {
         event.preventDefault();
         this.props.onLogin(this.state.auth.email, this.state.auth.password);
-        this.props.prijavljen_korisnik();
 
-        this.props.history.push("");
+        this.props.history.push("/novi");
     }
 
     inputChangeHandler = (event, type) => {
@@ -38,10 +40,19 @@ class Login extends Component {
         this.setState({auth: updatedObject});
     }
 
+    redirectRegister(){
+        if (this.state.moze)
+        {
+            console.log('Udjes li?')
+            return <Redirect to="/register" />;
+        }
+    }
+
     render() {
         return (
 
             <div  style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            {this.redirectRegister()}
             <div className="ui form">
                 <h2>Logovanje</h2>
                 <div className="field">
@@ -59,6 +70,9 @@ class Login extends Component {
                 <Button className="ui button" 
                     onClick={(event) => {this.loginHandler(event)}}
                 >Log in</Button>
+                <Button className="ui button" 
+                    onClick={() => {this.setState({moze: true})}}
+                >Register</Button>
             </div>
             </div>
         );
@@ -75,7 +89,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onLogin: (email, password) => dispatch(actions.login(email, password)),
-        prijavljen_korisnik: () => dispatch(actions.prijavljenKorisnik()),
+
+        obrisi_prijavljenog: () => dispatch(actions.obrisiPrijavljenog()),
     }
 };
 

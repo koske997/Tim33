@@ -13,6 +13,8 @@ class Popup extends React.Component{
         name: '',
     };
 
+    
+
     componentDidUpdate(prevProps) {
         const oldId = get(prevProps, 'tip.id');
         const newId = get(this.props, 'tip.id');
@@ -24,11 +26,6 @@ class Popup extends React.Component{
         }
     }
 
-    /**
-     * JSDOC kucaj na netu!
-     * Handler za izmenu sobe!
-     * @param {object} e - event object `triggered` when user input value.
-     */
     handleImeTipa = (e) => {
         this.setState({
             name: e.target.value,
@@ -36,17 +33,58 @@ class Popup extends React.Component{
     };
 
     handleIzmena = () => {
+        console.log(this.props);
         const izmena = {
             id: this.props.tip.id,
             ime: this.state.name,
         };
+        let pom = 0;
 
-        this.props.izmeniTipPregleda(izmena);
-
-       /* if (izmena.slobodna === true)
-            this.props.izmeniSalu(izmena);
+        if ( this.props.pregledi !== null && this.props.pregledi !== undefined)
+        {
+            for (let i=0; i<this.props.pregledi.length; i++)
+            {
+                if (this.props.pregledi[i].type === this.props.tip.name && this.props.pregledi[i].unapred === true)
+                {
+                    pom = 1;
+                }
+            }
+        }
+        if (pom === 1)
+        {
+            alert('Ne mozete izmeniti ovaj tip, postoji zakazan pregled.');
+        }
         else
-            alert('Zauzeta sala ne moze da se menja');*/
+        {
+            this.props.izmeniTipPregleda(izmena);
+        }
+    }
+
+    handleBrisanje = () => {
+        console.log(this.props);
+        const brisanje = {
+            id: this.props.tip.id,
+        };
+        let pom = 0;
+
+        if ( this.props.pregledi !== null && this.props.pregledi !== undefined)
+        {
+            for (let i=0; i<this.props.pregledi.length; i++)
+            {
+                if (this.props.pregledi[i].type === this.props.tip.name && this.props.pregledi[i].unapred === true)
+                {
+                    pom = 1;
+                }
+            }
+        }
+        if (pom === 1)
+        {
+            alert('Ne mozete obrisati ovaj tip, postoji zakazan pregled.');
+        }
+        else
+        {
+            this.props.obrisi_tip(brisanje);
+        }
     }
 
     render() {
@@ -62,7 +100,7 @@ class Popup extends React.Component{
                 <input type="text" value={this.state.name} onChange={this.handleImeTipa} ></input>
               </Modal.Description>
               <Button onClick={() => this.handleIzmena()} >Izmeni</Button>
-              <Button >Obrisi</Button>
+              <Button onClick={() => this.handleBrisanje()} >Obrisi</Button>
               <Button onClick={() => closeModal()} >Izadji</Button>
 
             </Modal.Content>
@@ -78,7 +116,13 @@ class ListaTipovaPregledaa extends React.Component {
     state ={
         selectedTip: undefined,
         openModal: false,
+        pregledi: null,
+
     };
+
+    componentDidMount(){
+        this.props.svi_pregledi();
+    }
 
     handleClick = id => {
         const { tipoviPregleda = [] } = this.props;
@@ -121,19 +165,29 @@ class ListaTipovaPregledaa extends React.Component {
     render() {
         return (
             <div>
-                <Popup tip={this.state.selectedTip} openModal={this.state.openModal} closeModal={this.closeModal} izmeniTipPregleda={this.props.izmeniTipPregleda} /> 
+                <Popup obrisi_tip={this.props.obrisi_tip} pregledi={this.props.pregledi} tip={this.state.selectedTip} openModal={this.state.openModal} closeModal={this.closeModal} izmeniTipPregleda={this.props.izmeniTipPregleda} /> 
                 {this.renderTipa()}
             </div>
         );
     }
 }
 
+const mapStateToProps = state => {
+    console.log(state.auth.tipoviPregleda);
+    return {
+        pregledi: state.auth.sviPregledii,
+    }
+}
 
 const mapDispatchToProps = dispatch => {
     return {
         prikazi_sale: () => dispatch(actions.sale()),
         izmeniTipPregleda: (izmena) => dispatch(actions.izmeniTipPregleda(izmena)),
+        svi_pregledi: () => dispatch(actions.pregledi()),
+
+        obrisi_tip: (podaci) => dispatch(actions.obrisiTipPregleda(podaci)),
+
     }
 };
 
-export default connect(null, mapDispatchToProps)(ListaTipovaPregledaa);
+export default connect(mapStateToProps, mapDispatchToProps)(ListaTipovaPregledaa);

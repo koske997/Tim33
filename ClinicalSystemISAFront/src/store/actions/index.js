@@ -50,5 +50,10 @@ export {
     izmeniPregledDoktora,
     adminBriseLekara,
     unosLekara,
+    izmeniKliniku,
+    obrisiTipPregleda,
+    rezervacije,
+    sveRezervacije,
+    obrisiPrijavljenog,
 
 } from './auth';

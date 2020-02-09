@@ -28,6 +28,8 @@ class PretragaPacijenata extends React.Component {
     sviPacijenti: null,
 
     pronadjeniPacijenti: [],
+
+    nazad: false,
   }
 
 
@@ -99,43 +101,63 @@ class PretragaPacijenata extends React.Component {
         }
     }
 
+    redirectNazad(){
+        if(this.state.nazad)
+        {
+            return this.props.history.push("/doktor");
+        }
+    }
   
     renderPretragePacijenata = () => {
         console.log(this.props);
-
         return (
-            
-            <div>
-            <hr />
 
+        <div>
+            <div className="ui secondary  menu">
+                <a className="item" onClick={(e)=>{ this.setState({nazad: true})}}> NAZAD</a>
+            </div>
+            
+
+            {this.redirectNazad()}
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
             <h2>Pretraga i filtriranje pacijenata </h2>
-            <form className="ui form">
-                <div className="field">
-                    <label>Ime</label>
-                    <input type="text" placeholder="Ime"
-                    value={this.state.ime} onChange={this.handleImePacijenta} />
-                </div>
-                <div className="field">
-                    <label>Prezime</label>
-                    <input type="text"  placeholder="Prezime"
-                value={this.state.prezime} onChange={this.handlePrezimePacijenta} />
-                </div>
-                <div className="field">
-                    <label>Jedinstveni broj pacijenta</label>
-                    <input type="number" placeholder="JBP"
-                    value={this.state.brPacijenta} onChange={this.handleBrojPacijenta} />
-                </div>
-            
-                <button class="ui button" type="submit" onClick={ (e) => { this.filtrirajHandler(e); this.props.prikazi_pacijente(e)}}>Pretrazi</button>
-            </form>
+            </div>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
 
-                <div>
+                <div className="ui form">
+                    <div className="field">
+                        <label>Ime</label>
+                        <input type="text" placeholder="Ime"
+                        value={this.state.ime} onChange={this.handleImePacijenta} />
+                    </div>
+                    <div className="field">
+                        <label>Prezime</label>
+                        <input type="text"  placeholder="Prezime"
+                    value={this.state.prezime} onChange={this.handlePrezimePacijenta} />
+                    </div>
+                    <div className="field">
+                        <label>Jedinstveni broj pacijenta</label>
+                        <input type="number" placeholder="JBP"
+                        value={this.state.brPacijenta} onChange={this.handleBrojPacijenta} />
+                    </div>
+                
+                    <button class="ui button" type="submit" onClick={ (e) => { this.filtrirajHandler(e); this.props.prikazi_pacijente(e)}}>Pretrazi</button>
+                </div>
+                </div>
+                <br/>
+                <br/>
+                <br/>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                     <h3>Pronadjeni pacijenti</h3>
-
+                </div>
+                <br/>
+                <br/>
+                <br/>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                     <ListaPacijenata_Pretraga pacijenti={this.state.pronadjeniPacijenti} />
-
                 </div>
 
+                
             </div>
         );
     }

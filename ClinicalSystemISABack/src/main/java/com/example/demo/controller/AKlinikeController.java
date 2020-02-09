@@ -2,7 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.exception.ResourceConflictException;
 import com.example.demo.model.*;
-import com.example.demo.repository.UserRepository;
+import com.example.demo.repository.*;
 import com.example.demo.security.TokenUtils;
 import com.example.demo.service.*;
 
@@ -41,13 +41,25 @@ public class AKlinikeController {
     private ClinicService clinicService;
 
     @Autowired
+    private ClinicRepository clinicRepository;
+
+    @Autowired
     private CheckupService checkupService;
 
     @Autowired
     private CheckupTypeService checkupTypeService;
 
     @Autowired
+    private CheckupTypeRepository checkupTypeRepository;
+
+    @Autowired
+    private ReservationRepository reservationRepository;
+
+    @Autowired
     private RoomService roomService;
+
+    @Autowired
+    private RoomRepository roomRepository;
 
     @Autowired
     private RequestService requestService;
@@ -130,25 +142,17 @@ public class AKlinikeController {
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/izbrisiSalu")
-    public ResponseEntity<?> izbrisiSalu(@RequestBody RoomView room) {
+    public ResponseEntity<?> izbrisiSalu(@RequestBody IdView id) {
 
-        System.out.println("CCCCCCCC" + room.getBroj()+ ' '+ room.getSlobodna() + ' ' + room.getId());
+        System.out.println("--------------------------------------------------------------------");
+        System.out.println(id.getId());
 
-        this.roomService.remove(Integer.toUnsignedLong(room.getId()));
 
-        List<Room> roomList = this.roomService.findAll();
-        Room rm = new Room();
+        this.roomRepository.deleteRequest(Long.valueOf(id.getId()));
 
-        for (Room r : roomList)
-        {
-            if (r.getId() == room.getId())
-            {
-                rm = r;
-                this.roomService.delete(r);
-            }
-        }
+        Room r = new Room();
 
-        return new ResponseEntity<Room>(HttpStatus.CREATED);
+        return new ResponseEntity<Room>(r, HttpStatus.CREATED);
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
@@ -218,7 +222,56 @@ public class AKlinikeController {
 
         User saveUser = this.userService.save(user);
 
-
         return new ResponseEntity<User>(saveUser, HttpStatus.CREATED);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(value = "/izmenaKlinike")
+    public ResponseEntity<?> izmenaKlinike(@RequestBody ClinicViewModification clinic) {
+
+        System.out.println("-----------------------------------------------");
+        System.out.println(clinic.getAdresa());
+        System.out.println(clinic.getId());
+        System.out.println(clinic.getX());
+        System.out.println(clinic.getY());
+
+        Clinic c = this.clinicRepository.findOneById(Long.valueOf(clinic.getId()));
+
+        System.out.println(c.getCity());
+
+        c.setAddress(clinic.getAdresa());
+        c.setName(clinic.getName());
+        c.setX(clinic.getX());
+        c.setY(clinic.getY());
+
+        Clinic mod = this.clinicRepository.save(c);
+
+        return new ResponseEntity<>(mod, HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(value = "/obrisiTipPregleda")
+    public ResponseEntity<?> obrisiTipPregleda(@RequestBody IdView id) {
+
+        System.out.println("--------------------------------------------------------------------");
+        System.out.println(id.getId());
+
+        this.checkupTypeRepository.deleteRequest(Long.valueOf(id.getId()));
+
+        CheckupType c = new CheckupType();
+
+        return new ResponseEntity<>(c, HttpStatus.CREATED);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, path = "/sveRezervacije")
+    public ResponseEntity<?> sveRezervacije() {
+
+        System.out.println("RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
+
+        List<Reservation> rezervacije = this.reservationRepository.findAll();
+
+
+        return new ResponseEntity<>(rezervacije, HttpStatus.OK);
     }
 }

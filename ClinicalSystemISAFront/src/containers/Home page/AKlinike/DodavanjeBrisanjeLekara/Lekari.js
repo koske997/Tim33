@@ -141,6 +141,11 @@ class Lekari extends React.Component {
       if(this.state.odabir==='LEKARI'){
         return <div className="ui link cards"> {this.lekariKlinikeAdmina()} </div>;
       }
+
+      if(this.state.odabir === 'VRATI')
+        {
+            return this.props.history.push("/adminKlinike");
+        }
       
   }
 
@@ -154,6 +159,8 @@ renderModifikacijeLekara = () => {
                         <div className="ui secondary  menu">
                             <a className="item" onClick={(e) => {this.pronadjiLekareKlinikeAdministratora(e); this.setState({ odabir: 'LEKARI'});}}>Lekari klinike</a>
                             <a className="item" onClick={(e) => {this.pronadjiLekareKlinikeAdministratora(e); this.setState({odabir: 'DODAJ'});}}> Dodaj lekara</a>
+                            <a className="item" onClick={(e)=>{ this.setState({odabir: 'VRATI'})}}> NAZAD</a>
+
                         </div>
                     </div>
               {this.renderKorisnika()}

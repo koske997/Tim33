@@ -1,8 +1,8 @@
 insert into clinic_center (name) values ('Klinicki Centar VNS');
 
-insert into clinic (name, clinic_center_id, city, picture, likes, ocena, br_puta_ocenjivanja, x, y) values ('dr Jovan Jovanovic Zmaj', 1, 'Novi Sad', '/images/kc1.jpg', 32, 5, 1, 45.26, 19.87);
-insert into clinic (name, clinic_center_id, city, picture, likes, ocena, br_puta_ocenjivanja, x, y) values ('Dragisa Misovic', 1, 'Beograd', '/images/kc2.jpg', 79, 7, 1, 45.25, 19.82);
-insert into clinic (name, clinic_center_id, city, picture, likes, ocena, br_puta_ocenjivanja, x, y) values ('Milutin Milankovic', 1, 'Nis', '/images/kc3.jpg', 121, 9, 1, 45.27, 19.9);
+insert into clinic (name, clinic_center_id, city, picture, likes, ocena, br_puta_ocenjivanja, x, y, address) values ('dr Jovan Jovanovic Zmaj', 1, 'Novi Sad', '/images/kc1.jpg', 32, 5, 1, 45.26, 19.87, 'Puskinova 32');
+insert into clinic (name, clinic_center_id, city, picture, likes, ocena, br_puta_ocenjivanja, x, y, address) values ('Dragisa Misovic', 1, 'Beograd', '/images/kc2.jpg', 79, 7, 1, 45.25, 19.82, 'Tolstojeva 21');
+insert into clinic (name, clinic_center_id, city, picture, likes, ocena, br_puta_ocenjivanja, x, y, address) values ('Milutin Milankovic', 1, 'Nis', '/images/kc3.jpg', 121, 9, 1, 45.27, 19.9, 'Ilije Ognjanovica 34');
 
 
 
@@ -93,5 +93,5 @@ alter sequence medicine_id_seq restart with 4;
 alter sequence recipe_id_seq restart with 3;
 alter sequence authority_id_seq restart with 2;
 alter sequence medical_record_id_seq restart with 7;
-alter sequence checkup_type_id_seq restart with 3;
+alter sequence checkup_type_id_seq restart with 4;
 alter sequence checkup_id_seq restart with 9;

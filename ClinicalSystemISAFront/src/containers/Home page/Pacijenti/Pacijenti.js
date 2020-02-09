@@ -93,7 +93,7 @@ setRedirect2 = () => {
     renderMeni(){
       if(this.state.odabir==='PROFIL'){
         this.props.sacuvaj_pacijenta(this.props.prijavljenKorisnik);
-        return <Redirect to="profilPacijenta" />
+        return <Redirect to="/profilPacijenta" />
       }
 
       if(this.state.odabir==='KLINIKE'){
@@ -108,16 +108,29 @@ setRedirect2 = () => {
         sessionStorage.clear();
         return <Redirect to='/login'/>
     }
-      
   }
 
+  prijavljenJeKo() {
+      if (this.props.prijavljenKorisnik !== null && this.props.prijavljenKorisnik !== undefined)
+      {
+        console.log('AAAAAAAAAAAAAAA')
+        if ( this.props.prijavljenKorisnik.role === 'DOCTOR')
+          return <Redirect to="/doktor" />;
+
+        if( this.props.prijavljenKorisnik.role === 'ADMINC')
+          return <Redirect to="/adminKlinike" />
+
+        if( this.props.prijavljenKorisnik.role === 'NURSE')
+          return <Redirect to="/medSestra" />
+      }
+  }
 
 renderPrijavljenogPacijenta = () => {
       return (
           <div>
+
             <div style={{ float: "left"}}>
                         <div className="ui secondary  menu">
-                            <a className="item"> Pocetna</a>
                             <a className="item" onClick={(e) => {this.setState({odabir: 'KLINIKE'});}}> Klinike</a>
                             <a className="item" onClick={(e) => {this.setState({ odabir: 'PROFIL'});}}>Profil</a>
                             <a className="item" onClick={(e) => {this.setState({odabir: 'PRETRAGA'});}}> Pretrazi klinike</a>
@@ -131,6 +144,8 @@ renderPrijavljenogPacijenta = () => {
                 <br/>
               <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                     {this.renderMeni()}
+                    {this.prijavljenJeKo()}
+
               </div>
               {this.renderRedirect()}
       </div>
@@ -143,6 +158,7 @@ renderPrijavljenogPacijenta = () => {
         return (
           <div>
               {this.renderPrijavljenogPacijenta()}
+
           </div>
       );
     }   
@@ -150,7 +166,7 @@ renderPrijavljenogPacijenta = () => {
 }
 
 const mapStateToProps = state => {
-  console.log(state.auth.klinike);
+  console.log(state.auth);
   return {
       pacijenti: state.auth.pacijenti,
       klinike: state.auth.klinike,

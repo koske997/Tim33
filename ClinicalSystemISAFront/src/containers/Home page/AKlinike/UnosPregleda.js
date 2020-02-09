@@ -29,6 +29,8 @@ class UnosPregleda extends React.Component {
             sveKlinike: [],
             doktoriKlinike: [],
             prijavljenKorisnik: null,
+
+            nazad: false,
         }
     }
 
@@ -73,6 +75,7 @@ class UnosPregleda extends React.Component {
         else{
             this.props.unesiPregled(podaci);
             this.props.rezervisi('', podaci.sala, podaci.datumVreme);  
+            this.setState({nazad: true})
         }
             
     };
@@ -136,11 +139,26 @@ class UnosPregleda extends React.Component {
         }
     }
 
+    redirectNazad(){
+        if (this.state.nazad)
+        {
+            return this.props.history.push("/adminKlinike")
+        }
+    }
+
     render() {
         return (
+            <div>            
             <div>
-            <h2>Unos novog pregleda </h2>
+                <div className="ui secondary  menu">
+                    <a className="item" onClick={(e)=>{ this.setState({nazad: true})}}> NAZAD</a>
+                </div>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                
+            {this.redirectNazad()}
             <form className="ui form">
+            <h2>Unos novog pregleda </h2>
                 <div className="field">
                     <label>Naziv</label>
                     <input type="text" placeholder="Naziv"
@@ -200,7 +218,8 @@ class UnosPregleda extends React.Component {
                 <button class="ui button" type="submit" onClick={(event) => this.pregledHandler(event)}>Dodaj</button>
             </form>
             </div>
-           
+            </div>
+
         );
     }
 }

@@ -8,16 +8,20 @@ import {updateObject} from '../../shared/utility';
 import * as actions from '../../store/actions/index';
 
 class Layout extends Component {
+    
 
     state = {
         object: {
             name: '',
             title: '',
             prijavljenKorisnik: null,
+            pomocnaPromenjiva: ''
         }
     }
-    
-     
+
+    componentDidMount(){
+        this.props.prijavljen_korisnik();
+    }
     
       prvaPrijava(){
         console.log('???????');
@@ -76,19 +80,19 @@ class Layout extends Component {
         this.props.history.push("/medSestra");
     }
 
-    componentDidMount(){
-        this.props.prijavljen_korisnik();
-    }
+    
 
     
 
 
     proveriRedirect(){
-        if(this.props.prijavljenKorisnik!=null){
+
+        if(this.props.prijavljenKorisnik  !== null && this.props.prijavljenKorisnik !== undefined){
             console.log('LOGOVAN JEEE');
             console.log(this.props.prijavljenKorisnik.role);
             if(this.props.prijavljenKorisnik.role==='ADMINCC'){
                 return <Redirect to='/adminKlinike' />;
+
             }
 
             if(this.props.prijavljenKorisnik.role==='DOCTOR'){
@@ -102,55 +106,18 @@ class Layout extends Component {
             if(this.props.prijavljenKorisnik.role==='NURSE'){
                 return <Redirect to='/medSestra' />;
             }
-
-
-
         }
     }
 
-    render() {
-        let redirect = null;
-        if (this.props.added) {
-            redirect = (
-                <Auxiliary>
-                    {/* <button className={classes.Button}>Go to orders</button> */}
-                    <Redirect to="/orders" />
-                </Auxiliary>
-            );
-        }
-        
-        return (
-            <Auxiliary>
-                {/* <input className={classes.Input}
-                    onChange={(event) => this.inputChangehandler(event, 'name')}/>
-                <input className={classes.Input}
-                    onChange={(event) => this.inputChangehandler(event, 'title')}/>
-                <button onClick={(event) => this.objectHandler(event)} className={classes.Button}>Apply</button> */}
-               
+    render() { 
+        return (         
                 <div className='ui three item menu'>
                     {this.prvaPrijava()}
                     {this.proveriRedirect()}
-                    {!this.props.logged ? (<button className="ui primary button" onClick={this.registerHandler}>Register</button>) : null}
+                    <button className="ui primary button" onClick={this.registerHandler}>Register</button>
 
-                    {!this.props.logged ? (<button className="ui primary button" onClick={this.loginHandler}>Login</button>) : null}
-                    
-                 {/* {!this.props.logged ? (<button className={classes.Button} onClick={this.homepage}>Home page</button>) : null}
-
-                    {!this.props.logged ? (<button className={classes.Button} onClick={this.pacijenti}>Pacijenti</button>) : null}
-
-                    {!this.props.logged ? (<button className={classes.Button} onClick={this.doktori}>Doktori</button>) : null}
-
-                    {!this.props.logged ? (<button className={classes.Button} onClick={this.adminKlinike}>Admin klinike</button>) : null}
-
-                    {!this.props.logged ? (<button className={classes.Button} onClick={this.medSestra}>Medicinska Sestra</button>) : null}
- */}   
-
+                    <button className="ui primary button" onClick={this.loginHandler}>Login</button>
                 </div>
-               
-                
-
-                {redirect}
-            </Auxiliary>
         );
     }
 }
@@ -158,15 +125,12 @@ class Layout extends Component {
 const mapStateToProps = (state) => {
     console.log(state)
     return {
-        added: state.object.added,
-        logged: state.auth.token !== null,
         prijavljenKorisnik: state.auth.prijavljenKorisnik,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAddObject: (data) => dispatch(actions.addObject(data)),
         prijavljen_korisnik: () => dispatch(actions.prijavljenKorisnik())
     };
 };

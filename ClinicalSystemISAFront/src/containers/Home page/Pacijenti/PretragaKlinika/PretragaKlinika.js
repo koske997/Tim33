@@ -14,6 +14,8 @@ class PretragaKlinika extends React.Component {
         tip: '',
         brLajkova: '',
         pretraziTip: true,
+
+        nazad: false,
            
         sale: null,
         doktori: null,
@@ -70,10 +72,22 @@ class PretragaKlinika extends React.Component {
         });
     };
 
+    redirectNazad(){
+        if (this.state.nazad)
+        {
+            return this.props.history.push("/pacijenti");
+        }
+    }
+
    
     render() {
         return (
                 <div>
+                    <div className="ui secondary  menu">
+                        <a className="item" onClick={(e)=>{ this.setState({nazad: true})}}> NAZAD</a>
+                    </div>
+
+                    {this.redirectNazad()}
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                     <h2>Pretraga svih klinika </h2>
                     </div>    

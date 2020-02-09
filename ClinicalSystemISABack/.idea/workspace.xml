@@ -2,21 +2,50 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0f4b188f-f237-49e6-bb6c-9d35a0eb204c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/view/ClinicViewModification.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/demo.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/AKlinikeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/AKlinikeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/MailController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/MailController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/RequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/RequestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/ReservationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/ReservationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/service/CheckupService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/CheckupService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/service/ReservationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/service/ReservationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/PacijentiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/controller/PacijentiController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/model/Clinic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/model/Clinic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/CheckupTypeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/CheckupTypeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/RoomRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/demo/repository/RoomRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data-postgres.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data-postgres.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/controller/PacijentiController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/controller/PacijentiController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/model/Clinic$ClinicBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/model/Clinic$ClinicBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/demo/model/Clinic.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/demo/model/Clinic.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/data-postgres.sql" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data-postgres.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/Doktori/PretragaPacijenata/FormaZaPregled.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/Doktori/PretragaPacijenata/FormaZaPregled.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/AKlinike/AKlinike.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/AKlinike/AKlinike.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/AKlinike/DodavanjeBrisanjeLekara/Lekari.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/AKlinike/DodavanjeBrisanjeLekara/Lekari.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/AKlinike/IzvestajAdmina.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/AKlinike/IzvestajAdmina.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/AKlinike/ListaSala_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/AKlinike/ListaSala_1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/AKlinike/SaleZaPregled.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/AKlinike/SaleZaPregled.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/AKlinike/TipoviPregleda/ListaTipovaPregledaa.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/AKlinike/TipoviPregleda/ListaTipovaPregledaa.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/AKlinike/TipoviPregleda/TipoviPregleda.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/AKlinike/TipoviPregleda/TipoviPregleda.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/AKlinike/TipoviPregleda/UnosTipaPregleda.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/AKlinike/TipoviPregleda/UnosTipaPregleda.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/AKlinike/UnosPregleda.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/AKlinike/UnosPregleda.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/AKlinike/UnosSale.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/AKlinike/UnosSale.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/Doktori/Doktori.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/Doktori/Doktori.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/Doktori/ListaPacijenata.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/Doktori/ListaPacijenata.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/Doktori/PretragaPacijenata/DetaljiPregleda.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/Doktori/PretragaPacijenata/DetaljiPregleda.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/Doktori/PretragaPacijenata/ListaPacijenata_Pretraga.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/Doktori/PretragaPacijenata/ListaPacijenata_Pretraga.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/Doktori/PretragaPacijenata/PretragaPacijenata.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/Doktori/PretragaPacijenata/PretragaPacijenata.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/Doktori/PretragaPacijenata/ProfilPacijenta.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/Doktori/PretragaPacijenata/ProfilPacijenta.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/MedicinskaSestra/MedicinskaSestra.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/MedicinskaSestra/MedicinskaSestra.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/Pacijenti/Pacijenti.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/Pacijenti/Pacijenti.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/Pacijenti/PretragaKlinika/PretragaKlinika.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/Pacijenti/PretragaKlinika/PretragaKlinika.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/Pacijenti/ProfilKlinike.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Home page/Pacijenti/ProfilKlinike.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Layout/Layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Layout/Layout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Login/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Register/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/containers/Register/Register.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/store/actions/actionTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/store/actions/actionTypes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/store/actions/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/store/actions/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/store/actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/store/actions/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/store/reducer/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/../ClinicalSystemISAFront/src/store/reducer/auth.js" afterDir="false" />
     </list>
+    <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +72,46 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/demo/controller/LoginController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="47" column="29" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/demo/controller/DoktorController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="28" column="26" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/demo/controller/AKlinikeController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2431">
+              <caret line="161" column="22" selection-start-line="161" selection-start-column="19" selection-end-line="161" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/demo/controller/PacijentiController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="130" lean-forward="true" selection-start-line="130" selection-end-line="130" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -51,8 +120,28 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>unosOcene</find>
+      <find>izb</find>
+      <find>pri</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/com/example/demo/view/ClinicViewModification.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/demo/model/Clinic.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/data-postgres.sql" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/demo/repository/CheckupTypeRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/demo/repository/RoomRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/demo/controller/AKlinikeController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/demo/controller/PacijentiController.java" />
+      </list>
+    </option>
   </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
@@ -71,8 +160,103 @@
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
   </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1378" />
+    <option name="height" value="744" />
+  </component>
   <component name="ProjectId" id="1UwGwANQ1nW4VmnyxMpMPcMIsNO" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="ClinicalSystemISABack" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ClinicalSystemISABack" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ClinicalSystemISABack" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ClinicalSystemISABack" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ClinicalSystemISABack" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ClinicalSystemISABack" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ClinicalSystemISABack" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ClinicalSystemISABack" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ClinicalSystemISABack" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ClinicalSystemISABack" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="demo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ClinicalSystemISABack" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ClinicalSystemISABack" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="demo" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ClinicalSystemISABack" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ClinicalSystemISABack" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="demo" type="462c0819:PsiDirectoryNode" />
+              <item name="repository" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ClinicalSystemISABack" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ClinicalSystemISABack" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="demo" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ClinicalSystemISABack" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ClinicalSystemISABack" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="demo" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ClinicalSystemISABack" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ClinicalSystemISABack" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -84,6 +268,7 @@
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -152,11 +337,53 @@
       <workItem from="1580111641448" duration="10431000" />
       <workItem from="1580132308763" duration="3214000" />
       <workItem from="1580311438540" duration="10286000" />
+      <workItem from="1581195285330" duration="2035000" />
+      <workItem from="1581234191346" duration="15211000" />
+      <workItem from="1581271905871" duration="721000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91141000" />
+    <option name="totallyTimeSpent" value="109108000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1378" height="744" extended-state="0" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2572079" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Persistence" order="3" side_tool="true" />
+      <window_info id="Image Layers" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="UI Designer" order="6" />
+      <window_info id="Favorites" order="7" side_tool="true" />
+      <window_info id="Web" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.35679215" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.3289689" />
+      <window_info anchor="bottom" id="Java Enterprise" order="11" />
+      <window_info anchor="bottom" id="Spring" order="12" />
+      <window_info anchor="bottom" id="Database Changes" order="13" />
+      <window_info anchor="bottom" id="Version Control" order="14" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="Bean Validation" order="9" />
+    </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -167,8 +394,28 @@
         <entry key="MAIN">
           <value>
             <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
               <option name="COLUMN_ORDER" />
             </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
           </value>
         </entry>
       </map>
@@ -247,5 +494,130 @@
         <watch expression="clinicView.getGrad()" />
       </configuration>
     </watches-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/demo/view/ClinicViewModification.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="23" column="29" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
+          <folding>
+            <element signature="e#503#504#0" expanded="true" />
+            <element signature="e#543#544#0" expanded="true" />
+            <element signature="e#575#576#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/demo/view/IdView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/demo/model/Clinic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/demo/view/RoomView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-200">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/demo/repository/ReservationRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/demo/repository/UserRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="24" column="45" lean-forward="true" selection-start-line="21" selection-start-column="3" selection-end-line="24" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/demo/model/Reservation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/demo/repository/CheckupTypeRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/demo/repository/RoomRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="22" column="75" lean-forward="true" selection-start-line="22" selection-start-column="75" selection-end-line="22" selection-end-column="75" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/data-postgres.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/demo/service/ClinicService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-381">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/demo/service/UserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1630">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/demo/controller/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="47" column="29" selection-start-line="47" selection-start-column="29" selection-end-line="47" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/demo/controller/DoktorController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="28" column="26" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/demo/controller/AKlinikeController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2431">
+          <caret line="161" column="22" selection-start-line="161" selection-start-column="19" selection-end-line="161" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/demo/controller/PacijentiController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="130" lean-forward="true" selection-start-line="130" selection-end-line="130" />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

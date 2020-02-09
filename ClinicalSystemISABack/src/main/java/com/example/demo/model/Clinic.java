@@ -34,6 +34,8 @@ public class Clinic {
 
     private String picture;
 
+    private String address;
+
     private float x;
     private float y;
 

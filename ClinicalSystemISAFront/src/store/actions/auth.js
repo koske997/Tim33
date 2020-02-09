@@ -588,8 +588,8 @@ export const unosSale = (broj, slobodna) => {
 
 
 export const izmeniSalu = (izmena) => {
+    console.log(izmena);
     return dispatch => {
-        console.log(izmena);
         const authData = {
             id: izmena.id,
             broj: izmena.broj,
@@ -686,13 +686,11 @@ export const unosTipaPregleda = (naziv) => {
     };
 };
 
-export const izbrisiSalu = (izmena) => {
+export const izbrisiSalu = (podaci) => {
+    console.log(podaci);
     return dispatch => {
-        console.log(izmena);
         const authData = {
-            id: izmena.id,
-            broj: izmena.broj,
-            slobodna: izmena.slobodna,
+            id: podaci.id,
 
             returnSecureToken: true,
         };
@@ -705,7 +703,6 @@ export const izbrisiSalu = (izmena) => {
         .catch(err => {
              console.log(err);
         });
-        
     };
 };
 
@@ -1208,3 +1205,88 @@ export const unosLekara = (email, password, repeatPassword, firstName, lastName,
         
     };
 };
+
+export const izmeniKliniku = (izmena) => {
+    console.log(izmena)
+    return dispatch => {
+        console.log(izmena);
+        const authData = {
+            id: izmena.id,
+            name: izmena.naziv,
+            adresa: izmena.adresa,
+            x: izmena.x,
+            y: izmena.y,
+
+            returnSecureToken: true,
+        };
+        
+        const url = '/izmenaKlinike';
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+
+            //dispatch(sacuvajSalu(response.data));
+        })
+        .catch(err => {
+             console.log(err);
+        }); 
+        
+    };
+};
+
+export const obrisiTipPregleda = (podaci) => {
+    console.log(podaci);
+    return dispatch => {
+        const authData = {
+            id: podaci.id,
+
+            returnSecureToken: true,
+        };
+        
+        const url = '/obrisiTipPregleda';
+        axios.post(url, authData)
+        .then(response => {
+            console.log(response);
+        })
+        .catch(err => {
+             console.log(err);
+        });
+    };
+};
+
+export const sveRezervacije = (rezervacije) => {
+    console.log(rezervacije)
+    return {
+        type: actionTypes.SACUVAJ_REZERVACIJE,
+        rezervacije: rezervacije
+    }
+}
+
+export const rezervacije = () => {
+
+    return dispatch => {
+    
+        const url = "/sveRezervacije";
+        const token = sessionStorage.getItem('token');
+
+        axios.get(url, {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
+            .then(response => {
+                console.log(response);
+                dispatch(sveRezervacije(response.data));
+
+            }).catch(error => {
+                console.log(error);
+            })
+    };
+};
+
+export const obrisiPrijavljenog = () => {
+    return {
+        type: actionTypes.OBRISI_PRIJAVLJENOG,
+        prijavljenKorisnik: undefined
+    }
+}
