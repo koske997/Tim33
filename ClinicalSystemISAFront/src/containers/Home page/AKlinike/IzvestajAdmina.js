@@ -264,6 +264,11 @@ class IzvestajAdmina extends React.Component {
         if(this.state.po === 'PRIHODI KLINIKE'){
             return this.renderGrafikaPrihoda();
         }
+
+        if(this.state.po === 'VRATI')
+        {
+            return this.props.history.push("/adminKlinike");
+        }
     }
 
     renderComponent(){
@@ -276,6 +281,8 @@ class IzvestajAdmina extends React.Component {
                             <a className="item" onClick={(e)=>{ this.pronadjiLekareKlinike(e); this.setState({po: 'LEKARI'})}}> Lekari</a>
                             <a className="item" onClick={(e)=>{ this.izracunajBrojPregleda(e); this.setState({po: 'GRAFIK PREGLEDA'});}}>Grafik pregleda</a>
                             <a className="item" onClick={(e)=>{ this.izracunajBrojPregleda(e); this.setState({po: 'PRIHODI KLINIKE'});}}> Prihodi klinike</a>
+                            <a className="item" onClick={(e)=>{ this.setState({po: 'VRATI'})}}> NAZAD</a>
+
                         </div>
                     </div>
                     <div style={{ float: "right"}}> 

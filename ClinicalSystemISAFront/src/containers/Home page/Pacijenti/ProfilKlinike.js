@@ -213,6 +213,11 @@ setRedirect2 = () => {
           return <GuglMap x={this.props.klinikaProfila.x} y={this.props.klinikaProfila.y} naziv={this.props.klinikaProfila.name}/>
         }
       }
+
+      if(this.state.odabir === 'VRATI')
+      {
+        return this.props.history.push("/pacijenti");
+      }
       
   }
 
@@ -234,6 +239,7 @@ renderProfilaKlinike = () => {
                             <a className="item" onClick={(e) => {this.setState({odabir: 'PREGLEDI'});}}> Pregledi klinike</a>
                             <a className="item" onClick={(e) => {this.setState({odabir: 'PRETRAGA LEKARA'});}}> Pretraga lekara</a>
                             <a className="item" onClick={(e) => {this.setState({odabir: 'LOKACIJA'});}}> Lokacija</a>
+                            <a className="item" onClick={(e)=>{ this.setState({odabir: 'VRATI'})}}><b>NAZAD</b></a>
 
                         </div>
                     </div>

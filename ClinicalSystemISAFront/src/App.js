@@ -27,6 +27,10 @@ import PretragaPacijenata from './containers/Home page/Doktori/PretragaPacijenat
 import ProfilPacijenta from './containers/Home page/Doktori/PretragaPacijenata/ProfilPacijenta';
 import DetaljiPregleda from './containers/Home page/Doktori/PretragaPacijenata/DetaljiPregleda';
 import PretragaLekaraKlinike from './containers/Home page/Pacijenti/PretragaLekaraKlinike';
+import Novi from './containers/Login/Novi';
+
+
+
 import './App.css';
 
 
@@ -64,6 +68,8 @@ class App extends Component {
           <Route path="/pretragaLekaraKlinike" component={PretragaLekaraKlinike} />
           <Route path="/googleMap" component={GoogleMap} />
           <Route path="/lekari" component={Lekari} />
+          <Route path="/novi" component={Novi} />
+
 
           
 

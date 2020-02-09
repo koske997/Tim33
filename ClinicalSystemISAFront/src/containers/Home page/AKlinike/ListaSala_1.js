@@ -45,27 +45,58 @@ class Popup extends React.Component{
     };
 
     handleIzmena = () => {
+        console.log(this.props)
+        console.log(this.props.rezervacije)
         const izmena = {
             id: this.props.sala.id,
             broj: this.state.number,
             slobodna: this.state.free,
         };
-        if (izmena.slobodna === true)
-            this.props.izmeniSalu(izmena);
+        let pom=0;
+        if (this.props.rezervacije !== null && this.props.rezervacije !== undefined)
+        {
+            for (let i=0; i<this.props.rezervacije.length; i++)
+            {
+                if (this.props.rezervacije[i].idSale === this.props.sala.id)
+                {
+                    pom = 1;
+                }
+            }
+        }
+        if (pom === 1)
+        {
+            alert('Sala je u listi rezervacija i ne moze biti izmenjena')
+        }
+
         else
-            alert('Zauzeta sala ne moze da se menja');
+        {
+            this.props.izmeniSalu(izmena);
+        }
     }
 
     handleBrisanje = () => {
-        const izmena = {
+        const podaci = {
             id: this.props.sala.id,
-            broj: this.state.number,
-            slobodna: this.state.free,
         };
-        if (izmena.slobodna === true)
-            this.props.izbrisiSalu(izmena);
+        let pom=0;
+        if (this.props.rezervacije !== null && this.props.rezervacije !== undefined)
+        {
+            for (let i=0; i<this.props.rezervacije.length; i++)
+            {
+                if (this.props.rezervacije[i].idSale === this.props.sala.id)
+                {
+                    pom = 1;
+                }
+            }
+        }
+        if (pom == 1)
+        {
+            alert('Sala je u listi rezervacija i ne moze biti izmenjena')
+        }
         else
-            alert('Zauzeta sala ne moze da se brise');
+        {
+            this.props.izbrisiSalu(podaci);
+        }
     }
 
     render() {
@@ -142,7 +173,7 @@ class ListaSala_1 extends React.Component {
     render() {
         return (
             <div>
-                <Popup sala={this.state.selectedSala} openModal={this.state.openModal} closeModal={this.closeModal} izmeniSalu={this.props.izmeniSalu} izbrisiSalu={this.props.izbrisiSalu}/> 
+                <Popup rezervacije={this.props.rezervacije} sala={this.state.selectedSala} openModal={this.state.openModal} closeModal={this.closeModal} izmeniSalu={this.props.izmeniSalu} izbrisiSalu={this.props.izbrisiSalu}/> 
                 {this.renderSale()}
             </div>
         );
@@ -154,7 +185,7 @@ const mapDispatchToProps = dispatch => {
     return {
         prikazi_sale: () => dispatch(actions.sale()),
         izmeniSalu: (izmena) => dispatch(actions.izmeniSalu(izmena)),
-        izbrisiSalu: (izmena) => dispatch(actions.izbrisiSalu(izmena)),
+        izbrisiSalu: (podaci) => dispatch(actions.izbrisiSalu(podaci)),
 
     }
 };

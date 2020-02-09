@@ -13,29 +13,31 @@ const ListaPacijenata = props => {
     
     const pacijenti = props.pacijenti.map((pacijent) => {
         return (
-            <div key={pacijent.id} class="ui three column grid">
-                <div className="column">
-                    <div className="ui fluid card">
-                        <div className="image">
-                            <Image
-                                src='https://react.semantic-ui.com/images/avatar/large/steve.jpg'
-                            />
-                        </div>
-                        <div className="content">
-                            <a className="header">{pacijent.lastName} {pacijent.lastName}</a>
-                        </div>
-                        <div class="meta">
-                            <span class="date">{pacijent.role}</span>
-                        </div>
-                        <div class="extra content">
-                            <a>
-                            <i class="user icon"></i>
-                            ID Patient : {parseInt(pacijent.id)}
-                            </a>
-                        </div>
-                    </div>
+            <div className="ui link cards" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <div className="card" key={pacijent.id}>
+                <div className="image">
+                    <img alt="da" src="https://react.semantic-ui.com/images/avatar/large/matthew.png"/>
+                </div>
+            <div className="content">
+                <div className="header">{pacijent.firstName} {pacijent.lastName}</div>
+                <div className="meta">
+                    <a>{pacijent.role}</a>
+                </div>
+                <div className="description">
+                    {pacijent.address} {pacijent.city} {pacijent.country} 
                 </div>
             </div>
+            <div className="extra content">
+                <span className="right floated">
+                {pacijent.phoneNumber}
+                </span>
+                <span>
+                    <i className="user icon"></i>
+                    {pacijent.username}
+                </span>
+            </div>
+            </div>
+        </div>
         );
     });
 

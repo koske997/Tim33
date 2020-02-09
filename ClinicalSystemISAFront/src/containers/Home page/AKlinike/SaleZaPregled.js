@@ -3,23 +3,19 @@ import {Redirect} from 'react-router-dom';
 import * as actions from '../../../store/actions/index';
 import {connect} from 'react-redux';
 import ListaSala_1 from './ListaSala_1';
+import UnosSale from './UnosSale';
 
-
-
-
-
-const initialState = {
-    sale: null,
-    doktori: null,
-    tipoviPregleda: null
-}
 
 class saleZaPregled extends React.Component {
 
   state = {
     redirectPregled: false,
+    rezervacije: null,
 }
 
+componentDidMount(){
+  this.props.sve_rezervacije();
+}
   
 setRedirect = (e) => {
     this.setState({
@@ -27,24 +23,22 @@ setRedirect = (e) => {
     })
 }
 
-  
 
-
-renderRedirect = () => {
-    if (this.state.redirectPregled) {
-      return <Redirect to='/unosSale' />
-    }
-}
 
 renderPac(){
   if(this.state.po==='NOVA'){
-    return <Redirect to='/unosSale' />
+    return <UnosSale />
   }
 
   if(this.state.po==='IZMENA'){
       return <div>
-              <ListaSala_1 sale={this.props.sale} />
+              <ListaSala_1 sale={this.props.sale} rezervacije={this.props.rezervacije}/>
             </div>
+  }
+  
+  if(this.state.po === 'VRATI')
+  {
+    return this.props.history.push("/adminKlinike");
   }
 }
 
@@ -54,7 +48,9 @@ renderComponent(){
               <div style={{ float: "left"}}>
                   <div className="ui secondary  menu">
                       <a className="item" onClick={(e)=>{ this.setState({po: 'NOVA'});}}> Unesi novu salu za preglede i operacije</a>
-                      <a className="item" onClick={(e)=>{ this.props.prikazi_sale(e); this.setState({po: 'IZMENA'})}}> Izmeni podatke sale</a>
+                      <a className="item" onClick={(e)=>{ this.props.prikazi_sale(e); this.setState({po: 'IZMENA'})}}> Izmeni sale</a>
+                      <a className="item" onClick={(e)=>{ this.setState({po: 'VRATI'})}}> NAZAD</a>
+
                   </div>
               </div>
               <br/>
@@ -88,7 +84,9 @@ const mapStateToProps = state => {
     return {
         sale: state.auth.sale,
         doktori: state.auth.doktori,
-        tipoviPregleda: state.auth.tipoviPregleda
+        tipoviPregleda: state.auth.tipoviPregleda,
+
+        rezervacije: state.auth.rezervacije,
     }
 }
 
@@ -97,7 +95,9 @@ const mapDispatchToProps = dispatch => {
 
         prikazi_sale: () => dispatch(actions.sale()),
         prikazi_doktore: () => dispatch(actions.doktori()),
-        prikazi_tipove_pregleda: () => dispatch(actions.tipoviPregleda())
+        prikazi_tipove_pregleda: () => dispatch(actions.tipoviPregleda()),
+
+        sve_rezervacije: () => dispatch(actions.rezervacije()),
     }
 };
 

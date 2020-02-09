@@ -39,7 +39,7 @@ class UnosTipaPregleda extends React.Component {
     render() {
         return (
             <div>
-            <h2>Unos novog pregleda </h2>
+            <h2>Unos novog tipa pregleda </h2>
             <form className="ui form">
                 <div className="field">
                     <label>Naziv</label>

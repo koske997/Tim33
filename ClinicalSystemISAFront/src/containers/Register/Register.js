@@ -24,9 +24,24 @@ class Register extends Component {
 
     registerHandler = (event) => {
         event.preventDefault();
-        this.props.onRegister(this.state.auth.email, this.state.auth.password, this.state.auth.repeatPassword, 
-            this.state.auth.firstName, this.state.auth.lastName, this.state.auth.address, this.state.auth.city, 
-            this.state.auth.country, this.state.auth.phoneNumber, this.state.auth.userId, this.state.auth.role);
+        if( (this.state.auth.address !== null && this.state.auth.address !== undefined && this.state.auth.address !== ''
+        || this.state.auth.password !== null && this.state.auth.password !== undefined && this.state.auth.password !== ''
+        || this.state.auth.firstName !== null && this.state.auth.firstName !== undefined && this.state.auth.firstName !== ''
+        || this.state.auth.lastName !== null && this.state.auth.lastName !== undefined && this.state.auth.lastName !== ''
+        || this.state.auth.city !== null && this.state.auth.city !== undefined && this.state.auth.city !== ''
+        || this.state.auth.country !== null && this.state.auth.country !== undefined && this.state.auth.country !== ''
+        || this.state.auth.phoneNumber !== null && this.state.auth.phoneNumber !== undefined && this.state.auth.phoneNumber !== ''
+        || this.state.auth.role !== null && this.state.auth.role !== undefined && this.state.auth.role !== '') && 
+        (this.state.auth.password === this.state.auth.repeatPassword))
+        {
+            this.props.onRegister(this.state.auth.email, this.state.auth.password, this.state.auth.repeatPassword, 
+                this.state.auth.firstName, this.state.auth.lastName, this.state.auth.address, this.state.auth.city, 
+                this.state.auth.country, this.state.auth.phoneNumber, this.state.auth.userId, this.state.auth.role);
+            
+            this.props.history.push("/login");
+        }
+        else
+            alert('Neispravno uneti podaci.')
     };
 
     inputChangeHandler = (event, type) => {

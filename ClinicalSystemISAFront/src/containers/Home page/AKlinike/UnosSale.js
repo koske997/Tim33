@@ -18,10 +18,9 @@ class UnosSale extends React.Component {
 
     salaHandler = (event) => {
         event.preventDefault();
-
-        console.log(this.state.auth.broj, this.state.auth.slobodna);
-
-        this.props.unesiSalu(this.state.auth.broj, this.state.auth.slobodna) };
+        
+        this.props.unesiSalu(this.state.auth.broj, this.state.auth.slobodna) 
+    };
 
     inputChangeHandler = (event, type) => {
         let updatedObject = updateObject(this.state.auth, {
@@ -42,19 +41,21 @@ class UnosSale extends React.Component {
 
     render() {
         return (
-            
-            <div>
-                <input type="number" placeholder="Broj sale"
+            <form className="ui form">
+                <div className="field">
+                    <label>Naziv</label>
+                    <input type="number" placeholder="Broj sale"
                     onChange={(event) => this.inputChangeHandler(event, 'broj')} />
-               
-               <select onChange={(event) => this.selectChangeHandler(event)}>
+                </div>
+
+                <select onChange={(event) => this.selectChangeHandler(event)}>
                     <option> Slobodna </option>
                     <option> Zauzeta </option>
                 </select>
-              
 
-                <button onClick={(event) => this.salaHandler(event)}>Dodaj</button>
-            </div>
+                <button class="ui button" type="submit" onClick={(event) => this.salaHandler(event)}>Dodaj</button>
+            </form>
+            
         );
     }
 }

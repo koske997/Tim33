@@ -107,7 +107,7 @@ class Doktori extends React.Component {
                   <a>{this.props.prijavljenKorisnik.role}</a>
               </div>
               <div className="description">
-                  {this.props.prijavljenKorisnik.address}, {this.props.prijavljenKorisnik.city}, {this.props.prijavljenKorisnik.country} 
+                  {this.props.prijavljenKorisnik.address} {this.props.prijavljenKorisnik.city} {this.props.prijavljenKorisnik.country} 
               </div>
           </div>
           <div className="extra content">
@@ -127,11 +127,25 @@ class Doktori extends React.Component {
 
   renderPacijenti() {
     return (
-      <div>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
         <ListaPacijenata  pacijenti={this.props.pacijenti}/>
       </div>
     );
   }
+
+  prijavljenJeKo() {
+    if (this.props.prijavljenKorisnik !== null && this.props.prijavljenKorisnik !== undefined)
+    {
+      if ( this.props.prijavljenKorisnik.role === 'ADMINC')
+        return <Redirect to="/adminKlinike" />;
+
+      if( this.props.prijavljenKorisnik.role === 'PATIENT')
+        return <Redirect to="/pacijenti" />
+
+      if( this.props.prijavljenKorisnik.role === 'NURSE')
+        return <Redirect to="/medSestra" />
+    }
+}
 
   renderrr(){
     if(this.props.prijavljenKorisnik!=null){
@@ -167,7 +181,7 @@ class Doktori extends React.Component {
             </div>
           </div>
         );
-    }else <Spinner poruka="Ucitavanje"/>
+    }else return <Spinner poruka="Ucitavanje"/>;
   }
 
 
@@ -175,6 +189,7 @@ class Doktori extends React.Component {
     return (
       <div>
         {this.renderrr()}
+        {this.prijavljenJeKo()}
       </div>
     );
   }

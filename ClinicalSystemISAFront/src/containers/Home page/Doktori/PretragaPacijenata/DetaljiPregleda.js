@@ -152,31 +152,6 @@ class DetaljiPregleda extends React.Component {
         }
     }
 
-    renderPac(){
-        if (this.state.po==='DETALJI PREGLEDA'){
-            return this.renderDetaljiPregleda();
-        }
-        if (this.state.po==='OCENI KLINIKU'){
-            if (this.props.prijavljenKorisnik.role === 'DOCTOR')
-            {
-                alert('Samo pacijent moze da oceni kliniku.')
-                this.setState({po: 'DETALJI PREGLEDA'})
-                return this.renderDetaljiPregleda();
-            }
-            else
-                return this.renderOceneKlinike();
-        }
-        if (this.state.po==='OCENI LEKARA'){
-            if (this.props.prijavljenKorisnik.role === 'DOCTOR')
-            {
-                alert('Samo pacijent moze da oceni kliniku.')
-                this.setState({po: 'DETALJI PREGLEDA'})
-                return this.renderDetaljiPregleda();
-            }
-            else
-                return this.renderOceneLekara();
-        }
-    }
 
     renderDetaljiPregleda() {
         if (this.props.pregledKarton !== null && this.props.pregledKarton !== undefined)
@@ -208,7 +183,7 @@ class DetaljiPregleda extends React.Component {
         if (this.state.klinikaPregleda !== null && this.state.klinikaPregleda !==undefined)
         {
             return (          
-                <div className="ui link cards">
+                <div className="ui link cards" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                     <div className="card">
                         <div className="image">
                             <img alt="da" src={this.state.klinikaPregleda.picture}/>
@@ -258,7 +233,7 @@ class DetaljiPregleda extends React.Component {
         if (this.state.lekarPregleda !== null && this.state.lekarPregleda !== undefined)
         {
             return (          
-                <div className="ui link cards">
+                <div className="ui link cards" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                     <div className="card">
                         <div className="image">
                             <img alt="da" src="https://react.semantic-ui.com/images/avatar/large/matthew.png"/>
@@ -325,6 +300,36 @@ class DetaljiPregleda extends React.Component {
       }
     
 
+      
+    renderPac(){
+        if (this.state.po==='DETALJI PREGLEDA'){
+            return this.renderDetaljiPregleda();
+        }
+        if (this.state.po==='OCENI KLINIKU'){
+            if (this.props.prijavljenKorisnik.role === 'DOCTOR')
+            {
+                alert('Samo pacijent moze da oceni kliniku.')
+                this.setState({po: 'DETALJI PREGLEDA'})
+                return this.renderDetaljiPregleda();
+            }
+            else
+                return this.renderOceneKlinike();
+        }
+        if (this.state.po==='OCENI LEKARA'){
+            if (this.props.prijavljenKorisnik.role === 'DOCTOR')
+            {
+                alert('Samo pacijent moze da oceni kliniku.')
+                this.setState({po: 'DETALJI PREGLEDA'})
+                return this.renderDetaljiPregleda();
+            }
+            else
+                return this.renderOceneLekara();
+        }
+        if(this.state.po === 'VRATI')
+        {
+            return this.props.history.push("/profilPacijenta");
+        }
+    }
 
     render() {
         return (
@@ -335,6 +340,8 @@ class DetaljiPregleda extends React.Component {
                         <a className="item" onClick={(e)=>{ this.setState({po: 'DETALJI PREGLEDA'});}}>Detalji pregleda</a>
                         <a className="item" onClick={(e)=>{this.pronadjiKlinikuPregleda(e); this.props.sve_klinike(e); this.setState({po: 'OCENI KLINIKU'});}}> Oceni kliniku</a>
                         <a className="item" onClick={(e)=>{this.pronadjiLekaraPregleda(e); this.props.svi_doktori(e); this.setState({po: 'OCENI LEKARA'}); }}>Oceni lekara</a>
+                        <a className="item" onClick={(e)=>{ this.setState({po: 'VRATI'})}}> NAZAD</a>
+
                     </div>
                 </div>
                 <div>

@@ -47,6 +47,18 @@ class ProfilPacijenta extends React.Component {
             else
                 return <FormaZaPregled />
         }
+        if(this.state.po === 'VRATI')
+        {
+            if(this.props.prijavljenKorisnik.role === 'PATIENT')
+            {
+                return this.props.history.push("/pacijenti");
+            }
+            else
+            {
+                return this.props.history.push("/pretragaPacijenata");
+
+            }
+        }
     }
 
 
@@ -59,7 +71,7 @@ class ProfilPacijenta extends React.Component {
                             <a className="item" onClick={(e)=>{ this.setState({po: 'PROFIL'});}}>Profil</a>
                             <a className="item" onClick={(e)=>{ this.setState({po: 'KARTON'});}}> Medicinski karton</a>
                             <a className="item" onClick={(e)=>{ this.setState({po: 'ZAPOCNI PREGLED'}); this.props.bolesti(e); this.props.lekovi(e); }}>Zapocni pregled</a>
-
+                            <a className="item" onClick={(e)=>{ this.setState({po: 'VRATI'})}}> NAZAD</a>
                         </div>
                     </div>
 

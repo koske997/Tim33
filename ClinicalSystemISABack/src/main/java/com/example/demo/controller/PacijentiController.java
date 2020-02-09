@@ -150,6 +150,19 @@ public class PacijentiController {
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(value = "/unosOceneKlinike")
+    public ResponseEntity<?> unosOceneKlinike(@RequestBody OcenaKlinikeILekaraView podaci) {
+
+        System.out.println(podaci.getId());
+        System.out.println(podaci.getOcena());
+        System.out.println(podaci.getIdPregleda());
+
+        Checkup u = this.clinicService.unosOcene(podaci);
+
+        return new ResponseEntity<>(u, HttpStatus.CREATED);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/promenaLozinke")
     public ResponseEntity<?> promenaLozinke(@RequestBody UserViewPromenaLozinke podaci) {
 

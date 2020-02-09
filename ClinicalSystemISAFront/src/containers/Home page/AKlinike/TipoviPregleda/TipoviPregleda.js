@@ -4,7 +4,7 @@ import * as actions from '../../../../store/actions/index';
 import {connect} from 'react-redux';
 import ListaSala_1 from '.././ListaSala_1';
 import ListaTipovaPregleda from "../ListaTipovaPregleda";
-
+import UnosTipaPregleda from './UnosTipaPregleda';
 import ListaTipovaPregledaa from "./ListaTipovaPregledaa";
 
 
@@ -12,11 +12,7 @@ import ListaTipovaPregledaa from "./ListaTipovaPregledaa";
 
 
 
-const initialState = {
-    sale: null,
-    doktori: null,
-    tipoviPregleda: null
-}
+
 
 class TipoviPregleda extends React.Component {
 
@@ -25,49 +21,76 @@ class TipoviPregleda extends React.Component {
 }
 
   
-setRedirect = (e) => {
-    this.setState({
-      redirect: true
-    })
-}
+  setRedirect = (e) => {
+      this.setState({
+        redirect: true
+      })
+  }
 
 
-renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to='/unosTipaPregleda' />
+  renderRedirect = () => {
+      if (this.state.redirect) {
+        return <Redirect to='/unosTipaPregleda' />
+      }
+    
+  }
+
+
+
+  renderMeni(){
+    if(this.state.odabir==='DODAJ'){
+      if(this.state.klinikaAdmina !== null)
+          return <UnosTipaPregleda />;
     }
-  
-}
+
+    if(this.state.odabir==='TIPOVI'){
+      return <ListaTipovaPregledaa tipoviPregleda={this.props.tipoviPregleda} />;
+    }
+    
+    if (this.state.odabir === 'VRATI')
+    {
+      return this.props.history.push("/adminKlinike")
+    }
+  }
 
 
-  
-  render() {
-      return (
-      <div>
-            <h3>Tipovi pregleda </h3>
 
-        <div className="ui segment">
-            <h4>Dodaj novi tip</h4>
 
-            {this.renderRedirect()}
+  renderModifikacijeTipa = () => {
+    return (
+        <div>
+          <div style={{ float: "left"}}>
+                      <div className="ui secondary  menu">
+                          <a className="item" onClick={(e) => {this.props.prikazi_tipove_pregleda(e); this.props.prikazi_preglede(e); this.setState({ odabir: 'DODAJ'});}}>Unesi novi tip</a>
+                          <a className="item" onClick={(e) => {this.props.prikazi_tipove_pregleda(e); this.props.prikazi_preglede(e); this.setState({odabir: 'TIPOVI'});}}> Tipovi pregleda</a>
+                          <a className="item" onClick={(e)=>{ this.setState({odabir: 'VRATI'})}}> NAZAD</a>
 
-            <button className="Unesi_tipove" onClick={ (e) => {this.setRedirect(e);}} >Dodaj novi tip</button>
-            <hr/>
-        </div>
-
-        <div className="ui segment">
-          <h4>Lista svih tipova </h4>  
-          
-          <div>
-            <ListaTipovaPregledaa tipoviPregleda={this.props.tipoviPregleda} />
-          </div>
-          <button className="Prikazi_tipove" onClick={ (e) => {this.props.prikazi_tipove_pregleda(e); this.props.prikazi_preglede(e)}} >Prikazi tipove</button>
-
-        </div>
-
-   </div>
+                      </div>
+                  </div>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                  {this.renderMeni()}
+            </div>
+    </div>
     );
   }
+
+
+
+  render(){
+      return (
+        <div>
+            {this.renderModifikacijeTipa()}
+        </div>
+    );
+  }   
+
+
+  
+ 
 }
 
 
@@ -84,9 +107,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         prikazi_tipove_pregleda: () => dispatch(actions.tipoviPregleda()),
-                //Dole sam promenio umeso actions.pregledi u actions.tipoviPregleda
-                //jer puca tu
-
         prikazi_preglede: () => dispatch(actions.tipoviPregleda())
     }
 };
